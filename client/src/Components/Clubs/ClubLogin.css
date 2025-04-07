@@ -1,0 +1,98 @@
+.club_login{
+    padding: 20px 0;
+}
+
+.club_login_title {
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.club_login_inputs{
+    margin: auto;
+    text-align: center;
+    
+}
+
+.club_login_inputs input{
+    width: 360px;
+    border: 3px solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid;
+    padding: 15px;
+    outline: none;
+
+}
+
+.club_login_inputs input[type=email]:focus {
+    border: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid;
+    outline: none;
+  }
+.club_login_inputs input[type=password]:focus {
+    border: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid;
+    outline: none;
+  }
+
+.club_login_forgotpass a{
+    float: right;
+    margin-right: 135px;
+    text-decoration: none;
+    color: #110422;
+
+
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.club_login_card{
+    margin:auto
+}
+
+.club_login_captcha{
+    display: flex;
+    justify-content: space-between;
+}
+
+.club_login_button{
+    text-align: center;
+}
+
+.club_login_button button{
+    padding: 5px 25px;
+    color: #FFF;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-transform: capitalize;
+}
+
+.club_signin_link a{
+    color:  #379BEF;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-decoration: none;
+    text-align: center;
+}
+.club_signin_link p{
+ 
+    margin-left: 22%;
+}

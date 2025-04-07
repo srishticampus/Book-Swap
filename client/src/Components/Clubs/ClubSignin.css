@@ -1,0 +1,57 @@
+.reader_signin{
+    font-family: "Poppins", sans-serif;
+    padding: 20px 0;
+  }
+  
+  .reader_signin_title {
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+  }
+  
+  .reader_signin_inputs input{
+    width: 100%;
+    border-radius: 7px;
+    border: 1px solid #000;
+    height: 39px;
+  }
+  
+  .reader_signin_inputs select{
+    width: 100%;
+    border-radius: 7px;
+    border: 1px solid #000;
+    height: 39px;
+    color: grey;
+  }
+  
+  
+  .reader_signin_inputfile input[type=file]::file-selector-button {
+    border: 1px solid black;
+    height: 39px;
+    padding: .2em 3em;
+    border-radius: 7px;
+    background-color:white;
+    color: grey;
+  }
+  
+  .reader_signin_inputbutton button{
+    width: 105px;
+    height: 39px;
+    margin-right: 10px;
+  }
+  
+  .reader_signin_link a{
+    color:  #379BEF;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  text-decoration: none;
+  }
+  .reader_signin_img{
+    margin-top: 100px;
+  }
+  
