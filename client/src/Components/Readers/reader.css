@@ -1,0 +1,88 @@
+.userhomeicon {
+  height: 27px;
+  width: 35px;
+  color: black;
+}
+.userprofileicon {
+  height: 23px;
+  width: 35px;
+  color: black;
+}
+#navheaders {
+  font-weight: bolder;
+}
+
+.loginheading {
+  font-weight: bolder;
+  font-size: 1.3em;
+}
+.userloginimg {
+  width: 620px;
+}
+.userloginform {
+  padding: 2% 15%;
+}
+.form-floating input[type="email"],
+.form-floating input[type="password"],
+.form-floating input[type='text'] {
+  border: none;
+  border-bottom: 2px solid black;
+  outline: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+}
+.forgot-password{
+  text-decoration: none;
+  color: black;
+}
+.gotosignup{
+  text-decoration: none;
+  font-weight: bolder;
+}#alertuser{
+  color: red;
+  padding: 0;
+}
+#alertusersucess{
+  color: rgb(6, 184, 50);
+}
+#selectinputstyle{
+  background-color: rgb(153, 156, 160);
+  outline: none;
+  width: 150%;
+  border: none;
+  border-radius: 6px;
+}
+#tablemargin{
+margin-top: 1%;
+color: rgb(0, 0, 0);
+font-weight: bold;
+margin-bottom: 1%;
+}
+.exchangeimg{
+  width: 90%;
+ 
+}
+.tickimg{
+  border-radius: 30px;
+}
+#tickdiv{
+  padding:10% ;
+}
+
+.captchaborder{
+  border: 1px solid;
+  padding: 5%;
+  border-radius: 6px;
+}
+
+.readerimg{
+  width: 24px;
+  height: 24px;
+  border-radius: 28px;
+  object-fit: cover;
+}
+#accepted_button{
+  font-size: larger;
+  color: green;
+  font-weight: bolder;
+}

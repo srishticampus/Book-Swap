@@ -1,0 +1,12 @@
+.club_forgotafter_input input{
+    width: 430px;
+  height: 51px;
+  border-radius: 15px;
+  background: white;
+  border: 1px solid black;
+  margin: 20px;
+}
+#btn_login{
+    margin-left: 180px;
+    width: 100px;
+}
