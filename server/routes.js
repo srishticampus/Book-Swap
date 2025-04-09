@@ -3,20 +3,14 @@ const router = express.Router();
 const users=require('./User/userController')
 
 
-const Clubs = require("./Clubs/clubController");
 
 
 // const request=require("./Clubs/clubController")
 
 // const users = require("./User/userController");
 
-router.post("/addclubs", Clubs.upload, Clubs.addclubs);
-router.post("/clublogin",Clubs.clubLogin)
-router.post("/viewClubbyid/:id",Clubs.viewClubbyid)
-router.post("/clubeditbyid/:id",Clubs.upload,Clubs.clubEditbyid)
-
-router.get("/admin_club",Clubs.getClubs)
-router.delete('/admin_club/:id',Clubs.removeClub)
+// router.get("/admin_club",Clubs.getClubs)
+// router.delete('/admin_club/:id',Clubs.removeClub)
 
 // router.post("/adduser", users.upload, users.adduser);
 // router.post("/userforgotpswd", users.forgotPassword);
@@ -36,16 +30,6 @@ const userdonate=require('./User/userdonateController')
 router.post('/donatebook',userdonate.upload,userdonate.addbook)
 router.post('/viewuserdonatebook/:id',userdonate.viewuserbook)
 
-//clubdonatebook
-const clubdonate=require('./Clubs/clubdonateController')
-router.post('/clubdonate',clubdonate.upload,clubdonate.addbookclub)
-router.post('/viewclubdonatebook',clubdonate.viewclubbook)
-
-
-// club forgot password
-router.post('/clubforgotpassword',Clubs.clubforgotPassword)
-router.post('/clubforgotPasswordreq/:id',Clubs.clubforgotPasswordreq)
-
 // admin Addbook
 const adminaddbook=require('./Admin/adminaddbookController')
 router.post('/adminaddbook',adminaddbook.upload,adminaddbook.addbookadmin)
@@ -54,8 +38,8 @@ router.post('/deleteBook/:id',adminaddbook.deleteBook)
 router.post('/admineditbook/:id',adminaddbook.upload,adminaddbook.admineditbook)
 router.post('/adminviewbookone/:id', adminaddbook.adminviewbookone)//
 router.post('/viewuserbook/:id',adminaddbook.viewuserbook)
-router.post('/viewclubbook/:id',adminaddbook.viewclubbook)
-router.post('/viewallbookforclub',adminaddbook.viewallbookforclub)
+// router.post('/viewclubbook/:id',adminaddbook.viewclubbook)
+// router.post('/viewallbookforclub',adminaddbook.viewallbookforclub)
 router.post('/viewDonationsForAdmin',adminaddbook.viewDonationsForAdmin)
 
 //useraddwishlist
@@ -64,18 +48,18 @@ router.post('/userwishlist',useraddwishlist.wishlist)
 router.post('/bookviewwishlist/:id',useraddwishlist.viewbookwishlist)
 router.post('/deletewishlist/:id',useraddwishlist.deletewishlist)
 
-const requestController = require('./Clubs/clubrequestController');
+// const requestController = require('./Clubs/clubrequestController');
 
-router.post('/sendrequest', requestController.sendRequest);
-router.post('/requests/:clubId', requestController.getRequestsForClub);
-router.get('/userDetails/:userId',requestController.getRequestuser)
-router.get('/userviewclub/:id',requestController.userview)
-router.post('/getAcceptedRequestForClub/:clubId',requestController.getAcceptedRequestForClub)
-router.post('/deleteClubMember/:id',requestController.deleteClubMember)
+// router.post('/sendrequest', requestController.sendRequest);
+// router.post('/requests/:clubId', requestController.getRequestsForClub);
+// router.get('/userDetails/:userId',requestController.getRequestuser)
+// router.get('/userviewclub/:id',requestController.userview)
+// router.post('/getAcceptedRequestForClub/:clubId',requestController.getAcceptedRequestForClub)
+// router.post('/deleteClubMember/:id',requestController.deleteClubMember)
 
 
-router.put('/acceptRequest/:requestId',requestController.acceptRequest)
-router.put('/rejectRequest/:requestId',requestController.rejectRequest)
+// router.put('/acceptRequest/:requestId',requestController.acceptRequest)
+// router.put('/rejectRequest/:requestId',requestController.rejectRequest)
 
 const lendbook=require("./Lendbyuser/lendbyusercontroller")
 router.post('/lendbyuser',lendbook.lend)
@@ -90,7 +74,43 @@ router.get('/exchangerequests/:userid',exchange.getuserExchangebook)
 
 router.put('/acceptExchangeRequest/:exchangeId',exchange.acceptExchangeIdRequest)
 router.put('/rejectExchangeRequest/:exchangeId',exchange.rejectExchangeIdRequest)
-
 router.post('/displayexchangerequests',exchange.displayExchangeRequest)
 
+
+// library
+
+const libraryController = require("./library/libraryController");
+
+router.post("/addlibrary", libraryController.upload, libraryController.addLibrary);
+router.post("/librarylogin", libraryController.libraryLogin);
+router.post("/libraryforgot", libraryController.libraryForgotPasswordReq);
+router.post("/library_forgotpswdafter", libraryController.libraryForgotPassword);
+router.get("/getlibraries", libraryController.getLibraries);
+router.delete("/removelibrary/:id", libraryController.removeLibrary);
+router.get("/viewalibrary/:id", libraryController.viewLibraryById);
+router.post("/editlibrary/:id", libraryController.upload, libraryController.editLibraryById);
+router.get("/librarynotifications", libraryController.libraryNotification);
+
+
+// library request
+
+const libraryRequestController = require('./library/libraryrequestController');
+router.post('/sendRequest', libraryRequestController.sendRequest);
+router.get('/pendingRequests/:libraryId', libraryRequestController.getRequestsForLibrary);
+router.get('/acceptedRequests/:libraryId', libraryRequestController.getAcceptedRequestsForLibrary);
+router.put('/acceptRequest/:requestId', libraryRequestController.acceptRequest);
+router.put('/rejectRequest/:requestId', libraryRequestController.rejectRequest);
+router.get('/userRequests/:userId', libraryRequestController.viewUserLibraryRequests);
+router.delete('/leaveLibrary/:id', libraryRequestController.leaveLibrary);
+router.delete('/deleteMember/:id', libraryRequestController.deleteLibraryMember);
+router.get('/acceptedLibraries/:userId', libraryRequestController.getAcceptedLibrariesForUser);
+
+
+// donate book from library
+const {addBookToLibrary,upload,viewLibraryBooks} = require("./library/librarydonateController");
+
+router.post("/addBook", upload,addBookToLibrary);
+router.get("/viewBooks/:id", viewLibraryBooks);
+
 module.exports=router
+ 
