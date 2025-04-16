@@ -1,0 +1,42 @@
+.admin_addbook{
+    font-family: "Poppins", sans-serif;
+    padding: 30px 0 ;
+
+}
+.admin_addbooke_heading{
+    color: #000;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+}
+.admin_addbook_inputs input{
+    width: 100%;
+    border-radius: 7px;
+    border: 1px solid #000;
+    height: 39px;
+    margin: 17px 0;
+}
+.addbook_label{
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+}
+.admin_addbook_inputs input[type=file]::file-selector-button{
+    border: 1px solid black;
+    height: 39px;
+    padding: .2em 3em;
+    border-radius: 7px;
+    background-color:white;
+    color: grey;
+
+}
+#adminaddbook_button{
+    margin: 10px;
+    width: 145px;
+    height: 42px;
+margin-left: 300px;}
+
+#addbook_img{
+    width: 100%;
+}
