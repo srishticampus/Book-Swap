@@ -1,0 +1,48 @@
+.reader_profile_privacy {
+    width: 69%;
+    min-height: 790px;
+    background-color: rgba(217, 217, 217, 0.49);
+    margin: 20px 0;
+    padding: 50px 30px;
+  }
+  
+  .reader_profile_privacy p {
+    color: #222020;
+      text-align: center;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+  }
+  
+  .reader_profile_privacy_content p{
+      color: #222020;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.18px;
+  text-transform: capitalize;
+  text-align: left;
+  }
+  
+  .reader_profile_privacy_content ol {
+      color: #222020;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.18px;
+  text-transform: capitalize;
+  margin: 0;
+  padding: 0 15px;
+  }
+
+ .reader_profile_privacy_content li{
+    list-style-type: none;
+ } 
+

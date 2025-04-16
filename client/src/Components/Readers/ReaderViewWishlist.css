@@ -1,0 +1,58 @@
+.reader_wishlist_main {
+  padding: 20px 30px;
+}
+
+.reader_wishlist_head p {
+  color: #110422;
+  font-family: Poppins;
+  font-size: 18.397px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 30px 30px;
+}
+
+.reader_wishlist_count p {
+  color: #000;
+  font-family: Poppins;
+  font-size: 19.397px;
+  font-style: normal;
+
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+.reader_wishlist_items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-modal {
+  max-width: 40%;
+  margin: 100px auto 0;
+  margin-left: 60%;
+}
+
+.reader_wishlist_item_image img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.reader_wishlist_item_content h6 {
+  color: #110422;
+  font-family: Poppins;
+  font-size: 18.397px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+}
+
+.reader_wishlist_item_action button {
+  position: relative;
+  left: 0px;
+  top: 35%;
+}

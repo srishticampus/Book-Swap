@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+
+.admin_login_form input[type="text"]:focus{
+    border: 0px;
+    font-family:'Poppins','sans-seriff';
+
+    
+}
+.admin_login_form input[type="text"]{
+  /* padding: 10px 15px; */
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 0px solid #ccc;
+  outline: none;
+  width: 25rem;
+}
+
+ 
+.admin_login_form input[type="password"]:focus{
+    border: 0;
+    font-family:'Poppins','sans-seriff';
+}
+.admin_login_form input[type="password"]{
+    /* padding: 10px 15px; */
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 0px solid #ccc;
+  outline: none;
+  width: 25rem;
+}
+.admin_main {
+  display: flex;
+
+  /* edited by radhul-----------no need of margin-top here */
+  /* margin-top: 8rem; */
+   /* edited by radhul-----------no need of margin-top here */
+
+  margin-left: 7rem;
+}
+.admin_img  img{
+  width: 40rem;
+  height: auto;
+  
+  
+}
+.admin_main form{
+  margin-left: 10rem;
+  width: 20rem;
+  padding-top: 9rem;
+}
+.admin_main h5{
+  text-align: center;
+  font-family: 'Poppins','sans-seriff';
+  font-weight: 700;
+  margin-left: 6rem;
+}
+.admin_main table{
+  margin-top: 2rem;
+  color: black;
+  -webkit-text-fill-color: #000000;
+}
+.adminlogin_bttn {
+  margin-left:11rem ;
+  padding-top: 1rem;
+  font-family: 'Poppins','sans-seriff';
+}
+.admin_main hr{
+  width: 25rem;
+  position: relative;
+  border-top: 3px solid #000000;
+  border-radius: 4px;
+  background-color: #000000;
+  /* margin-bottom: 50px; */
+  
+}
+
+.addbookimg{
+  width:550px;
+  margin-top: 8%;
+}

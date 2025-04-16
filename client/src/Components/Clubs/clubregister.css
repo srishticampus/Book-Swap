@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+.clubreg_main {
+    display: flex;
+    margin-top: 7rem;
+    font-family:'Poppins','sans-seriff';
+}
+.clubreg_form form{
+    margin-left: 6rem;
+    width: 36rem;
+}
+.clubreg_form h4{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.clubreg_form button{
+    margin-left: 13rem;
+
+}
+#para {
+    display: inline-block;
+    margin-left: 6rem;
+}
+.login_container a{
+    padding-left: 2rem;
+    text-decoration: none;
+}
+.clubname input[type="text"]{
+    border-color: black;
+    -webkit-text-fill-color: black;
+    
+    width: 19rem;
+    float: left;
+    
+    
+    
+}
+input[type="email"]{
+    border-color: black;
+    
+    -webkit-text-fill-color: black;
+}
+input[type="password"]{
+    border-color: black;
+    -webkit-text-fill-color: black;
+}
+.club_regno input[type="number"]{
+    border-color: black;
+    -webkit-text-fill-color: black;
+    width: 16rem;
+    margin-left: 20rem;
+}
+input[type="file"]{
+    border-color: black;
+}
+.clubreg_form select{
+    border-color: black;
+}
+.clubreg_address input[type="text"]{
+    border-color: black;
+    -webkit-text-fill-color: black;
+}
+.clubreg_address2 input[type="text"]{
+    border-color: black;
+    -webkit-text-fill-color: black;
+}
+.clubreg_district select{
+    border-color: black;
+    width: 18rem;
+    float: left;
+}
+.clubreg_pincode input[type="number"]{
+    border-color: black;
+    -webkit-text-fill-color: black;
+    width: 17rem;
+    margin-left: 19rem;
+}
