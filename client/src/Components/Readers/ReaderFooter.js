@@ -45,7 +45,7 @@ function ReaderFooter() {
               </h6>
               <h6>
                 <AiOutlineMail style={{ fontSize: 20, color: "white" }} />
-                bookexchange@gmail.com
+                bookswap@gmail.com
               </h6>
             </div>
 

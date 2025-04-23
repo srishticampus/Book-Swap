@@ -64,7 +64,7 @@ const navigat=useNavigate()
       if (res.data.status === 200) {
         // alert("Password Reset successful");
         toast.success("password Reset successfully")
-        navigat("/club_login")
+        navigat("/library_login")
         
       } else {
         alert("Password Reset failed");

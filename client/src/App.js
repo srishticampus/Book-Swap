@@ -113,7 +113,7 @@ function App() {
           {/* ------------Club---------- */}
 
 
-          <Route path="/club_landing" element={[<ClubNavbar />, <ReaderHome />]}/>
+          {/* <Route path="/club_landing" element={[<ClubNavbar />, <ReaderHome />]}/>
           <Route path="/club_register" element={[<LoginNavbar />, <ClubSignin />]}/>
           <Route path="/club_login" element={[<LoginNavbar />, <ClubLogin />]} />
           <Route path="/club_donatebook" element={[<ClubHomeNavbar/>,<Clubdonatebook/>]}/>
@@ -124,7 +124,24 @@ function App() {
           <Route path="/club_forgotpswdsec" element={[<LoginNavbar />,<Clubforgotpswdsec/>]}/>
           <Route path="/club_forgotpswdafter" element={[<LoginNavbar />,<Clubforgotpswdafter/>]}/>
           <Route path="/clubnotificationpage" element={[<ClubHomeNavbar/>,<ClubNotificationPage url={url}/>]} />
-          <Route path="/club_view_members" element={[<ClubHomeNavbar/>,<ClubViewMembers url={url}/>]} />
+          <Route path="/club_view_members" element={[<ClubHomeNavbar/>,<ClubViewMembers url={url}/>]} /> */}
+
+
+          {/* -----------Libraries----------- */}
+          <Route path="/library_landing" element={[<ClubNavbar />, <ReaderHome />]}/>
+          <Route path="/library_register" element={[<LoginNavbar />, <ClubSignin />]}/>
+          <Route path="/library_login" element={[<LoginNavbar />, <ClubLogin />]} />
+          <Route path="/library_donatebook" element={[<ClubHomeNavbar/>,<Clubdonatebook/>]}/>
+          <Route path="/library_profile" element={[<ClubHomeNavbar/>,<ClubProfile url={url} />]}  />        
+          <Route path="/library_home" element={[<ClubHomeNavbar/>,<Clubhome/>]}/>
+          <Route path="/library_about" element={[<ClubHomeNavbar/>,<AboutPage/>]}/>
+          <Route path="/library_view_books" element={[<ClubHomeNavbar/>,<ClubViewBooks url={url}/>]}/>
+          <Route path="/library_forgotpswdsec" element={[<LoginNavbar />,<Clubforgotpswdsec/>]}/>
+          <Route path="/library_forgotpswdafter" element={[<LoginNavbar />,<Clubforgotpswdafter/>]}/>
+          <Route path="/librarynotificationpage" element={[<ClubHomeNavbar/>,<ClubNotificationPage url={url}/>]} />
+          <Route path="/library_view_members" element={[<ClubHomeNavbar/>,<ClubViewMembers url={url}/>]} />
+
+
 
 
           {/* ------------Admin---------- */}

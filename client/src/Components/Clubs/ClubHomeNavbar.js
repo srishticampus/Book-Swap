@@ -55,7 +55,7 @@ console.log(id);
                     <li class="nav-item">
                       <Link
 
-                        to="/club_home"
+                        to="/library_home"
                         class="nav-link active"
                         id="navheaders"
                         aria-current="page"
@@ -65,13 +65,13 @@ console.log(id);
                       </Link>
                     </li>
                     <li class="nav-item">
-                      <Link to="/club_about" class="nav-link" href="#" id="navheaders">
+                      <Link to="/library_about" class="nav-link" href="#" id="navheaders">
                         ABOUT
                       </Link>
                     </li>
                     <li class="nav-item">
                       <Link
-                        to="/club_view_books"
+                        to="/library_view_books"
                         class="nav-link active"
                         aria-current="page"
                         id="navheaders"
@@ -80,22 +80,22 @@ console.log(id);
                       </Link>
                     </li>
                     <li class="nav-item">
-                      <Link to="/club_view_members" class="nav-link" href="#" id="navheaders">
+                      <Link to="/library_view_members" class="nav-link" href="#" id="navheaders">
                         MEMBERS
                       </Link>
                     </li>
                     <li class="nav-item">
-                      <Link to="/club_donatebook" class="nav-link" href="#" id="navheaders">
+                      <Link to="/library_donatebook" class="nav-link" href="#" id="navheaders">
                         DONATE
                       </Link>
                     </li>
                     <li class="nav-item">
-                      <Link to="/clubnotificationpage" class="nav-link">
+                      <Link to="/librarybnotificationpage" class="nav-link">
                         <AiFillBell />
                       </Link>
                     </li>
                     <li class="nav-item">
-                      <Link to="/club_profile" class="nav-link" id="adminhomelogout">
+                      <Link to="/library_profile" class="nav-link" id="adminhomelogout">
                         <img
                           src={`${url}/${data.image}`}
                           alt="img"
