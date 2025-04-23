@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 app.use(cors())
 const route=require('./routes')
-app.use('/bookexchange_api',route)
+app.use('/bookswapapi',route)
 
 const PORT = 4001;
 app.listen(PORT, () => {

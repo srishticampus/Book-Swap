@@ -1,5 +1,5 @@
 const express = require("express");
-const clubSchema = require("./clubSchema");
+const librarySchema = require("./librarySchema");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const jwt = require("jsonwebtoken");
@@ -22,15 +22,14 @@ const transporter = nodemailer.createTransport({
     pass: "jsyu cwze ymro cfhj",
   },
 });
+
 const testMail = (userEmail) => {
   const mailOptions = {
     from: "bookexchange205@gmail.com",
     to: userEmail,
     subject: "User Verification By BookShop",
     text: `Please use the Link to Reset Your Password on BookShop.com \n
-     
-   \n
-    Link : http://localhost:3000/club_forgotpswdafter?id=${userEmail}`,
+    Link : http://localhost:3000/library_forgotpswdafter?id=${userEmail}`,
   };
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
@@ -43,10 +42,10 @@ const testMail = (userEmail) => {
 
 const upload = multer({ storage: storage }).single("image");
 
-const addclubs = (req, res) => {
+const addLibrary = (req, res) => {
   let image = req.file.filename;
-  let clubs = new clubSchema({
-    clubname: req.body.clubname,
+  let library = new librarySchema({
+    libraryname: req.body.libraryname,
     street: req.body.street,
     city: req.body.city,
     district: req.body.district,
@@ -55,12 +54,11 @@ const addclubs = (req, res) => {
     contact: req.body.contact,
     email: req.body.email,
     password: req.body.password,
-    // confirmpassword: req.body.confirmpassword,
     pincode: req.body.pincode,
     image: image,
   });
 
-  clubs
+  library
     .save()
     .then((response) => {
       console.log(response);
@@ -70,32 +68,30 @@ const addclubs = (req, res) => {
       });
     })
     .catch((err) => {
-      if(err.code==11000){
+      if (err.code == 11000) {
         res.json({
           status: 409,
           msg: "Email Id Already Registered",
-          
+        });
+      } else {
+        console.log(err);
+        res.json({
+          status: 500,
+          msg: "error",
         });
       }
-      else{
-      console.log(err);
-      res.json({
-        status: 500,
-        msg: "error",
-      });}
     });
 };
 
-// club forgot password
-const clubforgotPasswordreq = (req, res) => {
-  clubSchema
+const libraryForgotPasswordReq = (req, res) => {
+  librarySchema
     .findOne({ email: req.body.email })
     .exec()
     .then((data) => {
       if (data == null) {
         res.json({
           status: 500,
-          msg: "club not Found",
+          msg: "Library not Found",
         });
       } else {
         testMail(req.body.email);
@@ -109,25 +105,23 @@ const clubforgotPasswordreq = (req, res) => {
       console.log(err);
       res.json({
         status: 500,
-        msg: "Error Occured",
+        msg: "Error Occurred",
       });
     });
 };
 
-const clubforgotPassword = (req, res) => {
-  clubSchema
+const libraryForgotPassword = (req, res) => {
+  librarySchema
     .findOne({ email: req.body.email })
     .exec()
-
     .then((data) => {
-      console.log(data);
       if (data == null) {
         res.json({
           status: 500,
-          msg: "club not Found",
+          msg: "Library not Found",
         });
       } else {
-        clubSchema
+        librarySchema
           .findOneAndUpdate(
             { email: req.body.email },
             {
@@ -135,7 +129,7 @@ const clubforgotPassword = (req, res) => {
             }
           )
           .exec()
-          .then((data) => {
+          .then(() => {
             res.json({
               status: 200,
               msg: "Updated successfully",
@@ -155,19 +149,14 @@ const clubforgotPassword = (req, res) => {
 function verifyToken(req, res, next) {
   let authHeader = req.headers.authorization;
 
-  console.log("Auth Header:", authHeader);
-
   if (authHeader === undefined) {
     next();
   }
 
   let token = authHeader.split(" ")[1];
 
-  console.log("Token:", token);
-
   jwt.verify(token, "secret_key", function (err, decoded) {
     if (err) {
-      console.log("Token Verification Error:", err);
       return res.status(500).send({ error: "Authorization failed" });
     } else {
       next();
@@ -175,21 +164,19 @@ function verifyToken(req, res, next) {
   });
 }
 
-const clubLogin = async (req, res) => {
+const libraryLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const club = await clubSchema.findOne({ email: email });
+    const library = await librarySchema.findOne({ email: email });
 
-    if (club) {
-      if (club.password === password) {
+    if (library) {
+      if (library.password === password) {
         const token = jwt.sign(
-          { email: club.email, password: club.password },
+          { email: library.email, password: library.password },
           "secret_key",
           { expiresIn: 86400 }
         );
-        return res
-          .status(200)
-          .json({ message: "Login successful", token, id: club._id });
+        return res.status(200).json({ message: "Login successful", token, id: library._id });
       } else {
         return res.status(401).json({ message: "Password is incorrect" });
       }
@@ -201,16 +188,11 @@ const clubLogin = async (req, res) => {
   }
 };
 
-const viewClubbyid = (req, res) => {
-  // console.log(req.headers.authorization);
-  // const datas=verifyToken(req,res)
-  // console.log(datas);
-  clubSchema
+const viewLibraryById = (req, res) => {
+  librarySchema
     .findById({ _id: req.params.id })
     .exec()
     .then((data) => {
-      // emps.data;
-      // console.log(data);
       res.json({
         status: 200,
         msg: "Data obtained successfully",
@@ -218,7 +200,6 @@ const viewClubbyid = (req, res) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       res.json({
         status: 500,
         msg: "No Data obtained",
@@ -227,12 +208,12 @@ const viewClubbyid = (req, res) => {
     });
 };
 
-const clubEditbyid = (req, res) => {
-  clubSchema
+const editLibraryById = (req, res) => {
+  librarySchema
     .findByIdAndUpdate(
       { _id: req.params.id },
       {
-        clubname: req.body.clubname,
+        libraryname: req.body.libraryname,
         street: req.body.street,
         city: req.body.city,
         district: req.body.district,
@@ -246,7 +227,7 @@ const clubEditbyid = (req, res) => {
       }
     )
     .exec()
-    .then((data1) => {
+    .then(() => {
       res.json({
         status: 200,
         msg: "Updated successfully",
@@ -261,74 +242,40 @@ const clubEditbyid = (req, res) => {
     });
 };
 
-const getClubs = async (req, res) => {
-  const clublist = await clubSchema
+const getLibraries = async (req, res) => {
+  await librarySchema
     .find()
-    .then((clublist) => res.json(clublist))
+    .then((list) => res.json(list))
     .catch((err) => res.json(err));
 };
 
-const removeClub = async (req, res) => {
+const removeLibrary = async (req, res) => {
   const id = req.params.id;
-  console.log(id);
-  const club = await clubSchema.deleteOne({ _id: id });
+  const library = await librarySchema.deleteOne({ _id: id });
   try {
-    console.log(club);
-    res.status(201).json(club);
+    res.status(201).json(library);
   } catch (err) {
     res.status(409).json({ message: err.message });
   }
 };
 
-// send request
-
-const requestSend = async (req, res) => {
-  try {
-    const { userId, clubId } = req.body;
-
-    const user = await userSchema.findById(userId);
-
-    const club = await clubSchema.findById(clubId);
-
-    if (user && club) {
-      const requestDetails = {
-        user: user,
-        status: "pending",
-      };
-      console.log(requestDetails);
-      club.requests.push(requestDetails);
-
-      await club.save();
-
-      res.status(200).json({ message: "Request sent successfully!" });
-    } else {
-      res.status(404).json({ message: "User or Club not found" });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-};
-// get request
-
-const clubNotification=async (req, res) => {
-  const clubnotification = await clubSchema
+const libraryNotification = async (req, res) => {
+  await librarySchema
     .find()
-    .then((clubnotification) => res.json(clubnotification))
+    .then((notifications) => res.json(notifications))
     .catch((err) => res.json(err));
 };
 
 module.exports = {
-  addclubs,
+  addLibrary,
   upload,
   verifyToken,
-  clubLogin,
-  getClubs,
-  removeClub,
-  viewClubbyid,
-  clubEditbyid,
-  clubforgotPasswordreq,
-  clubforgotPassword,
-  requestSend,
-  clubNotification
+  libraryLogin,
+  getLibraries,
+  removeLibrary,
+  viewLibraryById,
+  editLibraryById,
+  libraryForgotPasswordReq,
+  libraryForgotPassword,
+  libraryNotification,
 };

@@ -184,7 +184,9 @@ function verifyToken(req, res, next) {
     }
   });
 }
-const userLogin = async (req, res) => {
+const userLogin = async (req,res) => {
+  console.log(req.body);
+  
   try {
     const { email, password } = req.body;
     const user = await userSchema.findOne({ email: email });

@@ -1,26 +1,23 @@
-
 const mongoose = require('mongoose');
 const user = require("../User/userSchema");
 
 const requestSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref:"users",
-    required:true
+    ref: "users",
+    required: true
   },
-  clubId: {
+  libraryId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref:"clubs",
-    required:true
-
+    ref: "libraries",
+    required: true
   },
   status: {
     type: String,
     default: 'pending',
   },
- 
 });
 
-const ClubRequest = mongoose.model('ClubRequest', requestSchema);
+const LibraryRequest = mongoose.model('LibraryRequest', requestSchema);
 
-module.exports = ClubRequest;
+module.exports = LibraryRequest;
