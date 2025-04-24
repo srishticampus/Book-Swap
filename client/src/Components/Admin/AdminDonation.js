@@ -3,18 +3,32 @@ import axiosInstance from "../../BaseUrl";
 
 function AdminDonation() {
   const [data, setData] = useState([]);
-
   useEffect(() => {
     axiosInstance
       .post(`/viewDonationsForAdmin`)
       .then((res) => {
-        console.log(res);
-        setData(res.data.data);
+        const donationData = res?.data?.data || [];
+        console.log("Received data:", donationData);
+        setData(donationData);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("API error:", err);
+        setData([]); // fallback to avoid null
       });
   }, []);
+  
+
+  // useEffect(() => {
+  //   axiosInstance
+  //     .post(`/viewDonationsForAdmin`)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   return (
     <div className="admin_exchange">

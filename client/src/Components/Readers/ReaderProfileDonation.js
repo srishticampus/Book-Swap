@@ -10,18 +10,31 @@ import axiosInstance from "../../BaseUrl";
 function ReaderProfileDonation({url}) {
   const [data, setData] = useState([]);
   const id = localStorage.getItem("userid");
-
   useEffect(() => {
     axiosInstance
       .post(`/viewuserbook/${id}`)
       .then((res) => {
-        console.log(res);
-        setData(res.data.data);
+        const responseData = res?.data?.data || [];
+        setData(responseData);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error fetching donations:", err);
+        setData([]); // Safe fallback
       });
   }, []);
+  
+
+  // useEffect(() => {
+  //   axiosInstance
+  //     .post(`/viewuserbook/${id}`)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   console.log(data);
 

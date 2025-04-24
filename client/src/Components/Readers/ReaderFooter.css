@@ -7,28 +7,32 @@
 } */
 
 
-footer{
+footer {
     width: 100%;
-    
+
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.852);
     padding: 1px 0 20px;
     font-size: 10px;
-    line-height:20px ;
+    line-height: 20px;
     font-weight: 400;
 }
-.footer-col1 p{
+
+.footer-col1 p {
     -webkit-text-fill-color: aliceblue;
 }
-.footer-row{
+
+.footer-row {
     /* width: 85%; */
-margin-top: 20px;    display: flex;
+    margin-top: 20px;
+    display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
 
 }
-.footer-col1{
+
+.footer-col1 {
     flex-basis: 25%;
     padding: 10px;
     /* margin-left: 5rem; */
@@ -36,51 +40,59 @@ margin-top: 20px;    display: flex;
     font-size: large;
     align-content: center;
 }
-.footer-vl{
+
+.footer-vl {
     border-left: 6px solid rgb(173, 179, 173);
-  height: 200px;
-  left: 25%;
-  margin-left: 3rem;
-  top: 0;
-  /* margin-top: 4rem; */
+    height: 200px;
+    left: 25%;
+    margin-left: 3rem;
+    top: 0;
+    /* margin-top: 4rem; */
 }
-.footer-col2{
+
+.footer-col2 {
     flex-basis: 25%;
     /* padding: 5px; */
     margin-left: 5rem;
     margin-top: 5rem;
     /* padding: 10px; */
 }
-.footer-col3{
+
+.footer-col3 {
     flex-basis: 25%;
     margin-left: 3rem;
     margin-top: 6rem;
     margin-right: 3rem;
     padding: 5px;
-    
+
 }
-.footer-col3 h4{
+
+.footer-col3 h4 {
     -webkit-text-fill-color: aliceblue;
-    
+
 }
-.footer-Image1{
-height: auto;    
-border-radius: 50%;
-margin-left: 3rem;
+
+.footer-Image1 {
+    height: auto;
+    border-radius: 50%;
+    margin-left: 3rem;
     /* background: black; */
-/* margin-bottom: 30px; */
+    /* margin-bottom: 30px; */
 }
-.footer-col4{
+
+.footer-col4 {
     margin-top: -10rem;
     flex-basis: 25%;
     padding: 5px;
     margin-left: 83rem;
 }
-.footer-col2 h6{
+
+.footer-col2 h6 {
     -webkit-text-fill-color: aliceblue;
     margin-left: -2rem;
 }
-.footer-col3 h6{
+
+.footer-col3 h6 {
     -webkit-text-fill-color: aliceblue;
     margin-left: -4rem;
 }

@@ -1,233 +1,369 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../Readers/ReaderSignin.css";
 import img from "../../Assets/Signin.png";
 import { Link, useNavigate } from "react-router-dom";
-import axiosInstance from '../../BaseUrl'
+import axiosInstance from "../../BaseUrl";
 import { readerRegSchema } from "../../Schema";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 
 function ReaderSignin() {
+  const navigate = useNavigate();
 
-  const navigate=useNavigate();
-  
-  const onSubmit=(e)=>{
-    e.preventDefault();
-    axiosInstance
-      .post(`/adduser`, values, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        if (res.data.status === 200) {
-          axiosInstance
-        .post(`/userlogin`,{email:values.email,password:values.password})
-        .then((res) => {
-          console.log("data entered", res);
-          if (res.status === 200) {
-            toast.success("Registered Successfully");
-            localStorage.setItem("token", res.data.token);
-          localStorage.setItem("userid", res.data.id);
-          navigate("/reader_home");
-          } else {
-            console.log(res);
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+    setFieldTouched,
+    validateForm,
+  } = useFormik({
+    initialValues: {
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+      confirmpassword: "",
+      dob: "",
+      gender: "",
+      street: "",
+      city: "",
+      state: "",
+      pincode: "",
+      mobile: "",
+      district: "",
+      nationality: "",
+      image: null,
+    },
+    validationSchema: readerRegSchema,
+    validateOnChange: true,
+    validateOnBlur: true,
+    onSubmit: async (values) => {
+      try {
+        const formData = new FormData();
+        for (let key in values) {
+          formData.append(key, values[key]);
+        }
 
-            toast.error("Something went wrong");
-          }
-        })
-        .catch((error) => {
-          console.log("error", error);
-          toast.error("Something went wrong");
+        const res = await axiosInstance.post(`/adduser`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
         });
-          // navigate("/reader_loginpage")
-          // window.location.reload();
-        } else if(res.data.status==409){
+
+        if (res.data.status === 200) {
+          const loginRes = await axiosInstance.post(`/userlogin`, {
+            email: values.email,
+            password: values.password,
+          });
+
+          if (loginRes.status === 200) {
+            toast.success("Registered Successfully");
+            localStorage.setItem("token", loginRes.data.token);
+            localStorage.setItem("userid", loginRes.data.id);
+            navigate("/reader_home");
+          }
+        } else if (res.data.status === 409) {
           toast.warning(res.data.msg);
         }
-      })
-      .catch((error) => {
-        console.log("error", error);
+      } catch (err) {
+        console.error(err);
         toast.error("Something went wrong");
-      });
-  }
+      }
+    },
+  });
 
-  const { values, errors, touched, handleBlur,setFieldValue, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: {
-        firstname: '',
-        lastname:'',
-        email: '',
-        password: '',
-        confirmpassword: '',
-        dob: '',
-        gender: '',
-        street: '',
-        city: '',
-        state: '',
-        pincode: '',
-        mobile:'',
-        district:'',
-        nationality:'',
-        image:''
-      },
-      validationSchema: readerRegSchema,
-      validateOnChange: true,
-      onSubmit,
-    });
+  const handleImageChange = (e) => {
+    setFieldValue("image", e.currentTarget.files[0]);
+  };
 
-    const handleImageChange = (event) => {
-      setFieldValue('image', event.currentTarget.files[0]);
-    };
-    // useEffect(()=>{
-    //   console.log(values);
+  const handleValidationBeforeSubmit = async (e) => {
+    e.preventDefault();
+    Object.keys(values).forEach((field) => setFieldTouched(field, true));
+    
+    // Custom Validation for Pincode (must be 6 digits)
+    if (!/^\d{6}$/.test(values.pincode)) {
+      setFieldValue("pincode", "Pincode must be exactly 6 digits.");
+    }
+    // Custom Validation for Mobile (must be 10 digits)
+    if (!/^\d{10}$/.test(values.mobile)) {
+      setFieldValue("mobile", "Mobile number must be exactly 10 digits.");
+    }
 
-    // })
+    // Validate Form
+    const validationErrors = await validateForm();
 
-    console.log(errors);
+    // Check if there are validation errors
+    if (Object.keys(validationErrors).length === 0) {
+      handleSubmit();
+    }
+  };
 
   return (
     <div className="reader_signin">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-sm-12 col-md-6 col-lg-6 reader_signin_img">
-            <img src={img} alt="images" className="img-fluid"/>
-
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12 col-md-6 col-lg-6 reader_signin_img">
+            <img src={img} alt="signin" className="img-fluid" />
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6">
-            <p className="reader_signin_title">Create a new account</p>
-            <form onSubmit={onSubmit}>
-              <div className="row ">
+            <p className="reader_signin_title">User Registration</p>
+            <form onSubmit={handleValidationBeforeSubmit}>
+              <div className="row">
+                {/* First Name */}
                 <div className="col-6 pb-3 reader_signin_inputs">
-                  <input type="text" className="form-label" placeholder="First Name" name="firstname" value={values.firstname} onChange={handleChange} onBlur={handleBlur} required title="Please fill the field" />
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    name="firstname"
+                    value={values.firstname}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
                   {errors.firstname && touched.firstname && (
-              <p className="error">{errors.firstname}</p>
-            )}
-                </div>
-                <div className="col-6 pb-3 reader_signin_inputs">
-                  <input type="text" placeholder="Last Name" name="lastname" value={values.lastname} onChange={handleChange} onBlur={handleBlur} required />
-                  {errors.lastname && touched.lastname && (
-              <p className="error">{errors.lastname}</p>
-            )}
-                </div>
-                <div className="col-12 pb-3 reader_signin_inputs">
-                  <input type="email" placeholder="Enter Email address" name="email" value={values.email} onChange={handleChange} onBlur={handleBlur} required />
-                  {errors.email && touched.email && (
-              <p className="error">{errors.email}</p>
-            )}
-                </div>
-                <div className="col-12 pb-3 reader_signin_inputs">
-                  <input type="password" placeholder="New Password"  name="password" value={values.password} onChange={handleChange} onBlur={handleBlur} required />
-                  {errors.password && touched.password && (
-              <p className="error">{errors.password}</p>
-            )}
-                </div>
-                <div className="col-12 pb-3 reader_signin_inputs">
-                  <input type="password" placeholder="Confirm Password"  name="confirmpassword" value={values.confirmpassword} onChange={handleChange} onBlur={handleBlur} required />
-                  {errors.confirmpassword && touched.confirmpassword && (
-              <p className="error">{errors.confirmpassword}</p>
-            )}
-                </div>
-                <div className="col-12 pb-3 reader_signin_inputs w-50">
-                  <label className="pb-3">Date of Birth</label>
-                  <input type="date"  name="dob" value={values.dob} onChange={handleChange} onBlur={handleBlur} required />
-                  {errors.dob && touched.dob && (
-              <p className="error">{errors.dob}</p>
-            )}
+                    <p className="error">{errors.firstname}</p>
+                  )}
                 </div>
 
-                <div className="col-12 pb-3 ">
-                  <label className="pb-3">Gender :</label>
-                  <label for="male">&nbsp; Male &nbsp;</label>
-                  <input type="radio" id="male" name="gender" value='Male' onChange={handleChange} onBlur={handleBlur} required />
-                  <label for="female">&nbsp; Female &nbsp;</label>
-                  <input type="radio" id="female" name="gender" value='Female' onChange={handleChange} onBlur={handleBlur} required />
-                  {errors.gender && touched.gender && (
-              <p className="error">{errors.gender}</p>
-            )}
-                </div>
-                <div className="col-12 pb-3 reader_signin_inputs">
-                  <label className="pb-3">Address</label>
-                  <input type="text" placeholder="Enter the street name" name="street" value={values.street} onChange={handleChange} onBlur={handleBlur} required />
-                  {errors.street && touched.street && (
-              <p className="error">{errors.street}</p>
-            )}
-                </div>
-                <div className="col-12 pb-3 reader_signin_inputs">
-                  <input type="text" placeholder="Enter the city" name="city" value={values.city} onChange={handleChange} onBlur={handleBlur} required />
-                  {errors.city && touched.city && (
-              <p className="error">{errors.city}</p>
-            )}
-                </div>
-                <div className="col-12 pb-3 reader_signin_inputs">
-                  <input type="text" placeholder="Enter the state" name="state" value={values.state} onChange={handleChange} onBlur={handleBlur} required />
-                  {errors.state && touched.state && (
-              <p className="error">{errors.state}</p>
-            )}
-                </div>
+                {/* Last Name */}
                 <div className="col-6 pb-3 reader_signin_inputs">
-                  <input type="text" placeholder="District" name="district" value={values.district} onChange={handleChange} onBlur={handleBlur} required />
-                  {errors.district && touched.district && (
-              <p className="error">{errors.district}</p>
-            )}
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    name="lastname"
+                    value={values.lastname}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.lastname && touched.lastname && (
+                    <p className="error">{errors.lastname}</p>
+                  )}
                 </div>
-                <div className="col-6 pb-3 reader_signin_inputs">
-                  <input type="number"  placeholder="Pincode" name="pincode" value={values.pincode} onChange={handleChange} onBlur={handleBlur} required />
-                  {touched.pincode && errors.pincode && (
-              <p className="error">{errors.pincode}</p>
-            )}
+
+                {/* Email */}
+                <div className="col-12 pb-3 reader_signin_inputs">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.email && touched.email && (
+                    <p className="error">{errors.email}</p>
+                  )}
                 </div>
+
+                {/* Password */}
+                <div className="col-12 pb-3 reader_signin_inputs">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.password && touched.password && (
+                    <p className="error">{errors.password}</p>
+                  )}
+                </div>
+
+                {/* Confirm Password */}
+                <div className="col-12 pb-3 reader_signin_inputs">
+                  <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    name="confirmpassword"
+                    value={values.confirmpassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.confirmpassword && touched.confirmpassword && (
+                    <p className="error">{errors.confirmpassword}</p>
+                  )}
+                </div>
+
+                {/* DOB */}
                 <div className="col-12 pb-3 reader_signin_inputs w-50">
-                  <select name="nationality"  onChange={handleChange} onBlur={handleBlur} required >
-                    <option>Nationality</option>
-                    <option value="Canada">Canada</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="Australia">Australia</option>
-                    <option value="India">India</option>
-                    <option value="France">France</option>
-                    <option value="Germany">Germany</option>
-                    <option value="Japan">Japan</option>
-                    <option value="China">China</option>
-                    <option value="Brazil">Brazil</option>
-                    <option value="Mexico">Mexico</option>
-                    <option value="Spain">Spain</option>
-                    <option value="Italy">Italy</option>
-                    <option value="Russia">Russia</option>
-                    <option value="Saudi Arabia">Saudi Arabia</option>
-                    <option value="South Africa">South Africa</option>
+                  <label className="pb-3">Date of Birth</label>
+                  <input
+                    type="date"
+                    name="dob"
+                    value={values.dob}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.dob && touched.dob && (
+                    <p className="error">{errors.dob}</p>
+                  )}
+                </div>
+
+                {/* Gender */}
+                <div className="col-12 pb-3">
+                  <label className="pb-3">Gender:</label>
+                  <label htmlFor="male">&nbsp; Male &nbsp;</label>
+                  <input
+                    type="radio"
+                    id="male"
+                    name="gender"
+                    value="Male"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <label htmlFor="female">&nbsp; Female &nbsp;</label>
+                  <input
+                    type="radio"
+                    id="female"
+                    name="gender"
+                    value="Female"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.gender && touched.gender && (
+                    <p className="error">{errors.gender}</p>
+                  )}
+                </div>
+
+                {/* Address */}
+                <div className="col-12 pb-3 reader_signin_inputs">
+                  <input
+                    type="text"
+                    placeholder="Street"
+                    name="street"
+                    value={values.street}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.street && touched.street && (
+                    <p className="error">{errors.street}</p>
+                  )}
+                </div>
+
+                <div className="col-12 pb-3 reader_signin_inputs">
+                  <input
+                    type="text"
+                    placeholder="City"
+                    name="city"
+                    value={values.city}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.city && touched.city && (
+                    <p className="error">{errors.city}</p>
+                  )}
+                </div>
+
+                <div className="col-12 pb-3 reader_signin_inputs">
+                  <input
+                    type="text"
+                    placeholder="State"
+                    name="state"
+                    value={values.state}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.state && touched.state && (
+                    <p className="error">{errors.state}</p>
+                  )}
+                </div>
+
+                <div className="col-6 pb-3 reader_signin_inputs">
+                  <input
+                    type="text"
+                    placeholder="District"
+                    name="district"
+                    value={values.district}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.district && touched.district && (
+                    <p className="error">{errors.district}</p>
+                  )}
+                </div>
+
+                <div className="col-6 pb-3 reader_signin_inputs">
+                  <input
+                    type="number"
+                    placeholder="Pincode"
+                    name="pincode"
+                    value={values.pincode}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.pincode && touched.pincode && (
+                    <p className="error">{errors.pincode}</p>
+                  )}
+                </div>
+
+                {/* Nationality */}
+                <div className="col-12 pb-3 reader_signin_inputs w-50">
+                  <select
+                    name="nationality"
+                    value={values.nationality}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  >
+                    <option value="">Select Nationality</option>
+                    {[ 
+                      "Canada", "United Kingdom", "Australia", "India", 
+                      "France", "Germany", "Japan", "China", "Brazil", 
+                      "Mexico", "Spain", "Italy", "Russia", "Saudi Arabia", 
+                      "South Africa"
+                    ].map((country) => (
+                      <option value={country} key={country}>
+                        {country}
+                      </option>
+                    ))}
                   </select>
                   {errors.nationality && touched.nationality && (
-              <p className="error">{errors.nationality}</p>
-            )}
+                    <p className="error">{errors.nationality}</p>
+                  )}
                 </div>
+
+                {/* Mobile */}
                 <div className="col-12 pb-3 reader_signin_inputs w-50">
-                <input type="number" placeholder="Contact" name="mobile" value={values.mobile} onChange={handleChange} onBlur={handleBlur} required />
-                {errors.mobile && touched.mobile && (
-              <p className="error">{errors.mobile}</p>
-            )}
+                  <input
+                    type="number"
+                    placeholder="Contact"
+                    name="mobile"
+                    value={values.mobile}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.mobile && touched.mobile && (
+                    <p className="error">{errors.mobile}</p>
+                  )}
                 </div>
+
+                {/* Image */}
                 <div className="col-12 pb-3 reader_signin_inputfile">
                   <label className="pb-3">Select an Image</label>
                   <input
                     type="file"
-                    placeholder="Enter the street name"
-                    className="w-100"
                     name="image"
-                    onChange={handleImageChange} onBlur={handleBlur} required
+                    className="w-100"
+                    onChange={handleImageChange}
+                    onBlur={handleBlur}
                   />
-                {/* {errors.image && touched.image && (
-              <p className="error">{errors.image}</p>
-            )} */}
                 </div>
+
+                {/* Submit/Reset */}
                 <div className="col-12 pb-3 reader_signin_inputbutton text-center">
-                  <button type="submit" className="btn btn-primary">SignUP</button>
-                  <button type="reset" className="btn btn-primary">Cancel</button>
+                  <button type="submit" className="btn btn-primary">
+                    SignUP
+                  </button>
+                  <button type="reset" className="btn btn-secondary">
+                    Cancel
+                  </button>
                 </div>
+
                 <div className="col-12 reader_signin_link">
                   <p>
-                    Already have an account ? <Link to='/reader_loginpage' >Login</Link>
+                    Already have an account?{" "}
+                    <Link to="/reader_loginpage">Login</Link>
                   </p>
                 </div>
               </div>
