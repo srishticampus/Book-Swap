@@ -20,7 +20,14 @@ export const readerRegSchema  = yup.object().shape({
         mobile:  yup.number().min(1000000000,"Contact must be a 10 digit number").max(9999999999,"Contact must be a 10 digit number").positive().integer().required("Enter Contact Number"),
         district: yup.string().min(2,"Enter minimum 2 characters").required("Enter District"),
         nationality: yup.string().min(2,"Enter minimum 2 characters").required("Enter Nationality"),
-        image: yup.object().required("Image Required"),     
+        // image: yup.object().required("Image Required"),  
+        image: yup
+  .mixed()
+  .required("Image Required")
+  .test("fileExists", "Please select an image", (value) => {
+    return value instanceof File;
+  }),
+   
 })
 
 export const clubRegSchema  = yup.object().shape({
