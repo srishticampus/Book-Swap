@@ -83,7 +83,7 @@ function ClubLogin() {
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6">
             <p className="club_login_title ">
-              Get more things done with loggin platform
+              Library Login
             </p>
             <form>
               <div className="row mt-4">
@@ -130,7 +130,7 @@ function ClubLogin() {
             </form>
             <div className="col-12 club_signin_link mt-3">
               <p>
-                Are you a new user? <Link to='/club_register' >SignUp</Link>
+                Are you a new user? <Link to='/library_register' >SignUp</Link>
               </p>
             </div>
           </div>

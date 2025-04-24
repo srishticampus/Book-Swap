@@ -105,7 +105,7 @@ const { values, errors, touched, handleBlur,setFieldValue, handleChange,isValid,
           <form onSubmit={onSubmit} >
             <div className="row ">
               <div className="col-6 pb-3 reader_signin_inputs">
-                <input type="text" placeholder="Club Name" name='clubname' value={values.clubname} onChange={handleChange} onBlur={handleBlur} required title="please fill the field"/>
+                <input type="text" placeholder="Library Name" name='clubname' value={values.clubname} onChange={handleChange} onBlur={handleBlur} required title="please fill the field"/>
                 {errors.clubname && touched.clubname && (
               <p className="error">{errors.clubname}</p>
             )}
@@ -188,7 +188,7 @@ const { values, errors, touched, handleBlur,setFieldValue, handleChange,isValid,
               </div>
               <div className="col-12 reader_signin_link">
                 <p>
-                  Already have an account ? <Link to='/club_login'>Login</Link> 
+                  Already have an account ? <Link to='/library_login'>Login</Link> 
                 </p>
               </div>
             </div>

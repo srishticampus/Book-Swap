@@ -83,7 +83,7 @@ function ReaderLoginpage() {
           </div>
           <div className="col-6">
             <p className="loginheading text-center">
-              Get More Things Done With Login Platform.
+             User Login
             </p>
             <div className="pt-2 ps-5 pe-5">
               <div className="form-floating mb-3">

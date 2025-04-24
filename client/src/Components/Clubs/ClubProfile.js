@@ -21,6 +21,7 @@ function ClubProfile({url}) {
 
     useEffect(()=>{
         axiosInstance.post(`/viewClubbyid/${id}`)
+
         .then((result)=>{
           console.log(result);
           setData(result.data.data)
