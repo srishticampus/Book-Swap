@@ -86,3 +86,24 @@ margin-bottom: 1%;
   color: green;
   font-weight: bolder;
 }
+
+.custom-menu {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  z-index: 9999;
+}
+
+.custom-menu .dropdown-item {
+  padding: 10px 15px;
+  color: black;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.2s;
+}
+
+.custom-menu .dropdown-item:hover {
+  background-color: #f2f2f2;
+}

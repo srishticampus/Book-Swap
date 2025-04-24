@@ -19,7 +19,7 @@
 }
 .clubprofile-division form{
     background-color:rgba(198, 195, 195, 0.56);
-    height: 42rem;
+    height: 45rem;
     /*width: 25rem;
     margin-left: 6rem;
     margin-top: 2rem; */
@@ -46,8 +46,8 @@
 .clubprofile-editprofile form{
     background-color:rgba(198, 195, 195, 0.502);
     margin-bottom: 10rem;
-    height: 42rem;
-
+    height: 45rem;
+ padding: 20px;
     /* height: 42rem;
     width: 57rem;
     float: right; */

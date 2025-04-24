@@ -17,7 +17,6 @@ function ReaderHomeNavbar() {
   const id=localStorage.getItem('userid')
 
   useEffect(()=>{
-
     axiosInstance.post(`/viewUserById/${id}`)
     .then((res)=>{
       // console.log(res);
@@ -26,7 +25,6 @@ function ReaderHomeNavbar() {
     .catch((err)=>{
       console.log(err);
     })
-  
     },[])
 
   const openWishlistModal = () => {
@@ -94,13 +92,24 @@ function ReaderHomeNavbar() {
                       </Link>
                     </li>
                     <li class="nav-item">
-                      <Link to="/reader_view_clubs" class="nav-link" href="#" id="navheaders">
-                        CLUB
+                      {/* <Link to="/reader_view_clubs" class="nav-link" href="#" id="navheaders">
+                        LIBRARY
+                      </Link> */}
+                      <Link to="#" class="nav-link" href="#" id="navheaders">
+                        LIBRARY
                       </Link>
                     </li>
                     <li class="nav-item">
-                      <Link
+                      {/* <Link
                         to="/reader_donatebook"
+                        class="nav-link active"
+                        aria-current="page"
+                        id="navheaders"
+                      >
+                        DONATE
+                      </Link> */}
+                        <Link
+                        to="#"
                         class="nav-link active"
                         aria-current="page"
                         id="navheaders"
@@ -109,7 +118,10 @@ function ReaderHomeNavbar() {
                       </Link>
                     </li>
                     <li class="nav-item">
-                      <Link to="/reader_exchange" class="nav-link" href="#" id="navheaders">
+                      {/* <Link to="/reader_exchange" class="nav-link" href="#" id="navheaders">
+                        EXCHANGES
+                      </Link> */}
+                             <Link to="#" class="nav-link" href="#" id="navheaders">
                         EXCHANGES
                       </Link>
                     </li>

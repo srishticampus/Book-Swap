@@ -26,6 +26,17 @@ function ReaderProfileAccountInfo() {
   const date= new Date()
   let year=date.getFullYear()
 
+  const calculateAge = (dobString) => {
+    const dob = new Date(dobString);
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const m = today.getMonth() - dob.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+      age--;
+    }
+    return age;
+  };
+  
 
   return (
     <div className='reader_profile_account_info' >
@@ -42,7 +53,9 @@ function ReaderProfileAccountInfo() {
           </div>
           <div className='reader_profile_account_info_fulldetails_box mb-3' >
             <p>Age</p>
-            <p>{year-data.dob.slice(0,4)}</p>
+            <p>{data.dob ? (calculateAge(data.dob) >= 0 ? calculateAge(data.dob) : "Invalid DOB") : ""}</p>
+
+
           </div>
           <div className='reader_profile_account_info_fulldetails_box mb-3' >
             <p>Contact</p>

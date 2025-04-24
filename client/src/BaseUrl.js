@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
 
 //local api
 
-  baseURL: 'http://localhost:4001/bookswap_api', 
+  baseURL: 'http://localhost:4001/bookswapapi', 
 
   headers: {
     'Content-Type': 'application/json',

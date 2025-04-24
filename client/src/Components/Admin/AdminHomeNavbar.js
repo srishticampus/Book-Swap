@@ -1,9 +1,15 @@
 import React from "react";
 import logo from "../../Assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import "./admin.css";
 import logoutlogo from "../../Assets/logout icon.png";
 function AdminHomeNavbar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("isAdminLoggedIn");
+    navigate("/admin_login");
+  };
   return (
     <div>
       <nav className="navbar text-white">
@@ -44,8 +50,17 @@ function AdminHomeNavbar() {
                       </Link>
                     </li>
                     <li class="nav-item">
-                      <Link
+                      {/* <Link
                         to="/admin_viewbook"
+                        class="nav-link active"
+                        aria-current="page"
+                        id="navheaders"
+                      >
+                        BOOK
+                      </Link> */}
+
+                      <Link
+                        to="#"
                         class="nav-link active"
                         aria-current="page"
                         id="navheaders"
@@ -59,8 +74,11 @@ function AdminHomeNavbar() {
                       </Link>
                     </li>
                     <li class="nav-item">
-                      <Link to="/admin_club" class="nav-link" href="#" id="navheaders">
+                      {/* <Link to="/admin_club" class="nav-link" href="#" id="navheaders">
                         CLUB
+                      </Link> */}
+                      <Link to="#" class="nav-link" href="#" id="navheaders">
+                        LIBRARY
                       </Link>
                     </li>
                     <li class="nav-item">
@@ -83,11 +101,22 @@ function AdminHomeNavbar() {
                         EXCHANGE REQUEST
                       </Link>
                     </li> */}
-                    <li class="nav-item">
-                      <Link to="/" class="nav-link">
-                        <img src={logoutlogo} alt="img"></img>
-                      </Link>
+
+                    {/* <Link
+                      to="/"
+                      className="nav-link"
+                      onClick={() => {
+                        localStorage.removeItem("isAdminLoggedIn");
+                      }}
+                    >
+                      <img src={logoutlogo} alt="logout" />
+                    </Link> */}
+ <li className="nav-item">
+                      <span className="nav-link" id="navheaders" style={{ cursor: 'pointer' }} onClick={handleLogout}>
+                        <img src={logoutlogo} alt="logout" />
+                      </span>
                     </li>
+   
                   </ul>
                 </div>
               </div>

@@ -1,59 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../Assets/logo.png";
 import { TiHome } from "react-icons/ti";
 import { BsPersonCircle } from "react-icons/bs";
 import "./reader.css";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 function ReaderNavbar() {
+  const [showMenu, setShowMenu] = useState(false);
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
+
   return (
-    <div>
-      <nav className="navbar" id="navbackground">
-        <div className="container d-flex justify-content-between align-items-center">
-          <img src={logo} alt="logo" width="120" height="90" />
+    <nav className="navbar" id="navbackground">
+      <div className="container d-flex justify-content-between align-items-center">
+        <img src={logo} alt="logo" width="120" height="90" />
 
-          <div className="d-flex align-items-center gap-3">
-            <Link to="/">
-              <TiHome className="userhomeicon" />
-            </Link>
+        <div className="d-flex align-items-center gap-3 position-relative">
+          <Link to="/">
+            <TiHome className="userhomeicon" />
+          </Link>
 
-            {/* Bootstrap Dropdown */}
-            <div className="dropdown">
-  <button
-    className="btn btn-link dropdown-toggle p-0 border-0"
-    id="userDropdown"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-  >
-    <BsPersonCircle className="userprofileicon" size={28} />
-  </button>
-  <ul
-    className="dropdown-menu dropdown-menu-end"
-    aria-labelledby="userDropdown"
-  >
-    <li>
-      <Link className="dropdown-item" to="/reader_loginpage">
-        User Login
-      </Link>
-    </li>
-    <li>
-      <Link className="dropdown-item" to="/club_loginpage">
-        Library Login
-      </Link>
-    </li>
-  </ul>
-</div>
+          
+          <button className="btn p-0 border-0" onClick={toggleMenu}>
+            <BsPersonCircle className="userprofileicon" size={28} />
+          </button>
 
-          </div>
+        
+          {showMenu && (
+            <div className="custom-menu position-absolute end-0 mt-2">
+              <Link className="dropdown-item" to="/reader_loginpage" onClick={() => setShowMenu(false)}>
+                User Login
+              </Link>
+              <Link className="dropdown-item" to="/library-login" onClick={() => setShowMenu(false)}>
+                Library Login
+              </Link>
+            </div>
+          )}
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 }
 
 export default ReaderNavbar;
+
 
 
 
