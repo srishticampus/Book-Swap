@@ -95,32 +95,32 @@ const adduser = (req, res) => {
     });
 };
 // Forgot Pwd req done by radhul Ram
-const forgotPasswordreq = (req, res) => {
-  userSchema
-    .findOne({ email: req.body.email })
-    .exec()
-    .then((data) => {
-      if (data == null) {
-        res.json({
-          status: 500,
-          msg: "User not Found",
-        });
-      } else {
-        testMail(req.body.email);
-        res.json({
-          status: 200,
-          msg: "Mail Sent",
-        });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      res.json({
-        status: 500,
-        msg: "Error Occured",
-      });
-    });
-};
+// const forgotPasswordreq = (req, res) => {
+//   userSchema
+//     .findOne({ email: req.body.email })
+//     .exec()
+//     .then((data) => {
+//       if (data == null) {
+//         res.json({
+//           status: 500,
+//           msg: "User not Found",
+//         });
+//       } else {
+//         testMail(req.body.email);
+//         res.json({
+//           status: 200,
+//           msg: "Mail Sent",
+//         });
+//       }
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.json({
+//         status: 500,
+//         msg: "Error Occured",
+//       });
+//     });
+// };
 // forgotPasswordreq finished
 
 //Login function done by Soumya on 01/11/2023
@@ -313,9 +313,9 @@ module.exports = {
   forgotPassword,
   userLogin,
   verifyToken,
-  forgotPasswordreq,
   viewUserById,
   editUserById,
   viewAllUsers,
   deleteUser
 };
+  // forgotPasswordreq,
