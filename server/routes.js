@@ -107,10 +107,11 @@ router.get('/acceptedLibraries/:userId', libraryRequestController.getAcceptedLib
 
 
 // donate book from library
-const {addBookToLibrary,upload,viewLibraryBooks} = require("./library/librarydonateController");
+const {addBookToLibrary,upload,viewLibraryBooks,viewAllDonatedBooksByAdmin} = require("./library/librarydonateController");
 
 router.post("/addBook", upload,addBookToLibrary);
 router.get("/viewBooks/:id", viewLibraryBooks);
+router.get("/viewlibrarydonateBooks", viewAllDonatedBooksByAdmin);
 
 module.exports=router
  
