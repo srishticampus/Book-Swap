@@ -19,7 +19,7 @@ const users=require('./User/userController')
 router.post("/userlogin", users.userLogin);
 router.post('/adduser',users.upload,users.adduser)
 router.post('/userforgotpassword',users.forgotPassword)
-router.post('/forgotPasswordreq',users.forgotPasswordreq)
+// router.post('/forgotPasswordreq',users.forgotPasswordreq)
 router.post('/viewUserById/:id',users.viewUserById)
 router.post('/viewAllUsers',users.viewAllUsers)
 router.post('/editUserById/:id',users.upload,users.editUserById)
@@ -83,8 +83,8 @@ const libraryController = require("./library/libraryController");
 
 router.post("/addlibrary", libraryController.upload, libraryController.addLibrary);
 router.post("/librarylogin", libraryController.libraryLogin);
-router.post("/libraryforgot", libraryController.libraryForgotPasswordReq);
-router.post("/library_forgotpswdafter", libraryController.libraryForgotPassword);
+// router.post("/libraryforgot", libraryController.libraryForgotPasswordReq);
+router.post("/library_forgotpswd", libraryController.libraryForgotPassword);
 router.get("/getlibraries", libraryController.getLibraries);
 router.delete("/removelibrary/:id", libraryController.removeLibrary);
 router.get("/viewalibrary/:id", libraryController.viewLibraryById);
@@ -107,10 +107,11 @@ router.get('/acceptedLibraries/:userId', libraryRequestController.getAcceptedLib
 
 
 // donate book from library
-const {addBookToLibrary,upload,viewLibraryBooks} = require("./library/librarydonateController");
+const {addBookToLibrary,upload,viewLibraryBooks,viewAllDonatedBooksByAdmin} = require("./library/librarydonateController");
 
 router.post("/addBook", upload,addBookToLibrary);
 router.get("/viewBooks/:id", viewLibraryBooks);
+router.get("/viewlibrarydonateBooks", viewAllDonatedBooksByAdmin);
 
 module.exports=router
  
