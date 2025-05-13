@@ -34,7 +34,7 @@ function ReaderReturnBook() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lendid,bid]);
 
 
   const returnbook=(a)=>{
@@ -43,7 +43,7 @@ function ReaderReturnBook() {
       .post(`/returnbook/${lendid}`)
       .then((res) => {
         console.log(res);
-        if(res.data.status==200){
+        if(res.data.status===200){
           toast.success('Return Successfully')
           navigate('/reader_view_lended_books')
         }
@@ -57,7 +57,7 @@ function ReaderReturnBook() {
       .post(`/addRating/${bid}`,{rating:rating})
       .then((res) => {
         console.log(res);
-        if(res.data.status==200){
+        if(res.data.status===200){
           // toast.success('Return Successfully')
           // navigate('/reader_view_lended_books')
         }
@@ -81,7 +81,7 @@ function ReaderReturnBook() {
   console.log(rating);
 
 
-  if (data.data1 == 0) {
+  if (data.data1 === 0) {
     return (
       <div className="reader_donatebook">
         <div className="container">

@@ -18,7 +18,7 @@ function ReaderViewLendedBooks() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div>

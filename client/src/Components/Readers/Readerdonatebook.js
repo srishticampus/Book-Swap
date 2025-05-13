@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../Readers/Readerdonatebook.css";
 import axiosInstance from "../../BaseUrl";
 import img from "../../Assets/donateimg.png";
@@ -78,6 +78,7 @@ function Readerdonatebook() {
                   <label className="col-sm-4 donatebook_label">
                     Author Name
                   </label>
+
                   <div className="col-sm-8 reader_donatebook_inputs">
                     <input
                       type="text"
@@ -88,7 +89,9 @@ function Readerdonatebook() {
                       required
                     />
                   </div>
+
                   <label className="col-sm-4 donatebook_label">Publisher</label>
+
                   <div className="col-sm-8 reader_donatebook_inputs">
                     <input
                       type="text"
@@ -99,9 +102,11 @@ function Readerdonatebook() {
                       required
                     />
                   </div>
+
                   <label className="col-sm-4 donatebook_label">
                     Publishing year
                   </label>
+
                   <div className="col-sm-8 reader_donatebook_inputs">
                     <input
                       type="text"
@@ -112,6 +117,7 @@ function Readerdonatebook() {
                       required
                     />
                   </div>
+                  
                   <label className="col-sm-4 donatebook_label">Count</label>
                   <div className="col-sm-8 reader_donatebook_inputs">
                     <input
