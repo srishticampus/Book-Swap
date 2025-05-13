@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+.clubprofile-division img{
+    height: 170px;
+    width: 170px;   
+    border-radius:50%; 
+    margin-top: 3rem;
+    
+}
+.clubprofile-division h1{
+    height: 2rem;
+    font-size: larger;
+    margin-top: 1rem;
+    font-weight: 700;
+}
+#allclubprofile{
+    width: 100%;
+    margin: auto;
+}
+.clubprofile-division form{
+    background-color:rgba(198, 195, 195, 0.56);
+    height: 45rem;
+    /*width: 25rem;
+    margin-left: 6rem;
+    margin-top: 2rem; */
+    font-family: 'Poppins','sans-seriff';
+    font-size: 18px;
+    
+}
+.clubprofile-division h4{
+    font-size: 16px;
+    font-weight: 400;
+    font-family:'Poppins','sans-seriff' ;
+    margin-left: 4rem;
+}
+.clubprofile-details{
+    margin-top: 2rem;
+}
+.clubprofile-division button{
+    width: 7rem;
+    height: 2rem;
+    margin-top: 2rem;
+    background-color: rgb(185, 178, 178);
+}
+
+.clubprofile-editprofile form{
+    background-color:rgba(198, 195, 195, 0.502);
+    margin-bottom: 10rem;
+    height: 45rem;
+ padding: 20px;
+    /* height: 42rem;
+    width: 57rem;
+    float: right; */
+    /* margin-top: -42rem;
+    margin-right: 6rem; */
+
+}
+.clubprofile-editprofile h1{
+    font-size: large;
+    font-weight: 700;
+    /* margin-top: 5rem; */
+    /* margin-left: 23rem; */
+    text-align: center;
+}
+.clubprofile-name-no-email{
+    width:25rem;
+    padding: 50px;
+    margin-top: -2rem;
+}
+.clubprofile-Address{
+   padding: 50px;
+   margin-top: -7rem;
+
+}
+.clubprofile-district{
+    padding: 50px 50px 0 50px;
+    margin-top: -6rem;
+}
+.clubprofile-editprofile button{
+    margin-left: 20rem;
+    /* margin-top: -3rem; */
+}
+.inputfileclubedit input[type=file]{
+    margin-bottom: 50px;
+    margin-bottom: 30px;
+    border: 1px solid rgb(255, 255, 255);
+    height: 36px;
+    padding: 0 2px ;
+    margin-left: 49px;
+    border-radius: 7px;
+    background-color:white;
+
+}
