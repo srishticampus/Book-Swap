@@ -15,9 +15,9 @@ app.use(bodyParser.json())
 
 app.use(cors())
 const route=require('./routes')
-app.use('/bookswapapi',route)
+app.use('/',route)
 
-const PORT = 4001;
+const PORT = 4059;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
