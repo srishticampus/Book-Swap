@@ -13,6 +13,7 @@ function LibraryProfile({ url }) {
   const [data, setData] = useState({ image: { filename: "" } });
   const id = localStorage.getItem("libraryid");
   const token = localStorage.getItem("token");
+  console.log(token)
 
   useEffect(() => {
     axiosInstance
@@ -24,7 +25,7 @@ function LibraryProfile({ url }) {
       .catch((err) => {
         console.error("View error", err);
       });
-  }, []);
+  }, [id]);
 
   const handleChange = (e) => {
     if (e.target.name === "image") {

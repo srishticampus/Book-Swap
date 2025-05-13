@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import AdminHomeNavbar from "./AdminHomeNavbar";
+// import AdminHomeNavbar from "./AdminHomeNavbar";
 import addbook from "../../Assets/addbook.png";
 import "./adminaddbook.css";
 import axiosInstance from "../../BaseUrl";
-import { useNavigate, useParams } from "react-router-dom";
-import { Toast } from "bootstrap";
+import {  useParams } from "react-router-dom";
+// import { Toast } from "bootstrap";
 import { toast } from "react-toastify";
 
 function AdminAddBook() {
-const navigate=useNavigate()
+// const navigate=useNavigate()
     const {id}=useParams();
     console.log(id);
     const[data,setData]=useState({image:{filename:''}})
@@ -25,10 +25,10 @@ const navigate=useNavigate()
             console.log(err);
           })
       
-    },[])
+    },[id])
     // console.log(data);
     const handleChange = (a) => {
-        if (a.target.name == "image") {
+        if (a.target.name === "image") {
           setData({ ...data, image: a.target.files[0] });
         } else {
           setData({ ...data, [a.target.name]: a.target.value });

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../Readers/ReaderProfileNotification.css";
 
-import img from "../../Assets/bookdemo.png";
+// import img from "../../Assets/bookdemo.png";
 
-import ReactStars from "react-rating-stars-component";
+// import ReactStars from "react-rating-stars-component";
 import "../Readers/ReaderProfileNotification.css";
 import axiosInstance from "../../BaseUrl";
 import { toast } from "react-toastify";
@@ -18,7 +18,7 @@ function ReaderProfileNotification() {
     axiosInstance
       .get(`/exchangerequests/${userId}`)
       .then((res) => {
-        if (res.data.status == 500) {
+        if (res.data.status === 500) {
           console.log(res);
           setRequests([]);
         } else {
@@ -29,18 +29,18 @@ function ReaderProfileNotification() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [userId]);
 
   const accept = (id) => {
     axiosInstance.put(`/acceptExchangeRequest/${id}`,{userId:userId})
       .then((res) => {
         console.log(res);
-        if(res.status==200){
+        if(res.status===200){
             toast.success('Approved')
             setRequests(prevArray => prevArray.filter(item => item._id !== id));
 
             // window.location.reload()
-        }else if(res.data.status==500){
+        }else if(res.data.status===500){
           toast.warning(res.data.msg)
 
        }
@@ -54,10 +54,10 @@ function ReaderProfileNotification() {
     axiosInstance.put(`/rejectExchangeRequest/${id}`,{userId:userId})
       .then((res) => {
         console.log(res);
-        if(res.status==200){
+        if(res.status===200){
             toast.success('Rejected')
             setRequests(prevArray => prevArray.filter(item => item._id !== id));
-        }else if(res.data.status==500){
+        }else if(res.data.status===500){
           toast.warning(res.data.msg)
        }
       })

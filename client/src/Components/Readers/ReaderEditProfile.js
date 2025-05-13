@@ -19,10 +19,10 @@ function ReaderEditProfile({url}) {
       console.log(err);
     })
   
-    },[])
+    },[id])
 
   const handleChange = (a) => {
-    if (a.target.name == "image") {
+    if (a.target.name === "image") {
       setData({ ...data, image: a.target.files[0] });
     } else {
       setData({ ...data, [a.target.name]: a.target.value });
@@ -67,7 +67,7 @@ function ReaderEditProfile({url}) {
     <div className="reader_editprofile">
       <div className="container col-sm-12 col-md-12 col-lg-12">
         <div className="reader_editprofile_img" >
-            <img src={`${url}/${data.image.filename}`} />
+            <img src={`${url}/${data.image.filename}`} alt="img" />
         </div>
         <div className="reader_editprofile_content" >
         <p className="reader_signin_title mt-3 mb-4">{data.firstname} {data.lastname}</p>

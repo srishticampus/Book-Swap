@@ -1,8 +1,8 @@
 import React from "react";
 import "./ReaderProfileHelp.css";
-import img from "../../Assets/bookdemo.png";
-import { BsFillHeartFill } from "react-icons/bs";
-import ReactStars from "react-rating-stars-component";
+// import img from "../../Assets/bookdemo.png";
+// import { BsFillHeartFill } from "react-icons/bs";
+// import ReactStars from "react-rating-stars-component";
 
 function ReaderProfileHelp() {
   return (

@@ -27,7 +27,7 @@ function ReaderHome() {
       {/* .........................block2.............................. */}
       <div className="readerhome_main2">
         <div className="readerhome_pict2">
-          <img src={img} />
+          <img src={img} alt="img"/>
         </div>
         <form>
           <h4>Available Books on Topics</h4>
