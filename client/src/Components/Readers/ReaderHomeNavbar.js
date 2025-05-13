@@ -3,29 +3,29 @@ import logo from "../../Assets/logo.png";
 import { Link } from "react-router-dom";
 import { BsFillHeartFill } from "react-icons/bs";
 import "./reader.css";
-import girl from "../../Assets/girl.png";
+// import girl from "../../Assets/girl.png";
 import ReaderViewWishlist from "./ReaderViewWishlist";
 import axiosInstance from "../../BaseUrl";
 
 function ReaderHomeNavbar() {
 
-   //local
-   const url='http://localhost:4001'
-  
-  const [showWishlistModal, setShowWishlistModal] = useState(false);
-  const [data,setData]=useState({dob:'',image:{filename:''}})
-  const id=localStorage.getItem('userid')
+  //local
+  const url = 'http://localhost:4001'
 
-  useEffect(()=>{
+  const [showWishlistModal, setShowWishlistModal] = useState(false);
+  const [data, setData] = useState({ dob: '', image: { filename: '' } })
+  const id = localStorage.getItem('userid')
+
+  useEffect(() => {
     axiosInstance.post(`/viewUserById/${id}`)
-    .then((res)=>{
-      // console.log(res);
-      setData(res.data.data)
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
-    },[])
+      .then((res) => {
+        // console.log(res);
+        setData(res.data.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [id])
 
   const openWishlistModal = () => {
     setShowWishlistModal(true);
@@ -35,7 +35,7 @@ function ReaderHomeNavbar() {
     setShowWishlistModal(false);
   };
 
-// console.log(data);
+  // console.log(data);
 
   return (
     <div>
@@ -92,38 +92,38 @@ function ReaderHomeNavbar() {
                       </Link>
                     </li>
                     <li class="nav-item">
-                      {/* <Link to="/reader_view_clubs" class="nav-link" href="#" id="navheaders">
-                        LIBRARY
-                      </Link> */}
-                      <Link to="#" class="nav-link" href="#" id="navheaders">
+                      <Link to="/reader_view_clubs" class="nav-link" href="#" id="navheaders">
                         LIBRARY
                       </Link>
+                      {/* <Link to="#" class="nav-link" href="#" id="navheaders">
+                        LIBRARY
+                      </Link> */}
                     </li>
                     <li class="nav-item">
-                      {/* <Link
+                      <Link
                         to="/reader_donatebook"
                         class="nav-link active"
                         aria-current="page"
                         id="navheaders"
                       >
                         DONATE
-                      </Link> */}
-                        <Link
+                      </Link>
+                      {/* <Link
                         to="#"
                         class="nav-link active"
                         aria-current="page"
                         id="navheaders"
                       >
                         DONATE
-                      </Link>
+                      </Link> */}
                     </li>
                     <li class="nav-item">
-                      {/* <Link to="/reader_exchange" class="nav-link" href="#" id="navheaders">
-                        EXCHANGES
-                      </Link> */}
-                             <Link to="#" class="nav-link" href="#" id="navheaders">
+                      <Link to="/reader_exchange" class="nav-link" href="#" id="navheaders">
                         EXCHANGES
                       </Link>
+                      {/* <Link to="#" class="nav-link" href="#" id="navheaders">
+                        EXCHANGES
+                      </Link> */}
                     </li>
                     <li class="nav-item">
                       <Link to="/reader_view_lended_books" class="nav-link" href="#" id="navheaders">

@@ -1,7 +1,7 @@
 import React from "react";
-import img from "../../Assets/bookdemo.png";
-import { BsFillHeartFill } from "react-icons/bs";
-import ReactStars from "react-rating-stars-component";
+// import img from "../../Assets/bookdemo.png";
+// import { BsFillHeartFill } from "react-icons/bs";
+// import ReactStars from "react-rating-stars-component";
 import "../Readers/ReaderProfileNotification.css";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -21,7 +21,7 @@ function ReaderProfileDonation({url}) {
         console.log("Error fetching donations:", err);
         setData([]); // Safe fallback
       });
-  }, []);
+  }, [id]);
   
 
   // useEffect(() => {
@@ -54,7 +54,7 @@ function ReaderProfileDonation({url}) {
                 <div>
                   <div className="reader_profile_notification_items mt-4 justify-content-around">
                     <div className="reader_profile_notification_item_image">
-                      <img src={`${url}/${a.image}`} className="img-fluid" />
+                      <img src={`${url}/${a.image}`} alt="img" className="img-fluid" />
                     </div>
                     <div className="reader_profile_notification_item_content">
                       <h6>{a.bookname}</h6>

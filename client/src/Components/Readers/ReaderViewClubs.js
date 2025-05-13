@@ -11,7 +11,8 @@ function ReaderViewClubs({ url }) {
 
   const getClubList = () => {
     axiosInstance
-      .get("/admin_club")
+		
+      .get("/getlibraries")
       .then((response) => setAdminClub(response.data))
       .catch((err) => console.log(err));
   };
@@ -25,11 +26,11 @@ function ReaderViewClubs({ url }) {
           toast.warning("Request already sent once");
         } else if (response.data.message === "Request sent successfully!") {
           toast.success("Your request has been sent successfully");
-          // Optionally, you can perform additional actions after a successful request
+      
         } else {
           toast.error("Error sending request");
         }
-        // You might want to update the club list after sending the request
+       
         getClubList();
       })
       .catch((error) => {
@@ -85,7 +86,7 @@ function ReaderViewClubs({ url }) {
             ))
           ) : (
             <div className="no_data">
-              <h1>No Clubs found</h1>
+              <h1>No Library Found</h1>
             </div>
           )}
         </div>

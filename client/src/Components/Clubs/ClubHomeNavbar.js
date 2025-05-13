@@ -8,10 +8,10 @@ import axiosInstance from '../../BaseUrl';
 function ClubHomeNavbar() {
   const url = 'http://localhost:4001';
   const [data, setData] = useState({ image: { filename: '' } });
-  const id = localStorage.getItem("libraryid");  // changed to libraryid
+  const id = localStorage.getItem("libraryid"); 
 
   useEffect(() => {
-    axiosInstance.get(`/viewalibrary/${id}`)  // changed to library API
+    axiosInstance.get(`/viewalibrary/${id}`)  
       .then((result) => {
         setData(result.data.data);
         console.log(result.data.data);
@@ -19,7 +19,7 @@ function ClubHomeNavbar() {
       .catch((err) => {
         console.log("Library fetch error:", err);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div>
@@ -55,10 +55,10 @@ function ClubHomeNavbar() {
                       <Link to="/library_view_members" className="nav-link" id="navheaders">MEMBERS</Link>
                     </li>
                     <li className="nav-item">
-                      <Link to="#" className="nav-link" id="navheaders">DONATE</Link>
+                      <Link to="/library_donatebook" className="nav-link" id="navheaders">ADD BOOK</Link>
                     </li>
                     <li className="nav-item">
-                      <Link to="#" className="nav-link"><AiFillBell /></Link>
+                      <Link to="/librarynotificationpage" className="nav-link"><AiFillBell /></Link>
                     </li>
                     <li className="nav-item">
                       <Link to="/library_profile" className="nav-link" id="adminhomelogout">

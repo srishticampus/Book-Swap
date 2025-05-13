@@ -77,7 +77,7 @@ function AdminHomeNavbar() {
                       {/* <Link to="/admin_club" class="nav-link" href="#" id="navheaders">
                         CLUB
                       </Link> */}
-                      <Link to="#" class="nav-link" href="#" id="navheaders">
+                      <Link to="/admin_club" class="nav-link" href="#" id="navheaders">
                         LIBRARY
                       </Link>
                     </li>
