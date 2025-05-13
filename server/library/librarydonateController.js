@@ -47,7 +47,7 @@ const addBookToLibrary = (req, res) => {
 };
 
 const viewLibraryBooks = (req, res) => {
-    libraryDonateSchema.find({ libraryid: req.params.id }).exec()
+    libraryDonateSchema.find({ _id: req.params.id }).exec()
         .then(data => {
             if (data.length > 0) {
                 res.json({
@@ -70,9 +70,26 @@ const viewLibraryBooks = (req, res) => {
             });
         });
 };
-
+const viewAllDonatedBooksByAdmin = (req, res) => {
+    libraryDonateSchema.find().exec()
+        .then(data => {
+            res.json({
+                status: 200,
+                msg: "All donated books fetched successfully",
+                data: data
+            });
+        })
+        .catch(err => {
+            res.json({
+                status: 500,
+                msg: "Error fetching donated books",
+                error: err
+            });
+        });
+};
 module.exports = {
     addBookToLibrary,
     upload,
-    viewLibraryBooks
+    viewLibraryBooks, 
+    viewAllDonatedBooksByAdmin
 };
