@@ -83,32 +83,32 @@ const addLibrary = (req, res) => {
     });
 };
 
-const libraryForgotPasswordReq = (req, res) => {
-  librarySchema
-    .findOne({ email: req.body.email })
-    .exec()
-    .then((data) => {
-      if (data == null) {
-        res.json({
-          status: 500,
-          msg: "Library not Found",
-        });
-      } else {
-        testMail(req.body.email);
-        res.json({
-          status: 200,
-          msg: "Mail Sent",
-        });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      res.json({
-        status: 500,
-        msg: "Error Occurred",
-      });
-    });
-};
+// const libraryForgotPasswordReq = (req, res) => {
+//   librarySchema
+//     .findOne({ email: req.body.email })
+//     .exec()
+//     .then((data) => {
+//       if (data == null) {
+//         res.json({
+//           status: 500,
+//           msg: "Library not Found",
+//         });
+//       } else {
+//         testMail(req.body.email);
+//         res.json({
+//           status: 200,
+//           msg: "Mail Sent",
+//         });
+//       }
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.json({
+//         status: 500,
+//         msg: "Error Occurred",
+//       });
+//     });
+// };
 
 const libraryForgotPassword = (req, res) => {
   librarySchema
@@ -275,7 +275,7 @@ module.exports = {
   removeLibrary,
   viewLibraryById,
   editLibraryById,
-  libraryForgotPasswordReq,
   libraryForgotPassword,
   libraryNotification,
 };
+  // libraryForgotPasswordReq,
