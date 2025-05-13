@@ -23,7 +23,7 @@ function AdminViewUsers({ url }) {
     axiosInstance.post(`/deleteUser/${id}`)
       .then((res) => {
         console.log(res);
-        if(res.data.status==200){
+        if(res.data.status===200){
             toast.success('Removed')
             setData(prevArray => prevArray.filter(item => item._id !== id));
             // window.location.reload()

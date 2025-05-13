@@ -1,7 +1,7 @@
 import React from "react";
 import img from "../../Assets/Rectangle 114.png"
 import "../Readers/ReaderHome.css"
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 function ReaderHome() {
   return (
     <div>
@@ -28,7 +28,7 @@ function ReaderHome() {
       {/* .........................block2.............................. */}
       <div className="readerhome_main2">
         <div className="readerhome_pict2">
-          <img src={img} />
+          <img src={img} alt="img" />
         </div>
         <form>
           <h4>Available Books on Topics</h4>

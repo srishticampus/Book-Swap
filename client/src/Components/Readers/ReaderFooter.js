@@ -12,7 +12,7 @@ function ReaderFooter() {
         <div className="container">
           <div className="footer-row row">
             <div className="footer-col1">
-              <img src={img} className="footer-Image1 col-4" />
+              <img src={img} className="footer-Image1 col-4" alt="img" />
               <div className="d-flex justify-content-between" >
                 <p>
                 A book is written or printed work of literature or
