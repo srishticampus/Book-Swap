@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+body{
+    background-color: white;
+}
+
+/* updated by radhul---no need of margintop */
+
+/* .main{
+    margin-top: 6rem;
+} */
+
+/* updated by radhul---no need of margintop */
+
+.first form{
+   height: 30rem;
+   width: 40rem;
+   /* background-color: blue; */
+   margin-left: 5rem;
+   padding-top: 7rem;
+}
+.first h1{
+    font-weight:800;
+    font-size:3rem;
+    -webkit-text-fill-color:rgba(49, 43, 43, 0.707);
+    text-shadow:0px 5px 4px grey;
+    
+    font-family:'Poppins','sans-seriff';
+
+}
+.first h3{
+    font-weight: 400;
+    font-size: 2rem;
+}
+.first h2{
+    font-weight: 400;
+    font-size: 2rem;
+}
+.first{
+    background-image: url(../../Assets/Group\ 241.png);
+    /* background-size: cover; */
+    background-color: hwb(210 97% 2%);
+    background-size: auto; 
+    height: 40rem; 
+}
+
+.main2 form{
+    height: 25rem;
+    width: 35rem;
+    margin-left: 45rem;
+    margin-right: 5rem;
+
+}
+
+.main2 h1{
+  font-weight: 750;
+  font-size: large;
+  margin-top:4rem ;
+}
+.main2{
+    background-image: url(../../Assets/Group\ 237.png);
+    background-position-y: center;
+    background-repeat: no-repeat;
+    margin-left: 5rem;
+    margin-top: 2rem;
+}
+.main2 h4{
+    font-weight: 800;
+    font-size: large;
+    margin-top: 1rem;
+}
+.scndpara h4{
+    font-weight: 400;
+    font-size: large;
+}
+.thirdpara h4{
+    font-weight: 400;
+    font-size: large;
+}
+.main3{
+    background-image: url(../../Assets/Rectangle\ 4239.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    margin-right: 5rem;
+    margin-top: 4rem;
+    height: 20rem;
+}
+.main3 h1{
+    font-weight: 750;
+    font-size: large;
+    margin-top: 2rem;
+}
+.main h4{
+    font-weight: 400;
+    font-size: large;
+}
+.main3 form{
+    height: 30rem;
+    width: 52rem;
+    margin-left:5rem ;
+}

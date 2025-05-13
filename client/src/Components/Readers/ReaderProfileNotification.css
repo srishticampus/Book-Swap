@@ -1,0 +1,68 @@
+.reader_profile_notification {
+  width: 69%;
+  min-height: 790px;
+  background-color: rgba(217, 217, 217, 0.49);
+  margin: 20px 0;
+  padding: 50px 30px;
+}
+
+.reader_profile_notification_head p {
+  color: #110422;
+  font-family: Poppins;
+  font-size: 21.397px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 30px 30px;
+}
+
+.reader_profile_notification_count p {
+  color: #000;
+  font-family: Poppins;
+  font-size: 22.397px;
+  font-style: normal;
+
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+.reader_profile_notification_items {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.reader_profile_notification_item_image img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.reader_profile_notification_item_content h6 {
+  color: #110422;
+  font-family: Poppins;
+  font-size: 18.397px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+}
+
+.reader_profile_notification_item_action button {
+  margin-right: 5px;
+  width: 105px;
+  height: 39px;
+}
+
+.reader_profile_notification_item_action p {
+  text-align: center;
+}
+
+.reader_profile_notification_item_action img {
+  width: 79px;
+  height: 79px;
+  border-radius: 79px;
+  object-fit:cover;
+}
