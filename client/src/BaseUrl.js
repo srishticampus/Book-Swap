@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
 
 //local api
 
-  baseURL: 'http://localhost:4001/bookswapapi', 
+  baseURL: import.meta.env.VITE_API_URL , 
 
   headers: {
     'Content-Type': 'application/json',
