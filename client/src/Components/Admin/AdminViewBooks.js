@@ -10,10 +10,11 @@ import { toast } from "react-toastify";
 function AdminViewBooks({url}) {
 
     const [data,setData]=useState([])
+    const uid=localStorage.getItem('userid')
 
   useEffect(()=>{
 
-  axiosInstance.post(`/viewallbookforclub`)
+  axiosInstance.post(`/viewAllBooks/${uid}`)
   .then((res)=>{
     console.log(res);
     setData(res.data.data)

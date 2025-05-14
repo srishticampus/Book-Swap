@@ -1,6 +1,6 @@
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+  import "bootstrap/dist/css/bootstrap.min.css";
+  import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'remixicon/fonts/remixicon.css'
 import ReaderSignin from "./Components/Readers/ReaderSignin";
 import ReaderNavbar from "./Components/Readers/ReaderNavbar";
@@ -67,7 +67,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 function App() {
 
   //local
-  const url = 'http://localhost:4001'
+  const url = 'http://localhost:4059/'
 
   return (
     <BrowserRouter>
