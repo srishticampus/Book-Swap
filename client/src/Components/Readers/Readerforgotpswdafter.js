@@ -23,7 +23,7 @@ function ReaderForgotpassword() {
     const searchParams = new URLSearchParams(location.search);
     setEmail(searchParams.get('id'));
     console.log("email", email);
-  }, [])
+  }, [email,location.search])
 
   const checkPwd = () => {
 

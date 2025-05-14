@@ -50,8 +50,7 @@ function ReaderLoginpage() {
       }
     } catch (err) {
       console.log("mh err", err);
-      document.getElementById("alertuser").innerHTML =
-        err.response.data.message;
+    
     }
   };
 
