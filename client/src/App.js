@@ -63,6 +63,7 @@ import LibraryLogin from "./Components/Library/LibraryLogin/LibraryLogin";
 import LibraryProfile from "./Components/Library/LibraryProfile/LibraryProfile";
 import LibraryForgotPassword from "./Components/Library/LibraryForgotPassword/LibraryForgotPassword";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import LibraryEvents from "./Components/Library/LibraryEvents/LibraryEvents";
 
 function App() {
 
@@ -199,6 +200,15 @@ function App() {
             }
           >
 
+          </Route>
+
+          <Route path="/library-events"
+                 element={
+            <>
+       <ClubHomeNavbar />
+            <LibraryEvents url={url}/>
+            </>
+          }>
           </Route>
 
 
