@@ -22,7 +22,7 @@ function ReaderViewBooks({url}) {
     console.log(err);
   })
 
-  },[])
+  },[uid])
   const addToWishlist = (bid) => {
     axiosInstance.post('/userwishlist',{userid:uid,bookid:bid})
       .then((res) => {

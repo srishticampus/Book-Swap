@@ -9,13 +9,26 @@ function ReaderViewClubs({ url }) {
   
   // const [requestSent, setRequestSent] = useState(false);
 
-  const getClubList = () => {
-    axiosInstance
+  // const getClubList = () => {
+  //   axiosInstance
 		
-      .get("/getlibraries")
-      .then((response) => setAdminClub(response.data))
-      .catch((err) => console.log(err));
-  };
+  //     .get("/getlibraries")
+  //     .then((response) => setAdminClub(response.data))
+
+  //     .catch((err) => console.log(err));
+  // };
+  const getClubList = () => {
+  axiosInstance
+    .get("/getlibraries")
+    .then((response) => {
+      console.log("Response from /getlibraries:", response.data); // Log the full response
+      console.log("Library data:", response.data); // Log just the data (usually the useful part)
+      setAdminClub(response.data);
+    })
+    .catch((err) => {
+      console.log("Error fetching libraries:", err);
+    });
+};
 
   const userId = localStorage.getItem("userid");
 

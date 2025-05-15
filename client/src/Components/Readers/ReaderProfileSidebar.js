@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // import img from "../../Assets/Signin.png";
 import axiosInstance from "../../BaseUrl";
 
-function ReaderProfileSidebar({url}) {
+function ReaderProfileSidebar() {
 
   const [data,setData]=useState({dob:'',image:{filename:''}})
   const id=localStorage.getItem('userid')
@@ -21,6 +21,8 @@ function ReaderProfileSidebar({url}) {
     })
   
     },[])
+
+    const url = "http://localhost:4059/"
 
   return (
     <div className="reader_profile_sidebar">
