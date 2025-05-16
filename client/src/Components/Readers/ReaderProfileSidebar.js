@@ -20,7 +20,7 @@ function ReaderProfileSidebar() {
       console.log(err);
     })
   
-    },[])
+    },[id])
 
     const url = "http://localhost:4059/"
 
