@@ -108,10 +108,17 @@ router.get('/acceptedLibraries/:userId', libraryRequestController.getAcceptedLib
 
 // donate book from library
 const {addBookToLibrary,upload,viewLibraryBooks,viewAllDonatedBooksByAdmin} = require("./library/librarydonateController");
+const { events } = require("./library/libraryrequestsSchema");
 
 router.post("/addBook", upload,addBookToLibrary);
 router.get("/viewBooks/:id", viewLibraryBooks);
 router.get("/viewlibrarydonateBooks", viewAllDonatedBooksByAdmin);
 
+
+// events
+const libraryEventController = require("./LibraryEvents/LibraryeventController");
+router.post("/add/events", libraryEventController.createEvent);
+router.get("/viewall/events", libraryEventController.getAllEvents);
+router.get("/viewevents/:libraryId", libraryEventController.getEventsByLibrary);
 module.exports=router
  
