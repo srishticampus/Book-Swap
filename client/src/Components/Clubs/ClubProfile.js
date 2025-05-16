@@ -81,7 +81,12 @@ function ClubProfile({url}) {
         <div className='clubprofile-division col-lg-4 '>
           <form>
             <center>
-              <img src={`${url}/${data.image}`} alt='img' />
+<img
+  src={data.image ? `${url}/${data.image}` : ""}
+  alt="Club"
+  style={{ width: "100px", height: "100px", objectFit: "cover", borderRadius: "50%" }}
+/>
+
               <h1>{data ? data.clubname : ""}
               
               </h1>

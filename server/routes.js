@@ -105,12 +105,19 @@ router.delete('/leaveLibrary/:id', libraryRequestController.leaveLibrary);
 router.delete('/deleteMember/:id', libraryRequestController.deleteLibraryMember);
 router.get('/acceptedLibraries/:userId', libraryRequestController.getAcceptedLibrariesForUser);
 
-
-// donate book from library
-const { addBookToLibrary, upload, viewLibraryBooks, viewAllDonatedBooksByAdmin } = require("./library/librarydonateController");
+const {addBookToLibrary,upload,viewLibraryBooks,viewAllDonatedBooksByAdmin} = require("./library/librarydonateController");
+const { events } = require("./library/libraryrequestsSchema");
 
 router.post("/addBook", upload, addBookToLibrary);
 router.get("/viewBooks/:id", viewLibraryBooks);
 router.get("/viewlibrarydonateBooks", viewAllDonatedBooksByAdmin);
 
-module.exports = router
+
+const libraryEventController = require("./LibraryEvents/LibraryeventController");
+router.post("/add/events", libraryEventController.createEvent);
+router.get("/viewall/events", libraryEventController.getAllEvents);
+router.get("/viewevents/:libraryId", libraryEventController.getEventsByLibrary);
+module.exports=router
+ 
+
+

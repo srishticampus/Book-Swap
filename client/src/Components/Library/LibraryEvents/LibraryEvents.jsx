@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import img from "../../../Assets/donateimg.png";
+import { useNavigate } from 'react-router-dom';
 
 function LibraryEvents({url}) {
   const [formData, setFormData] = useState({
@@ -8,7 +9,7 @@ function LibraryEvents({url}) {
     startDate: '',
     endDate: ''
   });
-
+const navigate = useNavigate()
   const handleChange = (e) => {
     setFormData(prev => ({
       ...prev,
@@ -45,6 +46,7 @@ const handleSubmit = async (e) => {
 
     if (response.ok) {
       alert("Event added successfully!");
+      navigate("/library-view-events")
       setFormData({
         eventName: '',
         description: '',
