@@ -71,7 +71,7 @@ jobs:
         rm -rf ${{ env.DEPLOY_DIR }}/*
         
         # Extract files
-        tar -xzvf /tmp/local_biz.tar.gz -C ${{ env.DEPLOY_DIR }}
+        tar -xzvf /tmp/book_swap.tar.gz -C ${{ env.DEPLOY_DIR }}
 
         # Ensure uploads directory exists with proper permissions
         mkdir -p ${{ env.DEPLOY_DIR }}/backend/uploads
