@@ -5,7 +5,8 @@ function AdminDonation() {
   const [data, setData] = useState([]);
   useEffect(() => {
     axiosInstance
-      .post(`/viewDonationsForAdmin`)
+      // .post(`/viewDonationsForAdmin`)
+       .get(`/viewlibrarydonateBooks`)
       .then((res) => {
         const donationData = res?.data?.data || [];
         console.log("Received data:", donationData);
@@ -48,11 +49,13 @@ function AdminDonation() {
               <div className="admin_exchange_body">
                 <div className="container-fluid">
                   <div class="row">
-                    <div class="col">{a.bookname}</div>
+                     <div className="col">{a.bookname}</div>
+                     <div className="col">{a.count}</div>
+                    {/* <div class="col">{a.bookname}</div>
                     <div class="col">{a.userid?a.userid.firstname:a.clubid.clubname}</div>
                     <div class="col">{a.userid?a.userid.mobile:a.clubid.contact}</div>
                     <div class="col">{a.userid?a.userid.email:a.clubid.email}</div>
-                    <div class="col">{a.date.slice(0,10)}</div>
+                    <div class="col">{a.date.slice(0,10)}</div> */}
                   </div>
                 </div>
               </div>
