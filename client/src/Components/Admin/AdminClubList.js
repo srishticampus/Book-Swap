@@ -8,16 +8,16 @@ function AdminClubList({url}) {
 
   const getClubList = () => {
     axiosInstance
-      .get("/admin_club")
+      .get("/getlibraries")
       .then((response) => setAdminClub(response.data))
       .catch((err) => console.log(err));
   };
 
   const handleRemove = (id) => {
     console.log(id);
-    axiosInstance.delete("/admin_club/" + id).then((result) => {
+    axiosInstance.delete("/removelibrary/" + id).then((result) => {
       if (result.data.deletedCount === 1) {
-        toast.success("A club is Removed Successfully");
+        toast.success("A Library is Removed Successfully");
         getClubList();
       } else {
         toast.error("you have an error");
@@ -71,7 +71,7 @@ function AdminClubList({url}) {
               </div>
             </div>
           )):<div className="no_data" >
-          <h1>No Clubs found</h1>
+          <h1>No Library found</h1>
         </div>
         }
         </div>

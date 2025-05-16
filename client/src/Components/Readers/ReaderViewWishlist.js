@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "../Readers/ReaderViewWishlist.css";
-import img from "../../Assets/bookdemo.png";
+// import img from "../../Assets/bookdemo.png";
 import { BsFillHeartFill } from "react-icons/bs";
 import ReactStars from "react-rating-stars-component";
 import { useEffect } from "react";
@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 function ReaderViewWishlist({ show, setShow, url }) {
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
 
   const [data, setData] = useState([]);
   const id = localStorage.getItem("userid");
@@ -26,13 +26,13 @@ function ReaderViewWishlist({ show, setShow, url }) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
 
   const handleRemove = (id) => {
     axiosInstance.post(`/deletewishlist/${id}`)
       .then((res) => {
         console.log(res);
-        if(res.data.status==200){
+        if(res.data.status===200){
             toast.success('Removed from wishlist')
             setData(prevArray => prevArray.filter(item => item._id !== id));
             // window.location.reload()
@@ -64,7 +64,7 @@ function ReaderViewWishlist({ show, setShow, url }) {
                   <div>
                     <div className="reader_wishlist_items mt-4">
                       <div className="reader_wishlist_item_image">
-                        <img src={`${url}/${a.bookid.image}`} className="img-fluid" />
+                        <img src={`${url}/${a.bookid.image}`} alt="img" className="img-fluid" />
                       </div>
                       <div className="reader_wishlist_item_content">
                         <h6>{a.bookid.bookname}</h6>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./adminexchange.css";
-import AdminHomeNavbar from "./AdminHomeNavbar";
+// import AdminHomeNavbar from "./AdminHomeNavbar";
 import axiosInstance from "../../BaseUrl";
 
 function AdminExchange() {

@@ -21,10 +21,11 @@ function ReaderProfileAccountInfo() {
     console.log(err);
   })
 
-  },[])
+  },[id])
 
   const date= new Date()
   let year=date.getFullYear()
+  console.log(year)
 
   const calculateAge = (dobString) => {
     const dob = new Date(dobString);
@@ -90,7 +91,7 @@ function ReaderProfileAccountInfo() {
           </div>
         </div>
         <div className='col-5 reader_profile_account_info_image' >
-          <img src={img} />
+          <img src={img} alt='img' />
         </div>
       </div>
     </div>

@@ -9,12 +9,26 @@ function ReaderViewClubs({ url }) {
   
   // const [requestSent, setRequestSent] = useState(false);
 
+  // const getClubList = () => {
+  //   axiosInstance
+		
+  //     .get("/getlibraries")
+  //     .then((response) => setAdminClub(response.data))
+
+  //     .catch((err) => console.log(err));
+  // };
   const getClubList = () => {
-    axiosInstance
-      .get("/admin_club")
-      .then((response) => setAdminClub(response.data))
-      .catch((err) => console.log(err));
-  };
+  axiosInstance
+    .get("/getlibraries")
+    .then((response) => {
+      console.log("Response from /getlibraries:", response.data); // Log the full response
+      console.log("Library data:", response.data); // Log just the data (usually the useful part)
+      setAdminClub(response.data);
+    })
+    .catch((err) => {
+      console.log("Error fetching libraries:", err);
+    });
+};
 
   const userId = localStorage.getItem("userid");
 
@@ -25,11 +39,11 @@ function ReaderViewClubs({ url }) {
           toast.warning("Request already sent once");
         } else if (response.data.message === "Request sent successfully!") {
           toast.success("Your request has been sent successfully");
-          // Optionally, you can perform additional actions after a successful request
+      
         } else {
           toast.error("Error sending request");
         }
-        // You might want to update the club list after sending the request
+       
         getClubList();
       })
       .catch((error) => {
@@ -85,7 +99,7 @@ function ReaderViewClubs({ url }) {
             ))
           ) : (
             <div className="no_data">
-              <h1>No Clubs found</h1>
+              <h1>No Library Found</h1>
             </div>
           )}
         </div>

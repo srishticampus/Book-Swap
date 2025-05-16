@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import img from "../../Assets/bookdemo.png";
-import { BsFillHeartFill } from "react-icons/bs";
-import ReactStars from "react-rating-stars-component";
+// import img from "../../Assets/bookdemo.png";
+// import { BsFillHeartFill } from "react-icons/bs";
+// import ReactStars from "react-rating-stars-component";
 import "../Readers/ReaderProfileNotification.css";
 import axiosInstance from '../../BaseUrl';
 import { toast } from 'react-toastify';
@@ -21,13 +21,13 @@ function ReaderProfileClub({url}) {
         console.log(err);
       })
   
-  },[])
+  },[id])
 
   const removeclub=(id)=>{
     axiosInstance.post(`/deleteClubMember/${id}`)
     .then((res)=>{
       console.log(res);
-      if(res.data.status==200){
+      if(res.data.status===200){
         toast.success("Sucessfully Left")
         setData(prevArray => prevArray.filter(item => item._id !== id));
       }
@@ -59,7 +59,7 @@ function ReaderProfileClub({url}) {
 
           <div className="reader_profile_notification_items mt-4">
             <div className="reader_profile_notification_item_image">
-              <img src={`${url}/${a.clubId.image}`}  className="img-fluid" />
+              <img src={`${url}/${a.clubId.image}`} alt='img' className="img-fluid" />
               {console.log(`${url}/${a.clubId.image}`)}
             </div>
             <div className="reader_profile_notification_item_content">
@@ -81,7 +81,7 @@ function ReaderProfileClub({url}) {
           </div>
                       )
                     }):<div className="no_data" >
-                    <h1>No Clubs found</h1>
+                    <h1>No Library found</h1>
                   </div>
                   }
           

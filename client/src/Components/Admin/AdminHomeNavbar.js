@@ -50,15 +50,15 @@ function AdminHomeNavbar() {
                       </Link>
                     </li>
                     <li class="nav-item">
-                      {/* <Link
+                      <Link
                         to="/admin_viewbook"
                         class="nav-link active"
                         aria-current="page"
                         id="navheaders"
                       >
                         BOOK
-                      </Link> */}
-
+                      </Link>
+{/* 
                       <Link
                         to="#"
                         class="nav-link active"
@@ -66,7 +66,7 @@ function AdminHomeNavbar() {
                         id="navheaders"
                       >
                         BOOK
-                      </Link>
+                      </Link> */}
                     </li>
                     <li class="nav-item">
                       <Link to="/admin_viewusers" class="nav-link" href="#" id="navheaders">
@@ -77,7 +77,7 @@ function AdminHomeNavbar() {
                       {/* <Link to="/admin_club" class="nav-link" href="#" id="navheaders">
                         CLUB
                       </Link> */}
-                      <Link to="#" class="nav-link" href="#" id="navheaders">
+                      <Link to="/admin_club" class="nav-link" href="#" id="navheaders">
                         LIBRARY
                       </Link>
                     </li>

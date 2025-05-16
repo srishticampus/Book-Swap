@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const users=require('./User/userController')
+const users = require('./User/userController')
 
 
 
@@ -17,36 +17,36 @@ const users=require('./User/userController')
 
 
 router.post("/userlogin", users.userLogin);
-router.post('/adduser',users.upload,users.adduser)
-router.post('/userforgotpassword',users.forgotPassword)
+router.post('/adduser', users.upload, users.adduser)
+router.post('/userforgotpassword', users.forgotPassword)
 // router.post('/forgotPasswordreq',users.forgotPasswordreq)
-router.post('/viewUserById/:id',users.viewUserById)
-router.post('/viewAllUsers',users.viewAllUsers)
-router.post('/editUserById/:id',users.upload,users.editUserById)
-router.post('/deleteUser/:id',users.deleteUser)
+router.post('/viewUserById/:id', users.viewUserById)
+router.post('/viewAllUsers', users.viewAllUsers)
+router.post('/editUserById/:id', users.upload, users.editUserById)
+router.post('/deleteUser/:id', users.deleteUser)
 
 //user Donate Book
-const userdonate=require('./User/userdonateController')
-router.post('/donatebook',userdonate.upload,userdonate.addbook)
-router.post('/viewuserdonatebook/:id',userdonate.viewuserbook)
+const userdonate = require('./User/userdonateController')
+router.post('/donatebook', userdonate.upload, userdonate.addbook)
+router.post('/viewuserdonatebook/:id', userdonate.viewuserbook)
 
 // admin Addbook
-const adminaddbook=require('./Admin/adminaddbookController')
-router.post('/adminaddbook',adminaddbook.upload,adminaddbook.addbookadmin)
-router.post('/viewAllBooks/:id',adminaddbook.viewAllBooks1)
-router.post('/deleteBook/:id',adminaddbook.deleteBook)
-router.post('/admineditbook/:id',adminaddbook.upload,adminaddbook.admineditbook)
+const adminaddbook = require('./Admin/adminaddbookController')
+router.post('/adminaddbook', adminaddbook.upload, adminaddbook.addbookadmin)
+router.post('/viewAllBooks/:id', adminaddbook.viewAllBooks1)
+router.post('/deleteBook/:id', adminaddbook.deleteBook)
+router.post('/admineditbook/:id', adminaddbook.upload, adminaddbook.admineditbook)
 router.post('/adminviewbookone/:id', adminaddbook.adminviewbookone)//
-router.post('/viewuserbook/:id',adminaddbook.viewuserbook)
+router.post('/viewuserbook/:id', adminaddbook.viewuserbook)
 // router.post('/viewclubbook/:id',adminaddbook.viewclubbook)
 // router.post('/viewallbookforclub',adminaddbook.viewallbookforclub)
-router.post('/viewDonationsForAdmin',adminaddbook.viewDonationsForAdmin)
+router.post('/viewDonationsForAdmin', adminaddbook.viewDonationsForAdmin)
 
 //useraddwishlist
-const useraddwishlist=require("./Userwishlist/userWishlistcontroller")
-router.post('/userwishlist',useraddwishlist.wishlist)
-router.post('/bookviewwishlist/:id',useraddwishlist.viewbookwishlist)
-router.post('/deletewishlist/:id',useraddwishlist.deletewishlist)
+const useraddwishlist = require("./Userwishlist/userWishlistcontroller")
+router.post('/userwishlist', useraddwishlist.wishlist)
+router.post('/bookviewwishlist/:id', useraddwishlist.viewbookwishlist)
+router.post('/deletewishlist/:id', useraddwishlist.deletewishlist)
 
 // const requestController = require('./Clubs/clubrequestController');
 
@@ -61,20 +61,20 @@ router.post('/deletewishlist/:id',useraddwishlist.deletewishlist)
 // router.put('/acceptRequest/:requestId',requestController.acceptRequest)
 // router.put('/rejectRequest/:requestId',requestController.rejectRequest)
 
-const lendbook=require("./Lendbyuser/lendbyusercontroller")
-router.post('/lendbyuser',lendbook.lend)
-router.post('/lendedBooksByUser/:id',lendbook.lendedBooksByUser)
-router.post('/calcFineForUser/:id',lendbook.calcFineForUser)
-router.post('/returnbook/:id',lendbook.returnbackbook)
+const lendbook = require("./Lendbyuser/lendbyusercontroller")
+router.post('/lendbyuser', lendbook.lend)
+router.post('/lendedBooksByUser/:id', lendbook.lendedBooksByUser)
+router.post('/calcFineForUser/:id', lendbook.calcFineForUser)
+router.post('/returnbook/:id', lendbook.returnbackbook)
 
-const exchange=require('./User/userExchangeController')
-router.post('/exchangebook',exchange.userExchangebook)
-router.get('/exchangerequests/:userid',exchange.getuserExchangebook)
+const exchange = require('./User/userExchangeController')
+router.post('/exchangebook', exchange.userExchangebook)
+router.get('/exchangerequests/:userid', exchange.getuserExchangebook)
 
 
-router.put('/acceptExchangeRequest/:exchangeId',exchange.acceptExchangeIdRequest)
-router.put('/rejectExchangeRequest/:exchangeId',exchange.rejectExchangeIdRequest)
-router.post('/displayexchangerequests',exchange.displayExchangeRequest)
+router.put('/acceptExchangeRequest/:exchangeId', exchange.acceptExchangeIdRequest)
+router.put('/rejectExchangeRequest/:exchangeId', exchange.rejectExchangeIdRequest)
+router.post('/displayexchangerequests', exchange.displayExchangeRequest)
 
 
 // library
@@ -105,20 +105,19 @@ router.delete('/leaveLibrary/:id', libraryRequestController.leaveLibrary);
 router.delete('/deleteMember/:id', libraryRequestController.deleteLibraryMember);
 router.get('/acceptedLibraries/:userId', libraryRequestController.getAcceptedLibrariesForUser);
 
-
-// donate book from library
 const {addBookToLibrary,upload,viewLibraryBooks,viewAllDonatedBooksByAdmin} = require("./library/librarydonateController");
 const { events } = require("./library/libraryrequestsSchema");
 
-router.post("/addBook", upload,addBookToLibrary);
+router.post("/addBook", upload, addBookToLibrary);
 router.get("/viewBooks/:id", viewLibraryBooks);
 router.get("/viewlibrarydonateBooks", viewAllDonatedBooksByAdmin);
 
 
-// events
 const libraryEventController = require("./LibraryEvents/LibraryeventController");
 router.post("/add/events", libraryEventController.createEvent);
 router.get("/viewall/events", libraryEventController.getAllEvents);
 router.get("/viewevents/:libraryId", libraryEventController.getEventsByLibrary);
 module.exports=router
  
+
+

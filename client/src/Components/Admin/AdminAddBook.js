@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AdminHomeNavbar from "./AdminHomeNavbar";
+// import AdminHomeNavbar from "./AdminHomeNavbar";
 import addbook from "../../Assets/addbook.png";
 import "./adminaddbook.css";
 import axiosInstance from "../../BaseUrl";

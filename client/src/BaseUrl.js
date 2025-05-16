@@ -1,4 +1,5 @@
 import axios from 'axios';
+console.log(process.env.VITE_API_URL);
 
 const axiosInstance = axios.create({
 
@@ -6,10 +7,12 @@ const axiosInstance = axios.create({
 
   // baseURL: '', 
 
-//local api
+  //local api
 
-  baseURL: import.meta.env.VITE_API_URL , 
+  // baseURL: import.meta.env.VITE_API_URL , 
 
+  //  baseURL: process.env.VITE_API_URL,
+  baseURL: 'http://localhost:4059',
   headers: {
     'Content-Type': 'application/json',
   },
