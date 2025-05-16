@@ -68,7 +68,9 @@ import LibraryEvents from "./Components/Library/LibraryEvents/LibraryEvents";
 function App() {
 
   //local
-  const url = 'http://localhost:4059/'
+  // const url = 'http://localhost:4059/'
+  const url = process.env.REACT_APP_API_URL;
+
 
   return (
     <BrowserRouter>
