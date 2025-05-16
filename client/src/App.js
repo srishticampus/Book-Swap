@@ -1,6 +1,6 @@
 import "./App.css";
-  import "bootstrap/dist/css/bootstrap.min.css";
-  import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'remixicon/fonts/remixicon.css'
 import ReaderSignin from "./Components/Readers/ReaderSignin";
 import ReaderNavbar from "./Components/Readers/ReaderNavbar";
@@ -63,11 +63,15 @@ import LibraryLogin from "./Components/Library/LibraryLogin/LibraryLogin";
 import LibraryProfile from "./Components/Library/LibraryProfile/LibraryProfile";
 import LibraryForgotPassword from "./Components/Library/LibraryForgotPassword/LibraryForgotPassword";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import LibraryEvents from "./Components/Library/LibraryEvents/LibraryEvents";
+import LibraryViewEvents from "./Components/Library/LibraryEvents/LibraryViewEvents";
 
 function App() {
 
   //local
-  const url = 'http://localhost:4059/'
+  // const url = 'http://localhost:4059/'
+  const url = process.env.REACT_APP_API_URL;
+
 
   return (
     <BrowserRouter>
@@ -201,8 +205,33 @@ function App() {
 
           </Route>
 
+          <Route path="/library-events"
+            element={
+              <>
+                <ClubHomeNavbar />
+                <LibraryEvents url={url} />
+              </>
+            }>
+          </Route>
 
-
+          <Route path="/library-view-events"
+          element={
+            <>
+             <ClubHomeNavbar />
+            <LibraryViewEvents/>
+            </>
+          }
+          >
+          </Route>
+                    <Route path="/admin-view-events"
+          element={
+            <>
+            <AdminHomeNavbar />
+            <LibraryViewEvents/>
+            </>
+          }
+          >
+          </Route>
 
           {/* ------------Admin---------- */}
 

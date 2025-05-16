@@ -92,6 +92,11 @@ function AdminHomeNavbar() {
                       </Link>
                     </li>
                     <li class="nav-item">
+                      <Link to="/admin-view-events" class="nav-link" href="#" id="navheaders">
+                        EVENTS
+                      </Link>
+                    </li>
+                      <li class="nav-item">
                       <Link to="/admin_exchange" class="nav-link" href="#" id="navheaders">
                         EXCHANGES
                       </Link>
