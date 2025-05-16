@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../Readers/ReaderProfileSidebar.css";
 import { Link } from "react-router-dom";
-import img from "../../Assets/Signin.png";
+// import img from "../../Assets/Signin.png";
 import axiosInstance from "../../BaseUrl";
 
-function ReaderProfileSidebar({url}) {
+function ReaderProfileSidebar() {
 
   const [data,setData]=useState({dob:'',image:{filename:''}})
   const id=localStorage.getItem('userid')
@@ -21,6 +21,8 @@ function ReaderProfileSidebar({url}) {
     })
   
     },[])
+
+    const url = "http://localhost:4059/"
 
   return (
     <div className="reader_profile_sidebar">
@@ -73,7 +75,7 @@ function ReaderProfileSidebar({url}) {
         <div className="reader_profile_sidebar_account_info">
           <div className="d-flex mt-2">
             <i class="ri-book-open-fill reader_profile_sidebar_icons"></i>
-            <p> Club</p>
+            <p> Library</p>
           </div>
 
           <div className="mt-2">

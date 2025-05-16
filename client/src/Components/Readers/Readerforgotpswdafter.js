@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import "./ReaderForgotpassword.css";
 import img from "../../Assets/readerfogotpass.png";
-import imgs from '../../Assets/forgetpswd.png'
+// import imgs from '../../Assets/forgetpswd.png'
 import '../Readers/ReaderForgotpassword.css'
 import '../Readers/Readerforgotpswdafter.css'
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -12,8 +12,8 @@ import { toast } from "react-toastify";
 function ReaderForgotpassword() {
     const[email,setEmail]=useState("")
     const[password,setPassword]=useState("")
-    const [showPassword1, setShowPassword1] = useState(false);
-    const [showPassword2, setShowPassword2] = useState(false);
+    // const [showPassword1, setShowPassword1] = useState(false);
+    // const [showPassword2, setShowPassword2] = useState(false);
     const [newPassword, setNewPassword] = useState("");
     let passwordMatches=false
   const location = useLocation();
@@ -23,7 +23,7 @@ function ReaderForgotpassword() {
     const searchParams = new URLSearchParams(location.search);
     setEmail(searchParams.get('id'));
     console.log("email", email);
-  }, [])
+  }, [email,location.search])
 
   const checkPwd = () => {
 
@@ -74,12 +74,12 @@ function ReaderForgotpassword() {
   
   };
 
-  const togglePasswordVisibility1 = () => {
-    setShowPassword1(!showPassword1);
-  };
-  const togglePasswordVisibility2 = () => {
-    setShowPassword2(!showPassword2);
-  };
+  // const togglePasswordVisibility1 = () => {
+  //   setShowPassword1(!showPassword1);
+  // };
+  // const togglePasswordVisibility2 = () => {
+  //   setShowPassword2(!showPassword2);
+  // };
 
   return (
     <div className="reader_forgot">

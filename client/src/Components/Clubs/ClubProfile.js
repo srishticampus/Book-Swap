@@ -1,21 +1,22 @@
 
 import React, { useEffect, useState } from 'react'
-import img from "../../Assets/img1.jpeg"
+// import img from "../../Assets/img1.jpeg"
 import "../Clubs/ClubProfile.css"
 import { IoIosCall } from 'react-icons/io';
 import { AiOutlineMail } from 'react-icons/ai'
 import { FaLocationDot } from 'react-icons/fa6'
 import { HiMiniArrowRightOnRectangle } from 'react-icons/hi2'
-import axios from 'axios';
+// import axios from 'axios';
 import axiosInstance from '../../BaseUrl';
 import { toast } from 'react-toastify';
-import { Toast } from 'bootstrap';
+// import { Toast } from 'bootstrap';
 import { Link } from 'react-router-dom';
 
 function ClubProfile({url}) {
     const[data,setData]=useState({image:{filename:''}})
     const id=localStorage.getItem("clubid")
     const token=localStorage.getItem("token")
+    console.log("token",token)
 
     console.log(id);
 
@@ -30,9 +31,9 @@ function ClubProfile({url}) {
         .catch((err)=>{
           console.log(err);
         })
-    },[]) 
+    },[id]) 
     const handleChange = (a) => {
-      if (a.target.name == "image") {
+      if (a.target.name === "image") {
         setData({ ...data, image: a.target.files[0] });
       } else {
         setData({ ...data, [a.target.name]: a.target.value });
@@ -80,7 +81,7 @@ function ClubProfile({url}) {
         <div className='clubprofile-division col-lg-4 '>
           <form>
             <center>
-              <img src={`${url}/${data.image}`} />
+              <img src={`${url}/${data.image}`} alt='img' />
               <h1>{data ? data.clubname : ""}
               
               </h1>

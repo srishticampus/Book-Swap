@@ -23,7 +23,7 @@ const navigat=useNavigate()
     const searchParams = new URLSearchParams(location.search);
     setEmail(searchParams.get('id'));
     console.log("email", email);
-  }, [])
+  })
 
   const checkPwd = () => {
 
@@ -72,12 +72,12 @@ const navigat=useNavigate()
     });
   
   };
-  const togglePasswordVisibility1 = () => {
-    setShowPassword1(!showPassword1);
-  };
-  const togglePasswordVisibility2 = () => {
-    setShowPassword2(!showPassword2);
-  };
+  // const togglePasswordVisibility1 = () => {
+  //   setShowPassword1(!showPassword1);
+  // };
+  // const togglePasswordVisibility2 = () => {
+  //   setShowPassword2(!showPassword2);
+  // };
 
   return (
     <div className="club_forgot">

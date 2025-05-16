@@ -22,19 +22,19 @@ function ReaderViewBooks({url}) {
     console.log(err);
   })
 
-  },[])
+  },[uid])
   const addToWishlist = (bid) => {
     axiosInstance.post('/userwishlist',{userid:uid,bookid:bid})
       .then((res) => {
         console.log(res);
-        if(res.data.status==200){
+        if(res.data.status===200){
             toast.success('Added to wishlist')
             setData((prevData) =>
           prevData.map((book) =>
             book._id === bid ? { ...book, wishlisted: !book.wishlisted } : book
           )
         );
-        }else if(res.data.status==500){
+        }else if(res.data.status===500){
            toast.warning(res.data.msg)
         }
       })
@@ -47,10 +47,10 @@ function ReaderViewBooks({url}) {
     axiosInstance.post('/lendbyuser',{userid:uid,bookid:bid})
       .then((res) => {
         console.log(res);
-        if(res.data.status==200){
+        if(res.data.status===200){
             toast.success('Lended Successfully')
             // window.location.reload()
-        }else if(res.data.status==500){
+        }else if(res.data.status===500){
           toast.warning(res.data.msg)
        }
       })
@@ -83,7 +83,7 @@ function ReaderViewBooks({url}) {
                   id="adminclub"
                   alt="..."
                 />
-                <button className="btn reader-book-top-section-heart" onClick={() => addToWishlist(a._id)} ><BsFillHeartFill  color={a.wishlisted==true?'red':'grey'} size="20px"  /></button>
+                <button className="btn reader-book-top-section-heart" onClick={() => addToWishlist(a._id)} ><BsFillHeartFill  color={a.wishlisted===true?'red':'grey'} size="20px"  /></button>
               </div>
               <div class="admin-book-bottom-section container">
                 <h4 class="card-title mt-2">{a.bookname}</h4>

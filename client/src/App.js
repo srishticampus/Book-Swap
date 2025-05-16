@@ -1,6 +1,6 @@
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+  import "bootstrap/dist/css/bootstrap.min.css";
+  import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'remixicon/fonts/remixicon.css'
 import ReaderSignin from "./Components/Readers/ReaderSignin";
 import ReaderNavbar from "./Components/Readers/ReaderNavbar";
@@ -16,8 +16,8 @@ import AboutPage from "./Components/Pages/AboutPage";
 import ReaderHome from './Components/Readers/ReaderHome';
 import ReaderLoginpage from "./Components/Readers/ReaderLoginpage";
 import ReaderExchange from "./Components/Readers/ReaderExchange";
-import ClubLogin from "./Components/Clubs/ClubLogin";
-import ClubSignin from "./Components/Clubs/ClubSignin";
+// import ClubLogin from "./Components/Clubs/ClubLogin";
+// import ClubSignin from "./Components/Clubs/ClubSignin";
 import AdminLogin from "./Components/Admin/AdminLogin";
 import ReaderProfile from "./Components/Readers/ReaderProfile";
 import Readerdonatebook from "./Components/Readers/Readerdonatebook";
@@ -30,7 +30,7 @@ import Clubhome from "./Components/Clubs/clubhome"
 import Readerforgotpswdafter from "./Components/Readers/Readerforgotpswdafter"
 import ClubNotificationPage from "./Components/Clubs/ClubNotificationPage";
 import AdminClubList from "./Components/Admin/AdminClubList";
-import ClubProfile from "./Components/Clubs/ClubProfile"
+// import ClubProfile from "./Components/Clubs/ClubProfile"
 
 import AdminHome from "./Components/Admin/AdminHome";
 
@@ -49,9 +49,10 @@ import ReaderViewClubs from "./Components/Readers/ReaderViewClubs";
 import AdminDonation from "./Components/Admin/AdminDonation";
 
 
+// import Clubforgotpswdafter from "./Components/Clubs/Clubforgotpswdafter";
+// import Clubforgotpswdsec from "./Components/Clubs/Clubforgotpswdsec";
 
-import Clubforgotpswdafter from "./Components/Clubs/Clubforgotpswdafter";
-import Clubforgotpswdsec from "./Components/Clubs/Clubforgotpswdsec";
+
 // import AdminExchangeDetails from "./Components/Admin/AdminExchangeDetails";
 import Admineditbook from "./Components/Admin/admineditbook"
 import ReaderViewLendedBooks from "./Components/Readers/ReaderViewLendedBooks";
@@ -66,7 +67,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 function App() {
 
   //local
-  const url = 'http://localhost:4001'
+  const url = 'http://localhost:4059/'
 
   return (
     <BrowserRouter>
@@ -144,7 +145,12 @@ function App() {
           <Route path="/library_forgotpswdafter" element={[<LoginNavbar />,<Clubforgotpswdafter/>]}/>
           <Route path="/librarynotificationpage" element={[<ClubHomeNavbar/>,<ClubNotificationPage url={url}/>]} />
           <Route path="/library_view_members" element={[<ClubHomeNavbar/>,<ClubViewMembers url={url}/>]} /> */}
-          <Route path="/library_view_members" element={[<ClubHomeNavbar />, <ClubViewMembers url={url} />]} /> 
+
+          <Route path="/library_home" element={[<ClubHomeNavbar />, <Clubhome />]} />
+          <Route path="/librarynotificationpage" element={[<ClubHomeNavbar />, <ClubNotificationPage url={url} />]} />
+          <Route path="/library_view_books/:clubid" element={[<ClubHomeNavbar />, <ClubViewBooks url={url} />]} />
+          <Route path="/library_donatebook" element={[<ClubHomeNavbar />, <Clubdonatebook />]} />
+          <Route path="/library_view_members" element={[<ClubHomeNavbar />, <ClubViewMembers url={url} />]} />
           <Route path="/library_view_books" element={[<ClubHomeNavbar />, <ClubViewBooks url={url} />]} />
           <Route path="/library_about" element={[<ClubHomeNavbar />, <AboutPage />]} />
           <Route path="/library-register"
@@ -176,7 +182,7 @@ function App() {
           <Route path="/library_profile"
             element={
               <>
-               <ClubHomeNavbar />
+                <ClubHomeNavbar />
                 <LibraryProfile url={url} />
               </>
             }
@@ -203,7 +209,7 @@ function App() {
 
           <Route path="/admin" element={[<AdminNavbar />, <ReaderHome />]} />
           <Route path="/admin_login" element={[<LoginNavbar />, <AdminLogin />]} />
-    
+
           {/* <Route path="/admin_home" element={[<AdminHomeNavbar />, <AdminHome />]} />
           <Route path="/admin_about" element={[<AdminHomeNavbar />, <AboutPage />]} />
           <Route path="/admin_club" element={[<AdminHomeNavbar />, <AdminClubList url={url} />]} />
@@ -214,115 +220,115 @@ function App() {
           <Route path="/admin_exchange" element={[<AdminHomeNavbar />, <AdminExchange />]} />
           <Route path="/admin_donation" element={[<AdminHomeNavbar />, <AdminDonation />]} />
           <Route path="/admin_editbook/:id" element={[<AdminHomeNavbar />, <Admineditbook />]} /> */}
-           
-           {/*=============== admin routes with route protection============= */}
 
-           {/* Admin login (no protection) */}
-      <Route path="/admin_login" element={
-        <>
-          <LoginNavbar />
-          <AdminLogin />
-        </>
-      } />
+          {/*=============== admin routes with route protection============= */}
 
-      {/* Admin landing (not protected, assuming public page) */}
-      <Route path="/admin" element={
-        <>
-          <AdminNavbar />
-          {/* Replace ReaderHome with your intended component */}
-        </>
-      } />
+          {/* Admin login (no protection) */}
+          <Route path="/admin_login" element={
+            <>
+              <LoginNavbar />
+              <AdminLogin />
+            </>
+          } />
 
-      {/* Protected Admin Pages */}
-      <Route path="/admin_home" element={
-        <ProtectedRoute>
-          <>
-            <AdminHomeNavbar />
-            <AdminHome />
-          </>
-        </ProtectedRoute>
-      } />
+          {/* Admin landing (not protected, assuming public page) */}
+          <Route path="/admin" element={
+            <>
+              <AdminNavbar />
+              {/* Replace ReaderHome with your intended component */}
+            </>
+          } />
 
-      <Route path="/admin_about" element={
-        <ProtectedRoute>
-          <>
-            <AdminHomeNavbar />
-            <AboutPage />
-          </>
-        </ProtectedRoute>
-      } />
+          {/* Protected Admin Pages */}
+          <Route path="/admin_home" element={
+            <ProtectedRoute>
+              <>
+                <AdminHomeNavbar />
+                <AdminHome />
+              </>
+            </ProtectedRoute>
+          } />
 
-      <Route path="/admin_club" element={
-        <ProtectedRoute>
-          <>
-            <AdminHomeNavbar />
-            <AdminClubList url={url} />
-          </>
-        </ProtectedRoute>
-      } />
+          <Route path="/admin_about" element={
+            <ProtectedRoute>
+              <>
+                <AdminHomeNavbar />
+                <AboutPage />
+              </>
+            </ProtectedRoute>
+          } />
 
-      <Route path="/admin_addbook" element={
-        <ProtectedRoute>
-          <>
-            <AdminHomeNavbar />
-            <AdminAddBook />
-          </>
-        </ProtectedRoute>
-      } />
+          <Route path="/admin_club" element={
+            <ProtectedRoute>
+              <>
+                <AdminHomeNavbar />
+                <AdminClubList url={url} />
+              </>
+            </ProtectedRoute>
+          } />
 
-      <Route path="/admin_viewbook" element={
-        <ProtectedRoute>
-          <>
-            <AdminHomeNavbar />
-            <AdminViewBooks url={url} />
-          </>
-        </ProtectedRoute>
-      } />
+          <Route path="/admin_addbook" element={
+            <ProtectedRoute>
+              <>
+                <AdminHomeNavbar />
+                <AdminAddBook />
+              </>
+            </ProtectedRoute>
+          } />
 
-      <Route path="/admin_viewusers" element={
-        <ProtectedRoute>
-          <>
-            <AdminHomeNavbar />
-            <AdminViewUsers url={url} />
-          </>
-        </ProtectedRoute>
-      } />
+          <Route path="/admin_viewbook" element={
+            <ProtectedRoute>
+              <>
+                <AdminHomeNavbar />
+                <AdminViewBooks url={url} />
+              </>
+            </ProtectedRoute>
+          } />
 
-      <Route path="/admin_exchange_req" element={
-        <ProtectedRoute>
-          <>
-            <AdminHomeNavbar />
-            <AdminExchange />
-          </>
-        </ProtectedRoute>
-      } />
+          <Route path="/admin_viewusers" element={
+            <ProtectedRoute>
+              <>
+                <AdminHomeNavbar />
+                <AdminViewUsers url={url} />
+              </>
+            </ProtectedRoute>
+          } />
 
-      <Route path="/admin_exchange" element={
-        <ProtectedRoute>
-          <>
-            <AdminHomeNavbar />
-            <AdminExchange />
-          </>
-        </ProtectedRoute>
-      } />
+          <Route path="/admin_exchange_req" element={
+            <ProtectedRoute>
+              <>
+                <AdminHomeNavbar />
+                <AdminExchange />
+              </>
+            </ProtectedRoute>
+          } />
 
-      <Route path="/admin_donation" element={
-        <ProtectedRoute>
-          <>
-            <AdminHomeNavbar />
-            <AdminDonation />
-          </>
-        </ProtectedRoute>
-      } />
+          <Route path="/admin_exchange" element={
+            <ProtectedRoute>
+              <>
+                <AdminHomeNavbar />
+                <AdminExchange />
+              </>
+            </ProtectedRoute>
+          } />
 
-      <Route path="/admin_editbook/:id" element={
-        <ProtectedRoute>
-          <>
-            <AdminHomeNavbar />
-            <Admineditbook />
-          </>
-        </ProtectedRoute>
-      } />
+          <Route path="/admin_donation" element={
+            <ProtectedRoute>
+              <>
+                <AdminHomeNavbar />
+                <AdminDonation />
+              </>
+            </ProtectedRoute>
+          } />
+
+          <Route path="/admin_editbook/:id" element={
+            <ProtectedRoute>
+              <>
+                <AdminHomeNavbar />
+                <Admineditbook />
+              </>
+            </ProtectedRoute>
+          } />
 
 
 

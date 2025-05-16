@@ -1,7 +1,7 @@
 import React from "react";
 import "./Readerforgotpswdse.css";
 import img from "../../Assets/readerfogotpass.png";
-import imgs from '../../Assets/forgetpswd.png'
+// import imgs from '../../Assets/forgetpswd.png'
 import '../Readers/ReaderForgotpassword.css'
 import { BsCheckCircle } from "react-icons/bs";
 

@@ -24,7 +24,7 @@ const addbookadmin = (req, res) => {
     publisher: req.body.publisher,
     publisheryear: req.body.publisheryear,
     userid: req.body.userid,
-    clubid: req.body.clubid,
+    libraryid: req.body.libraryid,
     image: image,
     count: req.body.count,
     date: date,
@@ -172,7 +172,7 @@ const viewuserbook = (req, res) => {
     });
 };
 const viewclubbook = (req, res) => {
-  adminaddbookschema.find({ clubid: req.params.id }).exec();
+  adminaddbookschema.find({ libraryid: req.params.id }).exec();
   adminaddbookschema
     .find({ userid: req.params.id })
     .exec()
@@ -298,7 +298,7 @@ const viewAllBooks1 = async (req, res) => {
               publisher: "",
               publisheryear: "",
               userid: null,
-              clubid: null,
+              libraryid: null,
               image: null,
               count: 0,
               date: null,
@@ -315,7 +315,7 @@ const viewAllBooks1 = async (req, res) => {
             book.wishlisted = true;
             book.userid = x.userid;
             book.image = x.image;
-            book.clubid = x.clubid;
+            book.libraryid = x.libraryid;
             book.count = x.count;
             book.date = x.date;
             book.rating = x.rating;
@@ -355,7 +355,7 @@ const viewAllBooks1 = async (req, res) => {
               publisher: "",
               publisheryear: "",
               userid: null,
-              clubid: null,
+              libraryid: null,
               image: null,
               count: 0,
               date: null,
@@ -372,7 +372,7 @@ const viewAllBooks1 = async (req, res) => {
 
             book.userid = x.userid;
             book.image = x.image;
-            book.clubid = x.clubid;
+            book.libraryid = x.libraryid;
             book.count = x.count;
             book.date = x.date;
             book.rating = x.rating;
@@ -415,11 +415,11 @@ const viewDonationsForAdmin = async (req, res) => {
   await adminaddbookschema
     .find({})
     .populate("userid")
-    .populate("clubid")
+    .populate("libraryid")
     .then((data) => {
       data.map((x) => {
         console.log(x.userid);
-        if (x.userid != null || x.clubid != null) {
+        if (x.userid != null || x.libraryid != null) {
           arr.push(x);
         }
       });

@@ -1,5 +1,5 @@
 import React from "react";
-import img from "../../Assets/clubicon.jpg";
+// import img from "../../Assets/clubicon.jpg";
 import './AdminViewBooks.css'
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -10,10 +10,11 @@ import { toast } from "react-toastify";
 function AdminViewBooks({url}) {
 
     const [data,setData]=useState([])
+    const uid=localStorage.getItem('userid')
 
   useEffect(()=>{
 
-  axiosInstance.post(`/viewallbookforclub`)
+  axiosInstance.post(`/viewAllBooks/${uid}`)
   .then((res)=>{
     console.log(res);
     setData(res.data.data)
@@ -28,7 +29,7 @@ function AdminViewBooks({url}) {
     axiosInstance.post(`/deleteBook/${id}`)
       .then((res) => {
         console.log(res);
-        if(res.data.status==200){
+        if(res.data.status===200){
             toast.success('Removed')
             setData(prevArray => prevArray.filter(item => item._id !== id));
             // window.location.reload()
@@ -60,6 +61,7 @@ function AdminViewBooks({url}) {
               <div class="admin-book-top-section">
                 <img
                   src={`${url}/${a.image}`}
+                
                   class="card-img-top"
                   id="adminclub"
                   alt="..."

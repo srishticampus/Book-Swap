@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "../Readers/Readerdonatebook.css"
 import axiosInstance from '../../BaseUrl';
 import img from '../../Assets/donateimg.png'
-import axios from 'axios';
+// import axios from 'axios';
 import { toast } from 'react-toastify';
 
 
@@ -21,7 +21,7 @@ function Readerdonatebook() {
     })
 
     const changefn=(a)=>{
-        if(a.target.name == "image"){
+        if(a.target.name === "image"){
             setclubdonate({...clubdonate,image:a.target.files[0]});
         }
         else{
@@ -32,13 +32,13 @@ function Readerdonatebook() {
 
     const subfn=(b)=>{
         b.preventDefault()
-        axiosInstance.post(`/adminaddbook`,clubdonate,{headers: {
+        axiosInstance.post(`/addBook`,clubdonate,{headers: {
             "Content-Type": "multipart/form-data",
           },
         })
         .then((result)=>{
             console.log("data entered successfully",result);
-            if(result.status==200){
+            if(result.status===200){
                 toast.success("Book Donated Successfully")
                 window.location.reload();
 
@@ -50,8 +50,6 @@ function Readerdonatebook() {
         .catch((error)=>{
             console.log("error",error);
         })
-    
-
     }
 
     return (
@@ -63,7 +61,7 @@ function Readerdonatebook() {
                     </div>
                     <div className='col-sm-12 col-md-6 col-lg-6 reader_donatebook_col2'>
                         <p className='reader_donatebooke_heading'>
-                            Donate Book
+                            Add Book
                         </p>
                         <form onSubmit={subfn}>
                             <div className='row'>
@@ -94,7 +92,6 @@ function Readerdonatebook() {
                                     </div>
                                     <div className='col-sm-8 reader_donatebook_inputs '>
                                         <button className="btn btn-primary " id='readerdonatebook_button'>Donate</button>
-
                                     </div>
 
                                 </div>

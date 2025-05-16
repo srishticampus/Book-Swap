@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../Clubs/ClubSignin.css'
 import img from'../../Assets/Rectangle 141 (1) (1).png'
 import { Link, useNavigate } from "react-router-dom";
@@ -46,7 +46,7 @@ const onSubmit=(e)=>{
       });
         // navigate("/reader_loginpage")
         // window.location.reload();
-      } else if(res.data.status==409){
+      } else if(res.data.status===409){
         toast.warning(res.data.msg);
       }
     })
@@ -58,7 +58,7 @@ const onSubmit=(e)=>{
 
 
 
-const { values, errors, touched, handleBlur,setFieldValue, handleChange,isValid, handleSubmit } =
+const { values, errors, touched, handleBlur,setFieldValue, handleChange } =
   useFormik({
     initialValues: {
       firstname: '',
@@ -98,7 +98,7 @@ const { values, errors, touched, handleBlur,setFieldValue, handleChange,isValid,
     <div class="container">
       <div class="row">
         <div class="col-6 reader_signin_img">
-          <img src={img} alt="image"/>
+          <img src={img} alt="img"/>
         </div>
         <div className="col-6 ">
           <p className="reader_signin_title">Create a new account</p>
