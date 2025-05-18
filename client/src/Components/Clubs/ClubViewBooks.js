@@ -16,13 +16,14 @@ function ClubViewBooks({ url }) {
       return;
     }
 
-    axiosInstance.get(`/viewBooks/${libraryid}`)
+    // ✅ Using same API as AdminViewBooks
+    axiosInstance.post(`/viewAllBooks/${libraryid}`)
       .then((res) => {
-        console.log(res)
-        if (res.data.msg === "No books found for this library") {
+        console.log(res);
+        if (res.data?.data?.length === 0) {
           setData([]);
         } else {
-          setData(res.data);
+          setData(res.data.data);
         }
         setLoading(false);
       })
@@ -81,6 +82,7 @@ function ClubViewBooks({ url }) {
 }
 
 export default ClubViewBooks;
+
 
 
 

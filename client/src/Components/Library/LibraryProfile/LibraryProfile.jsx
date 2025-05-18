@@ -13,6 +13,8 @@ function LibraryProfile({ url }) {
   const [data, setData] = useState({ image: { filename: "" } });
   const id = localStorage.getItem("libraryid");
   const token = localStorage.getItem("token");
+
+  const base = "http://localhost:4059/"
   console.log(token)
 
   useEffect(() => {
@@ -75,11 +77,11 @@ function LibraryProfile({ url }) {
             <center>
 
 
-              <img
-                src={data.image && data.image.filename ? `${url}/${data.image.filename}` : img}
+              {/* <img
+                src={data.image && data.image.filename ? `${url}/${data.image}` : img}
                 alt="Library"
-              />
-
+              /> */}
+             <img src={`${url}/${data.image}`}alt="Library"/>
 
 
 
