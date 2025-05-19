@@ -31,9 +31,10 @@ function ReaderViewClubs({ url }) {
 };
 
   const userId = localStorage.getItem("userid");
+  // const libraryid = localStorage.getItem("libraryid");
 
-  const sendRequest = (clubId) => {
-    axiosInstance.post("/sendrequest", { clubId, userId })
+  const sendRequest = (libraryId) => {
+    axiosInstance.post("/sendrequest", { libraryId, userId })
       .then((response) => {
         if (response.data.message === "Request already sent once") {
           toast.warning("Request already sent once");
