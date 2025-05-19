@@ -8,10 +8,10 @@ function ClubNotificationPage({url}) {
   // const [user, setuser] = useState([]);
 
   const getClubNotifications = async () => {
-    const clubId = localStorage.getItem("clubid");
+    const libraryid = localStorage.getItem("libraryid");
     try {
 
-      const response = await axiosInstance.post(`/requests/${clubId}`)
+      const response = await axiosInstance.post(`/pendingRequests/${libraryid}`)
       setUseridget( response.data)
       console.log(response.data)
     } catch (error) {
