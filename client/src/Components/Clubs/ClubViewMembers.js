@@ -4,20 +4,20 @@ import axiosInstance from '../../BaseUrl';
 function ClubViewMembers({url}) {
 
     const [data, setData] = useState([]);
-    const clubId = localStorage.getItem("clubid");
+    const libraryid = localStorage.getItem("libraryid");
 
 
     useEffect(() => {
       axiosInstance
-        .post(`/getAcceptedRequestForClub/${clubId}`)
+        .post(`/acceptedRequests/${libraryid}`)
         .then((res) => {
-          console.log(res);
+          console.log("response",res);
           setData(res.data);
         })
         .catch((err) => {
           console.log(err);
         });
-    }, [clubId]
+    }, [libraryid]
     );
 
     const date = new Date();
@@ -25,7 +25,7 @@ function ClubViewMembers({url}) {
 
     const remove=(id)=>{
       axiosInstance
-        .post(`/deleteClubMember/${id}`)
+        .post(`/deleteMember/${id}`)
         .then((res) => {
           console.log(res);
           setData(res.data);
