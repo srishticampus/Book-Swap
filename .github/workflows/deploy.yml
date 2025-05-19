@@ -24,7 +24,7 @@ jobs:
       working-directory: ./client
       run: |
         npm ci
-        npm run build -- --outDir=../build
+        npm run build
 
     # Backend preparation
     - name: Prepare backend
@@ -38,7 +38,7 @@ jobs:
         mkdir -p deploy
         
         # Copy frontend build files directly to deploy root
-        cp -r build/* deploy/
+        cp -r client/build/* deploy/
         
         # Create backend directory and copy files
         mkdir -p deploy/backend
