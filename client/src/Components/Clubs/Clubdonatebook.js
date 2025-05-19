@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 
 
 function Readerdonatebook() {
-    const id=localStorage.getItem("clubid")
+    const id=localStorage.getItem("libraryid")
     console.log(id);
     const[clubdonate,setclubdonate]=useState({
         bookname:"",
@@ -16,7 +16,7 @@ function Readerdonatebook() {
         publisher:"",
         publisheryear:"",
         count:0,
-        clubid:id,
+        libraryid:id,
         image:"",
     })
 
