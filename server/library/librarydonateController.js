@@ -47,7 +47,7 @@ const addBookToLibrary = (req, res) => {
 };
 
 const viewLibraryBooks = (req, res) => {
-    libraryDonateSchema.find({ _id: req.params.id }).exec()
+    libraryDonateSchema.find({ libraryid: req.params.id }).exec()
         .then(data => {
             if (data.length > 0) {
                 res.json({
