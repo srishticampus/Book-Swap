@@ -91,7 +91,7 @@ function Readerdonatebook() {
                                         <input type="file" placeholder="" name='image' onChange={changefn} required/>
                                     </div>
                                     <div className='col-sm-8 reader_donatebook_inputs '>
-                                        <button className="btn btn-primary " id='readerdonatebook_button'>Donate</button>
+                                        <button className="btn btn-primary " id='readerdonatebook_button'>Add</button>
                                     </div>
 
                                 </div>
