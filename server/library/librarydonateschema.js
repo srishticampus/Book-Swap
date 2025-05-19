@@ -19,7 +19,8 @@ const libraryDonateSchema = mongoose.Schema({
     },
     libraryid: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'libraries'
+        ref: 'libraries',
+         required: true
       },
     count: {
         type: String,
