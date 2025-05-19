@@ -95,6 +95,7 @@ function App() {
           <Route path="/clubforgotpassword" element={[<LoginNavbar />, <ClubForgotpassword />]} />
 
           {/* ------------Reader---------- */}
+          <Route></Route>
 
           <Route path="/" element={[<ReaderNavbar />, <ReaderHome />]} />
           <Route path="/reader_loginpage" element={[<ReaderNavbar />, <ReaderLoginpage />]} />
