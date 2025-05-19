@@ -45,6 +45,16 @@ const getEventsByLibrary = async (req, res) => {
   }
 };
 
+const deleteEvents = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const events = await LibraryEvent.findByIdAndDelete({ _id:id });
+    res.status(200).json({message:"deleted successfully"});
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching events", error });
+  }
+};
+
 // Update status based on date (optional automation helper)
 const updateEventStatuses = async () => {
   const today = new Date();
@@ -67,5 +77,6 @@ module.exports = {
   createEvent,
   getAllEvents,
   getEventsByLibrary,
-  updateEventStatuses
+  updateEventStatuses,
+  deleteEvents
 };

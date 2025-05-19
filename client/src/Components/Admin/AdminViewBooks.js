@@ -23,7 +23,7 @@ function AdminViewBooks({url}) {
     console.log(err);
   })
 
-  },[])
+  },[uid])
 
   const handleRemove = (id) => {
     axiosInstance.post(`/deleteBook/${id}`)
