@@ -117,6 +117,8 @@ const libraryEventController = require("./LibraryEvents/LibraryeventController")
 router.post("/add/events", libraryEventController.createEvent);
 router.get("/viewall/events", libraryEventController.getAllEvents);
 router.get("/viewevents/:libraryId", libraryEventController.getEventsByLibrary);
+router.get("/deleteevents/id", libraryEventController.deleteEvents);
+
 module.exports=router
  
 
