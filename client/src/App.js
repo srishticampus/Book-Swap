@@ -74,7 +74,7 @@ function App() {
 
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/book_swap">
       <div>
         <Routes>
 

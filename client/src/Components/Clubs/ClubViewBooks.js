@@ -15,22 +15,18 @@ function ClubViewBooks({ url }) {
       setLoading(false);
       return;
     }
+axiosInstance.get(`/viewBooks/${libraryid}`)
+  .then((res) => {
+    const books = res.data?.data || [];
+    setData(books);
+    setLoading(false);
+  })
+  .catch((err) => {
+    console.error(err);
+    setErrorMsg("Error fetching books");
+    setLoading(false);
+  });
 
-    axiosInstance.get(`/viewBooks/${libraryid}`)
-      .then((res) => {
-        console.log(res)
-        if (res.data.msg === "No books found for this library") {
-          setData([]);
-        } else {
-          setData(res.data);
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setErrorMsg("Error fetching books");
-        setLoading(false);
-      });
   }, []);
 
   if (loading) return <div>Loading...</div>;

@@ -50,12 +50,13 @@ function AdminDonation() {
                 <div className="container-fluid">
                   <div class="row">
                      <div className="col">{a.bookname}</div>
-                     <div className="col">{a.count}</div>
-                    {/* <div class="col">{a.bookname}</div>
-                    <div class="col">{a.userid?a.userid.firstname:a.clubid.clubname}</div>
+                     <div className="col">{a.publisher}</div>
+                     <div className="col">{a.publisher}</div>
+                    {/* <div class="col">{a.bookname}</div> */}
+                    {/* <div class="col">{a.userid?a.userid.firstname:a.clubid.clubname}</div>
                     <div class="col">{a.userid?a.userid.mobile:a.clubid.contact}</div>
                     <div class="col">{a.userid?a.userid.email:a.clubid.email}</div>
-                    <div class="col">{a.date.slice(0,10)}</div> */}
+                    <div class="col">{a.date.slice(0,10)}</div>  */}
                   </div>
                 </div>
               </div>
