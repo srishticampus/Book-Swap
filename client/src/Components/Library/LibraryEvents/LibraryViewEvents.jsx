@@ -6,7 +6,7 @@ function LibraryViewEvents() {
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-       const isAdminLoggedIn = localStorage.getItem('isAdminLoggedIn') === 'true';
+    const isAdminLoggedIn = localStorage.getItem('isAdminLoggedIn') === 'true';
 
     useEffect(() => {
         axios.get('http://localhost:4059/viewall/events')
@@ -20,9 +20,23 @@ function LibraryViewEvents() {
             });
     }, []);
 
+    const handleDelete = async (id) => {
+        if (!window.confirm("Are you sure you want to delete this event?")) return;
+
+        try {
+        
+            axios.get(`http://localhost:4059/deleteevents/id?id=${id}`);
+     
+            setEvents(prev => prev.filter(event => event._id !== id));
+        } catch (err) {
+            alert('Failed to delete event: ' + (err.response?.data?.message || err.message));
+        }
+    };
+
+
     return (
         <div className="container mt-4">
-                       {!isAdminLoggedIn && (
+            {!isAdminLoggedIn && (
                 <Link to='/library-events'>
                     <button className='btn btn-success btn-lg mb-3'>Add Event</button>
                 </Link>
@@ -47,6 +61,7 @@ function LibraryViewEvents() {
                             <th>Contact</th>
                             <th>Email</th>
                             <th>Location</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +79,13 @@ function LibraryViewEvents() {
                                     <td>
                                         {event.libraryId.street}, {event.libraryId.city}, {event.libraryId.district}, {event.libraryId.state} - {event.pincode}
                                     </td>
+                                    <button
+                                        className='btn '
+                                        onClick={() => handleDelete(event._id)}
+                                    >
+                                        Delete
+                                    </button>
+
                                 </tr>
                             ))
                         ) : (

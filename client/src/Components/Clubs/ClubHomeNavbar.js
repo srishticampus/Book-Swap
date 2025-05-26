@@ -6,7 +6,7 @@ import "./club.css";
 import axiosInstance from '../../BaseUrl';
 
 function ClubHomeNavbar() {
-  const url = 'http://localhost:4001';
+  const url = 'http://localhost:4059';
   const [data, setData] = useState({ image: { filename: '' } });
   const id = localStorage.getItem("libraryid"); 
 
@@ -67,6 +67,8 @@ function ClubHomeNavbar() {
                       <Link to="/library_profile" className="nav-link" id="adminhomelogout">
                         <img
                           src={data.image?.filename ? `${url}/${data.image.filename}` : logo}
+                          // src={`${url}/${data.image.filename}`}
+
                           alt="Library"
                           width="30"
                           height="30"
