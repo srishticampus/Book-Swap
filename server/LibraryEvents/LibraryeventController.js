@@ -46,7 +46,8 @@ const getEventsByLibrary = async (req, res) => {
 };
 
 const deleteEvents = async (req, res) => {
-  const { id } = req.params;
+const { id } = req.query;
+
   try {
     const events = await LibraryEvent.findByIdAndDelete({ _id:id });
     res.status(200).json({message:"deleted successfully"});

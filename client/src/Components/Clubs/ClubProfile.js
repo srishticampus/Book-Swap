@@ -82,7 +82,7 @@ function ClubProfile({url}) {
           <form>
             <center>
 <img
-  src={data.image ? `${url}/${data.image}` : ""}
+  // src={data.image ? `${url}/${data.image}` : ""}
   alt="Club"
   style={{ width: "100px", height: "100px", objectFit: "cover", borderRadius: "50%" }}
 />
