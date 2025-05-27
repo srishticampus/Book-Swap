@@ -1,7 +1,5 @@
 const express = require("express");
 const userexchangeschema = require("./userExchangeSchema");
-const userExchangeSchema = require("./userExchangeSchema");
-const { reset } = require("nodemon");
 
 const userExchangebook = (req, res) => {
   let exchange = new userexchangeschema({
@@ -30,7 +28,7 @@ const getuserExchangebook = async (req, res) => {
   const { userid } = req.params;
    console.log("in Api",req.params);
   let data=[]
-   await userexchangeschema.find({status:"pending"}).populate('userid').exec().then(requests=>{
+   await userexchangeschema.find({status:"pending"}).populate('userid').then(requests=>{
            console.log("req",requests);
       if(requests.length>0){
  requests.map(x=>{

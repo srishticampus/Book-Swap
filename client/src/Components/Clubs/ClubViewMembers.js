@@ -9,7 +9,7 @@ function ClubViewMembers({url}) {
 
     useEffect(() => {
       axiosInstance
-        .post(`/acceptedRequests/${libraryid}`)
+        .get(`/acceptedRequests/${libraryid}`)
         .then((res) => {
           console.log("response",res);
           setData(res.data);
@@ -25,7 +25,7 @@ function ClubViewMembers({url}) {
 
     const remove=(id)=>{
       axiosInstance
-        .post(`/deleteMember/${id}`)
+        .delete(`/deleteMember/${id}`)
         .then((res) => {
           console.log(res);
           setData(res.data);
