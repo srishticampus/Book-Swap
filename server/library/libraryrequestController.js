@@ -135,10 +135,12 @@ const deleteLibraryMember = async (req, res) => {
 
 // Get all accepted libraries for a user
 const getAcceptedLibrariesForUser = async (req, res) => {
+  console.log(req.params.userId);
+  
   const { userId } = req.params;
 
   try {
-    const requests = await LibraryRequest.find({ userId, status: 'accepted' }).populate("libraryId");
+    const requests = await LibraryRequest.find({ userId:userId, status: 'accepted' }).populate("libraryId");
 
     if (!requests || requests.length === 0) {
       return res.status(404).json({ message: "No accepted requests found for this user" });
