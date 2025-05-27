@@ -43,7 +43,7 @@ const testMail = (userEmail) => {
 const upload = multer({ storage: storage }).single("image");
 
 const addLibrary = (req, res) => {
-  let image = req.file.filename;
+  let image = req.file;
   let library = new librarySchema({
     libraryname: req.body.libraryname,
     street: req.body.street,
