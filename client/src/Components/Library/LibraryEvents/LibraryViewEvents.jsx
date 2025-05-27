@@ -6,7 +6,8 @@ function LibraryViewEvents() {
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const isAdminLoggedIn = localStorage.getItem('isAdminLoggedIn') === 'true';
+    // const isAdminLoggedIn = localStorage.getItem('isAdminLoggedIn') === 'true';
+    const isLibraryLoggedin = localStorage.getItem("liblogin") === 'true'
 
     useEffect(() => {
         axios.get('http://localhost:4059/viewall/events')
@@ -36,13 +37,20 @@ function LibraryViewEvents() {
 
     return (
         <div className="container mt-4">
-            {!isAdminLoggedIn && (
+            {/* {!isAdminLoggedIn && (
                 <Link to='/library-events'>
                     <button className='btn btn-success btn-lg mb-3'>Add Event</button>
                 </Link>
-            )}
+            )} */}
+    {
+        !isLibraryLoggedin && (
+                    <Link to='/library-events'>
+                    <button className='btn btn-success btn-lg mb-3'>Add Event</button>
+                </Link>
+        )
+    }
 
-            <h2 className="mb-4">Library Events</h2>
+            <h2 className="mb-4"> Events</h2>
 
 
             {loading && <div className="alert alert-info">Loading events...</div>}
