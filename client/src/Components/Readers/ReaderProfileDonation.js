@@ -12,7 +12,7 @@ function ReaderProfileDonation({url}) {
   const id = localStorage.getItem("userid");
   useEffect(() => {
     axiosInstance
-      .post(`/viewuserbook/${id}`)
+      .post(`/viewuserdonatebook/${id}`)
       .then((res) => {
         const responseData = res?.data?.data || [];
         setData(responseData);

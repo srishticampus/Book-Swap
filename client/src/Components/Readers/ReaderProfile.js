@@ -12,7 +12,7 @@ import ReaderEditProfile from './ReaderEditProfile';
 function ReaderProfile({ data }) {
 
    //local
-   const url='http://localhost:4001'
+   const url='http://localhost:4059'
 
   return (
     <div style={{ display: "flex", justifyContent: "space-between" }} className='container'>

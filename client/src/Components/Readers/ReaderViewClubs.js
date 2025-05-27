@@ -65,7 +65,7 @@ function ReaderViewClubs({ url }) {
                 <div className="card" id="admincardlist">
                   <div className="top-section">
                     <img
-                      src={`${url}/${club.image}`}
+                      src={`${url}/${club.image.filename}`}
                       className="card-img-top"
                       id="adminclub"
                       alt="..."
