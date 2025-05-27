@@ -29,6 +29,9 @@ router.post('/deleteUser/:id', users.deleteUser)
 const userdonate = require('./User/userdonateController')
 router.post('/donatebook', userdonate.upload, userdonate.addbook)
 router.post('/viewuserdonatebook/:id', userdonate.viewuserbook)
+router.post('/viewalluserdonatebook', userdonate.viewalluserbook)
+router.get('/otheruserbooks/:userid', userdonate.viewOtherUsersBooks);
+router.post('/lenddonatedbook/:bookid', userdonate.lendBook);
 
 // admin Addbook
 const adminaddbook = require('./Admin/adminaddbookController')

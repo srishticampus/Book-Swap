@@ -12,7 +12,7 @@ function ReaderProfileClub({url}) {
   console.log(id);
 
   useEffect(()=>{
-      axiosInstance.post(`/getAcceptedRequestForuser/${id}`)
+      axiosInstance.get(`/acceptedLibraries/${id}`)
       .then((res)=>{
         console.log(res);
         setData(res.data)
@@ -59,18 +59,18 @@ function ReaderProfileClub({url}) {
 
           <div className="reader_profile_notification_items mt-4">
             <div className="reader_profile_notification_item_image">
-              <img src={`${url}/${a.clubId.image}`} alt='img' className="img-fluid" />
-              {console.log(`${url}/${a.clubId.image}`)}
+              <img src={`${url}/${a.libraryId?.image.filename}`} alt='img' className="img-fluid" />
+              {console.log(`${url}/${a.libraryId?.image.filename}`)}
             </div>
             <div className="reader_profile_notification_item_content">
-              <h6>{a.clubId.clubname}</h6>
+              <h6>{a.libraryId?.clubname}</h6>
               
               <p>
-                Reg No: {a.clubId.regno}
+                Reg No: {a.libraryId?.regno}
                 <br />
-                {a.clubId.contact}
+                {a.libraryId?.contact}
                 <br />
-                {a.clubId.email}
+                {a.libraryId?.email}
               
               </p>
             </div>
