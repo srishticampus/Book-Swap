@@ -138,17 +138,7 @@ function ReaderExchange() {
                         {item.status}
                       </div>
                     </div>
-                    <div className="container-fluid">
-                      <div class="row">
-                        <div class="col">{item.bookname}</div>
-                        <div class="col">{item.userid.firstname}</div>
-                        <div class="col">{item.statusChangedBy.firstname}</div>
-                        <div class="col">{formatDate(item.acceptedDate)}</div>
-                        <div id="accepted_button" class="col">
-                          {item.status}
-                        </div>
-                      </div>
-                    </div>
+                   
                   </div>
                 </div>
               ))
