@@ -65,6 +65,7 @@ import LibraryForgotPassword from "./Components/Library/LibraryForgotPassword/Li
 import ProtectedRoute from "./Components/ProtectedRoute";
 import LibraryEvents from "./Components/Library/LibraryEvents/LibraryEvents";
 import LibraryViewEvents from "./Components/Library/LibraryEvents/LibraryViewEvents";
+import ReaderViewAllBooksByOtherUsers from "./Components/Readers/ReaderViewAllBooksByOtherUsers";
 
 function App() {
 
@@ -77,6 +78,25 @@ function App() {
     <BrowserRouter basename="/book_swap">
       <div>
         <Routes>
+ 
+          <Route path="/reader-view-all-other-user-book"
+          element={
+            <>
+              <ReaderHomeNavbar />
+              <ReaderViewAllBooksByOtherUsers/>
+            </>
+          }
+          ></Route>
+
+
+          <Route path="/reader-view-events"
+          element={
+            <>
+            <ReaderHomeNavbar />
+            <LibraryViewEvents/>
+            </>
+          }
+          ></Route>
 
           <Route path="/aboutPage" element={<AboutPage />} />
           <Route path='/readerhome' element={<ReaderHome />} />

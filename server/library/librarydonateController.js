@@ -47,7 +47,9 @@ const addBookToLibrary = (req, res) => {
 };
 
 const viewLibraryBooks = (req, res) => {
-    libraryDonateSchema.find({ libraryid: req.params.id })
+    console.log(req.params.id ,"req.params.id ");
+    
+    libraryDonateSchema.find({libraryid:req.params.id })
         .then(data => {
             if (data.length > 0) {
                 res.json({
@@ -55,6 +57,8 @@ const viewLibraryBooks = (req, res) => {
                     msg: "Books fetched successfully",
                     data: data
                 });
+                console.log(data,"data");
+                
             } else {
                 res.json({
                     status: 200,

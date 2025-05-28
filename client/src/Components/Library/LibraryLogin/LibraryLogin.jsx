@@ -6,6 +6,7 @@ import { BsArrowClockwise } from "react-icons/bs";
 import axiosInstance from "../../../BaseUrl";
 import { toast } from "react-toastify";
 
+
 function LibraryLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,6 +48,7 @@ function LibraryLogin() {
         toast.success("Login successful!");
         localStorage.setItem("token", result.data.token);
         localStorage.setItem("libraryid", result.data.id);
+        localStorage.setItem("liblogin",true)
         navigate("/library_home");
       } else {
         document.getElementById("alertuser").innerHTML = result.data.message || "Login failed";
@@ -71,8 +73,8 @@ function LibraryLogin() {
   }, []);
 
   return (
-    <div className="club_login">
-      <div className="container">
+    <div className="club_login ">
+      <div className="container ">
         <div className="row">
           <div className="col-sm-12 col-md-6 col-lg-6">
             <img src={img} alt="login visual" className="img-fluid" />
