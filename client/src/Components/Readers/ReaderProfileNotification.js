@@ -36,7 +36,7 @@ function ReaderProfileNotification() {
       .get('/exchangerequests/' + userId)
       .then((res) => {
         if (res.data.status === 500) {
-          console.log(res);
+          console.log(res.data);
           setRequests([]);
         } else {
           console.log(res);

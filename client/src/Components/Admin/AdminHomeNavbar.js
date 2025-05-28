@@ -88,7 +88,7 @@ function AdminHomeNavbar() {
                         aria-current="page"
                         id="navheaders"
                       >
-                        DONATION
+                        USER DONATION
                       </Link>
                     </li>
                     <li class="nav-item">
