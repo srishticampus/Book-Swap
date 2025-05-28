@@ -108,14 +108,16 @@ function ReaderHomeNavbar() {
                       >
                         DONATE
                       </Link>
-                      {/* <Link
-                        to="#"
+                    </li>
+                    <li class="nav-item">
+                      <Link
+                        to="/reader-view-events"
                         class="nav-link active"
                         aria-current="page"
                         id="navheaders"
                       >
-                        DONATE
-                      </Link> */}
+                        EVENTS
+                      </Link>
                     </li>
                     <li class="nav-item">
                       <Link to="/reader_exchange" class="nav-link" href="#" id="navheaders">
@@ -124,6 +126,16 @@ function ReaderHomeNavbar() {
                       {/* <Link to="#" class="nav-link" href="#" id="navheaders">
                         EXCHANGES
                       </Link> */}
+                    </li>
+                    <li class="nav-item">
+                      <Link
+                        to="/reader-view-all-other-user-book"
+                        class="nav-link active"
+                        aria-current="page"
+                        id="navheaders"
+                      >
+                        ALL BOOKS
+                      </Link>
                     </li>
                     <li class="nav-item">
                       <Link to="/reader_view_lended_books" class="nav-link" href="#" id="navheaders">
