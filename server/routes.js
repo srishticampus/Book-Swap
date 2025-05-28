@@ -40,7 +40,7 @@ router.post('/viewAllBooks/:id', adminaddbook.viewAllBooks1)
 router.post('/deleteBook/:id', adminaddbook.deleteBook)
 router.post('/admineditbook/:id', adminaddbook.upload, adminaddbook.admineditbook)
 router.post('/adminviewbookone/:id', adminaddbook.adminviewbookone)//
-router.post('/viewuserbook/:id', adminaddbook.viewuserbook)
+router.post('/viewadminuserbook/:id', adminaddbook.viewuserbook)
 // router.post('/viewclubbook/:id',adminaddbook.viewclubbook)
 // router.post('/viewallbookforclub',adminaddbook.viewallbookforclub)
 router.post('/viewDonationsForAdmin', adminaddbook.viewDonationsForAdmin)
@@ -108,13 +108,14 @@ router.delete('/leaveLibrary/:id', libraryRequestController.leaveLibrary);
 router.delete('/deleteMember/:id', libraryRequestController.deleteLibraryMember);
 router.get('/acceptedLibraries/:userId', libraryRequestController.getAcceptedLibrariesForUser);
 
-const {addBookToLibrary,upload,viewLibraryBooks,viewAllDonatedBooksByAdmin} = require("./library/librarydonateController");
+const {addBookToLibrary,upload,viewLibraryBooks,viewAllDonatedBooksByAdmin,lendBookFromLibrary,returnLibraryBook} = require("./library/librarydonateController");
 const { events } = require("./library/libraryrequestsSchema");
 
 router.post("/addBook", upload, addBookToLibrary);
 router.get("/viewBooks/:id", viewLibraryBooks);
 router.get("/viewlibrarydonateBooks", viewAllDonatedBooksByAdmin);
-
+router.post('/library/lend/:bookid', lendBookFromLibrary);
+router.post('/library/return/:bookid', returnLibraryBook);
 
 const libraryEventController = require("./LibraryEvents/LibraryeventController");
 router.post("/add/events", libraryEventController.createEvent);
