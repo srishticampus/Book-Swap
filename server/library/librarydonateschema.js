@@ -20,8 +20,8 @@ const libraryDonateSchema = mongoose.Schema({
     libraryid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'libraries',
-         required: true
-      },
+        required: true
+    },
     count: {
         type: String,
         default: 1
@@ -29,7 +29,25 @@ const libraryDonateSchema = mongoose.Schema({
     image: {
         type: Object,
         required: true
+    },
+    isLent: {
+        type: Boolean,
+        default: false
+    },
+    lentTo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users', // or 'students', based on your system
+        default: null
+    },
+    lentDate: {
+        type: Date,
+        default: null
+    },
+    returnDate: {
+        type: Date,
+        default: null
     }
+
 });
 
 module.exports = mongoose.model('librarydonate', libraryDonateSchema);
