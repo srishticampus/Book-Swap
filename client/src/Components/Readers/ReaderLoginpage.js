@@ -42,6 +42,7 @@ function ReaderLoginpage() {
           console.log(result);
           localStorage.setItem("token", result.data.token);
           localStorage.setItem("userid", result.data.id);
+          localStorage.setItem("userlogin",true)
           navigate("/reader_home");
         } else {
           document.getElementById("alertuser").innerHTML =
