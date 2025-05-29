@@ -65,15 +65,21 @@ function ClubHomeNavbar() {
                     </li>
                     <li className="nav-item">
                       <Link to="/library_profile" className="nav-link" id="adminhomelogout">
-                        <img
+                        {/* <img
                           src={data.image?.filename ? `${url}/${data.image.filename}` : logo}
-                          // src={`${url}/${data.image.filename}`}
-
                           alt="Library"
                           width="30"
                           height="30"
                           style={{ borderRadius: "50%", objectFit: "cover" }}
-                        />
+                        /> */}
+                        <img
+  src={data?.image?.filename ? `${url}/${data.image.filename}` : logo}
+  alt="Library"
+  width="30"
+  height="30"
+  style={{ borderRadius: "50%", objectFit: "cover" }}
+/>
+
                       </Link>
                     </li>
                   </ul>
