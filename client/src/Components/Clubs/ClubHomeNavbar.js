@@ -57,6 +57,9 @@ function ClubHomeNavbar() {
                     <li className="nav-item">
                       <Link to="/library_view_members" className="nav-link" id="navheaders">MEMBERS</Link>
                     </li>
+                     <li className="nav-item">
+                      <Link to="/library-lended-books" className="nav-link" id="navheaders">LENDED BOOKS</Link>
+                    </li>
                     <li className="nav-item">
                       <Link to="/library_donatebook" className="nav-link" id="navheaders">ADD BOOK</Link>
                     </li>
