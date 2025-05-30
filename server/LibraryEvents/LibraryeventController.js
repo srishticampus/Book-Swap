@@ -2,7 +2,7 @@ const LibraryEvent = require("./libraryeventSchema");
 
 // Create a new event
 const createEvent = async (req, res) => {
-  const { libraryId, eventName, description, startDate, endDate } = req.body;
+  const { libraryId, eventName, description, startDate, endDate, venue } = req.body;
 
   try {
     const newEvent = new LibraryEvent({
@@ -10,7 +10,8 @@ const createEvent = async (req, res) => {
       eventName,
       description,
       startDate,
-      endDate
+      endDate,
+      venue // Add venue to the event
     });
 
     await newEvent.save();
@@ -23,6 +24,7 @@ const createEvent = async (req, res) => {
     res.status(500).json({ message: "Error creating event", error });
   }
 };
+
 
 // Get all events
 const getAllEvents = async (req, res) => {
