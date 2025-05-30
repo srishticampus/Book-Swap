@@ -130,11 +130,24 @@ function ReaderProfileSidebar() {
         </Link>
         
       </div>
-      <Link to='/' ><div className="reader_profile_sidebar_logoybtn mt-4 mb-4">
+      {/* <Link to='/' ><div className="reader_profile_sidebar_logoybtn mt-4 mb-4">
         <button className="btn btn-secondary">
           <i class="ri-logout-box-r-line"></i> logout
         </button>
-      </div></Link>
+      </div></Link> */}
+      <div className="reader_profile_sidebar_logoybtn mt-4 mb-4">
+  <button
+    className="btn btn-secondary"
+    onClick={() => {
+      localStorage.setItem("userlogin", false); // or localStorage.removeItem("userlogin");
+      localStorage.removeItem("userid"); // optional: clear other user-specific data
+      window.location.href = "/book_swap"; // redirect to homepage
+    }}
+  >
+    <i className="ri-logout-box-r-line"></i> Logout
+  </button>
+</div>
+
     </div>
   );
 }
