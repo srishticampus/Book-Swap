@@ -27,9 +27,9 @@ function LibraryViewEvents() {
         if (!window.confirm("Are you sure you want to delete this event?")) return;
 
         try {
-        
+
             axios.get(`http://localhost:4059/deleteevents/id?id=${id}`);
-     
+
             setEvents(prev => prev.filter(event => event._id !== id));
         } catch (err) {
             alert('Failed to delete event: ' + (err.response?.data?.message || err.message));
@@ -44,21 +44,21 @@ function LibraryViewEvents() {
                     <button className='btn btn-success btn-lg mb-3'>Add Event</button>
                 </Link>
             )} */}
-    {/* {
+            {/* {
         !isLibraryLoggedin && (
                     <Link to='/library-events'>
                     <button className='btn btn-success btn-lg mb-3'>Add Event</button>
                 </Link>
         )
     } */}
-          {
-            !isUserLoggedIn &&(
-                <Link to='/library-events'>
-                    <button className='btn btn-success btn-lg mb-3'>Add Event</button>
-                </Link>
+            {
+                !isUserLoggedIn && (
+                    <Link to='/library-events'>
+                        <button className='btn btn-success btn-lg mb-3'>Add Event</button>
+                    </Link>
 
-            )
-          }
+                )
+            }
             <h2 className="mb-4"> Events</h2>
 
 
@@ -77,41 +77,39 @@ function LibraryViewEvents() {
                             <th>Library</th>
                             <th>Contact</th>
                             <th>Email</th>
-                            <th>Location</th>
-                          {
-                            !isUserLoggedIn && (
-                                  <th>Delete</th>
-                            )
-                          }
+                            <th>Venue</th>
+                            {
+                                !isUserLoggedIn && (
+                                    <th>Delete</th>
+                                )
+                            }
                         </tr>
                     </thead>
                     <tbody>
                         {events.map((event) => (
-  <tr key={event._id}>
-    <td>{event.eventName}</td>
-    <td>{event.description}</td>
-    <td>{new Date(event.startDate).toLocaleDateString()}</td>
-    <td>{new Date(event.endDate).toLocaleDateString()}</td>
-    <td>{event.status}</td>
-    <td>{event.libraryId?.libraryname || 'N/A'}</td>
-    <td>{event.libraryId?.contact || 'N/A'}</td>
-    <td>{event.libraryId?.email || 'N/A'}</td>
-    <td>
-      {event.libraryId
-        ? `${event.libraryId.street}, ${event.libraryId.city}, ${event.libraryId.district}, ${event.libraryId.state} - ${event.pincode}`
-        : 'N/A'}
-    </td>
- {
-    !isUserLoggedIn && (
-           <td>
-      <button className="btn btn-danger" onClick={() => handleDelete(event._id)}>
-        Delete
-      </button>
-    </td>
-    )
- }
-  </tr>
-))}
+                            <tr key={event._id}>
+                                <td>{event.eventName}</td>
+                                <td>{event.description}</td>
+                                <td>{new Date(event.startDate).toLocaleDateString()}</td>
+                                <td>{new Date(event.endDate).toLocaleDateString()}</td>
+                                <td>{event.status}</td>
+                                <td>{event.libraryId?.libraryname || 'N/A'}</td>
+                                <td>{event.libraryId?.contact || 'N/A'}</td>
+                                <td>{event.libraryId?.email || 'N/A'}</td>
+                                <td>
+                              {event.venue || "NA"}
+                                </td>
+                                {
+                                    !isUserLoggedIn && (
+                                        <td>
+                                            <button className="btn btn-danger" onClick={() => handleDelete(event._id)}>
+                                                Delete
+                                            </button>
+                                        </td>
+                                    )
+                                }
+                            </tr>
+                        ))}
 
                     </tbody>
                 </table>

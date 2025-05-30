@@ -142,6 +142,11 @@ function ReaderHomeNavbar() {
                         MY BOOKS
                       </Link>
                     </li>
+                     <li class="nav-item">
+                      <Link to="/chat" class="nav-link" href="#" id="navheaders">
+                      CHAT
+                      </Link>
+                    </li>
                     <li class="nav-item">
                       <Link onClick={openWishlistModal} className="nav-link">
                         <BsFillHeartFill />

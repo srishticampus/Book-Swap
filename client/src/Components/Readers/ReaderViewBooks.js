@@ -6,36 +6,65 @@ import ReactStars from "react-rating-stars-component";
 import { BsFillHeartFill } from "react-icons/bs";
 import "./ReaderViewBooks.css";
 import { toast } from "react-toastify";
-function ReaderViewBooks({url}) {
+function ReaderViewBooks({ url }) {
 
-    const [data,setData]=useState([])
-    const uid=localStorage.getItem('userid')
+  const [data, setData] = useState([])
+  const [searchTerm, setSearchTerm] = useState('');
+  const uid = localStorage.getItem('userid')
 
-  useEffect(()=>{
+  useEffect(() => {
+    fetchBooks(); // Initial fetch
+  }, [uid]);
 
-  axiosInstance.post(`/viewAllBooks/${uid}`)
-  .then((res)=>{
-    console.log(res);
-    setData(res.data.data)
-  })
-  .catch((err)=>{
-    console.log(err);
-  })
+  const fetchBooks = () => {
+    axiosInstance.post(`/viewAllBooks/${uid}`)
+      .then((res) => {
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-  },[uid])
-  const addToWishlist = (bid) => {
-    axiosInstance.post('/userwishlist',{userid:uid,bookid:bid})
+  const handleSearch = () => {
+    axiosInstance.post(`/viewAllBooks/${uid}`)
+      .then((res) => {
+        const allBooks = res.data.data;
+        const filteredBooks = allBooks.filter(book =>
+          book.bookname.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setData(filteredBooks);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+
+    axiosInstance.post(`/viewAllBooks/${uid}`)
       .then((res) => {
         console.log(res);
-        if(res.data.status===200){
-            toast.success('Added to wishlist')
-            setData((prevData) =>
-          prevData.map((book) =>
-            book._id === bid ? { ...book, wishlisted: !book.wishlisted } : book
-          )
-        );
-        }else if(res.data.status===500){
-           toast.warning(res.data.msg)
+        setData(res.data.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
+  }, [uid])
+  const addToWishlist = (bid) => {
+    axiosInstance.post('/userwishlist', { userid: uid, bookid: bid })
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          toast.success('Added to wishlist')
+          setData((prevData) =>
+            prevData.map((book) =>
+              book._id === bid ? { ...book, wishlisted: !book.wishlisted } : book
+            )
+          );
+        } else if (res.data.status === 500) {
+          toast.warning(res.data.msg)
         }
       })
       .catch((err) => {
@@ -44,15 +73,15 @@ function ReaderViewBooks({url}) {
   };
 
   const lend = (bid) => {
-    axiosInstance.post('/lendbyuser',{userid:uid,bookid:bid})
+    axiosInstance.post('/lendbyuser', { userid: uid, bookid: bid })
       .then((res) => {
         console.log(res);
-        if(res.data.status===200){
-            toast.success('Lended Successfully')
-            // window.location.reload()
-        }else if(res.data.status===500){
+        if (res.data.status === 200) {
+          toast.success('Lended Successfully')
+          // window.location.reload()
+        } else if (res.data.status === 500) {
           toast.warning(res.data.msg)
-       }
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -69,51 +98,68 @@ function ReaderViewBooks({url}) {
         <p>Add Book</p>
         </div>
         </Link> */}
+
         <div class="container ">
+
+
+        <form className="d-flex mb-3">
+            <input
+              className="form-control me-2"
+              type="text"
+              placeholder="Search by book name"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button className="btn btn-primary" type="button" onClick={handleSearch}>
+              Search
+            </button>
+          </form>
+
+
           <div class="row">
 
-        {
-            data.length?data.map((a)=>{
-                return(
+            {
+              data.length ? data.map((a) => {
+                return (
                   <div className="card admin-books col-3" id='carddesign' >
-              <div class="reader-book-top-section">
-                <img
-                  src={`${url}/${a.image}`}
-                  class="card-img-top"
-                  id="adminclub"
-                  alt="..."
-                />
-                <button className="btn reader-book-top-section-heart" onClick={() => addToWishlist(a._id)} ><BsFillHeartFill  color={a.wishlisted===true?'red':'grey'} size="20px"  /></button>
-              </div>
-              <div class="admin-book-bottom-section container">
-                <h4 class="card-title mt-2">{a.bookname}</h4>
-                <h6 class="card-text">
-                  Author: {a.authername}</h6>
-                  <h6 class="card-text">Publisher: {a.publisher}</h6>
-                 <h6 class="card-text" >Publishing Year: {a.publisheryear}</h6>
-                 <ReactStars
-                    count={5}
-                    value={a.rating} 
-                    size={24}
-                    activeColor="#ffd700"
-                    edit={false}
-                  />
-                <div className="col text-center">
-                  
-                  <button className="btn btn-primary text-center" onClick={() => lend(a._id)}>
-                    Lend
-                  </button>
-                </div>
-                
-              </div>
-            </div>  
-                )
-            }):<div className="no_data" >
-              <h1>No books found</h1>
-            </div>
-        }
+                    <div class="reader-book-top-section">
+                      <img
+                        src={`${url}/${a.image}`}
+                        class="card-img-top"
+                        id="adminclub"
+                        alt="..."
+                      />
+                      <button className="btn reader-book-top-section-heart" onClick={() => addToWishlist(a._id)} ><BsFillHeartFill color={a.wishlisted === true ? 'red' : 'grey'} size="20px" /></button>
+                    </div>
+                    <div class="admin-book-bottom-section container">
+                      <h4 class="card-title mt-2">{a.bookname}</h4>
+                      <h6 class="card-text">
+                        Author: {a.authername}</h6>
+                      <h6 class="card-text">Publisher: {a.publisher}</h6>
+                      <h6 class="card-text" >Publishing Year: {a.publisheryear}</h6>
+                      <ReactStars
+                        count={5}
+                        value={a.rating}
+                        size={24}
+                        activeColor="#ffd700"
+                        edit={false}
+                      />
+                      <div className="col text-center">
 
-            
+                        <button className="btn btn-primary text-center" onClick={() => lend(a._id)}>
+                          Lend
+                        </button>
+                      </div>
+
+                    </div>
+                  </div>
+                )
+              }) : <div className="no_data" >
+                <h1>No books found</h1>
+              </div>
+            }
+
+
           </div>
         </div>
       </div>
