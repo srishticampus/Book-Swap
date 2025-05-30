@@ -26,6 +26,10 @@ const libraryEventSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  venue:{
+    type: String,
+    required: true
+  },
   status: {
     type: String,
     enum: ["upcoming", "ongoing", "completed"],
