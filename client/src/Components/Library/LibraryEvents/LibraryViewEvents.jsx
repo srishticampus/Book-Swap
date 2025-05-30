@@ -7,12 +7,14 @@ function LibraryViewEvents() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     // const isAdminLoggedIn = localStorage.getItem('isAdminLoggedIn') === 'true';
-    const isLibraryLoggedin = localStorage.getItem("liblogin") === 'true'
+    // const isLibraryLoggedin = localStorage.getItem("liblogin") === 'true'
+    const isUserLoggedIn = localStorage.getItem("userlogin") === 'true'
 
     useEffect(() => {
         axios.get('http://localhost:4059/viewall/events')
             .then(response => {
                 setEvents(response.data);
+                console.log(response.data)
                 setLoading(false);
             })
             .catch(err => {
@@ -42,14 +44,21 @@ function LibraryViewEvents() {
                     <button className='btn btn-success btn-lg mb-3'>Add Event</button>
                 </Link>
             )} */}
-    {
+    {/* {
         !isLibraryLoggedin && (
                     <Link to='/library-events'>
                     <button className='btn btn-success btn-lg mb-3'>Add Event</button>
                 </Link>
         )
-    }
+    } */}
+          {
+            !isUserLoggedIn &&(
+                <Link to='/library-events'>
+                    <button className='btn btn-success btn-lg mb-3'>Add Event</button>
+                </Link>
 
+            )
+          }
             <h2 className="mb-4"> Events</h2>
 
 
@@ -69,38 +78,41 @@ function LibraryViewEvents() {
                             <th>Contact</th>
                             <th>Email</th>
                             <th>Location</th>
-                            <th>Delete</th>
+                          {
+                            !isUserLoggedIn && (
+                                  <th>Delete</th>
+                            )
+                          }
                         </tr>
                     </thead>
                     <tbody>
-                        {events.length > 0 ? (
-                            events.map((event) => (
-                                <tr key={event._id}>
-                                    <td>{event.eventName}</td>
-                                    <td>{event.description}</td>
-                                    <td>{new Date(event.startDate).toLocaleDateString()}</td>
-                                    <td>{new Date(event.endDate).toLocaleDateString()}</td>
-                                    <td>{event.status}</td>
-                                    <td>{event.libraryId.libraryname}</td>
-                                    <td>{event.libraryId.contact}</td>
-                                    <td>{event.libraryId.email}</td>
-                                    <td>
-                                        {event.libraryId.street}, {event.libraryId.city}, {event.libraryId.district}, {event.libraryId.state} - {event.pincode}
-                                    </td>
-                                    <button
-                                        className='btn '
-                                        onClick={() => handleDelete(event._id)}
-                                    >
-                                        Delete
-                                    </button>
+                        {events.map((event) => (
+  <tr key={event._id}>
+    <td>{event.eventName}</td>
+    <td>{event.description}</td>
+    <td>{new Date(event.startDate).toLocaleDateString()}</td>
+    <td>{new Date(event.endDate).toLocaleDateString()}</td>
+    <td>{event.status}</td>
+    <td>{event.libraryId?.libraryname || 'N/A'}</td>
+    <td>{event.libraryId?.contact || 'N/A'}</td>
+    <td>{event.libraryId?.email || 'N/A'}</td>
+    <td>
+      {event.libraryId
+        ? `${event.libraryId.street}, ${event.libraryId.city}, ${event.libraryId.district}, ${event.libraryId.state} - ${event.pincode}`
+        : 'N/A'}
+    </td>
+ {
+    !isUserLoggedIn && (
+           <td>
+      <button className="btn btn-danger" onClick={() => handleDelete(event._id)}>
+        Delete
+      </button>
+    </td>
+    )
+ }
+  </tr>
+))}
 
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="9" className="text-center">No events found.</td>
-                            </tr>
-                        )}
                     </tbody>
                 </table>
             )}

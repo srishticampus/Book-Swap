@@ -1,66 +1,72 @@
 import React, { useState } from "react";
 import "./ReaderForgotpassword.css";
 import img from "../../Assets/readerfogotpass.png";
-import '../Readers/ReaderForgotpassword.css'
+import "../Readers/ReaderForgotpassword.css";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from '../../BaseUrl';
+import axiosInstance from "../../BaseUrl";
 
 function ReaderForgotpassword() {
-  const[email,setEmail]=useState("")
+  const [email, setEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const navigate = useNavigate();
 
-  const navigate=useNavigate()
-    const handlesubmit=(e)=>{
-      e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-      if(!email){
-        alert("Please enter your mailid")
-        return;
-      }
-      const credentials={email}
-      sendDataToServer(credentials,e);
-
-      console.log(credentials);
+    if (!email || !newPassword) {
+      alert("Please enter both email and new password.");
+      return;
     }
-    const sendDataToServer = (credentials,e) => {
-      e.preventDefault();
-      axiosInstance.post(`/forgotPasswordreq`, credentials).then((res) => {
-        console.log(credentials);
 
-       console.log(res);
+    const credentials = { email, password: newPassword };
+
+    axiosInstance
+      .post(`/userforgotpassword`, credentials)
+      .then((res) => {
         if (res.data.status === 200) {
-          // alert("Request send successful");
-     navigate('/reader_forgotpswdsec')
-
+          alert("Password reset successful.");
+          navigate("/reader_loginpage"); // Or wherever you want to redirect
         } else {
-          alert("Sorry !! Some Internal Issues");
+          alert("Password reset failed. Please try again.");
         }
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Server error. Try again later.");
       });
-    
-    };
-  
-
+  };
 
   return (
     <div className="reader_forgot">
-      <div class="container">
-        <div class="row">
+      <div className="container">
+        <div className="row">
           <div className="col-sm-12 col-md-6 col-lg-6">
-            <img src={img} alt="img" className="img-fluid" />
+            <img src={img} alt="Password Reset" className="img-fluid" />
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 reader_forgot_col2">
             <div>
-              <p className="reader_forgot_para1">Password Reset</p>
-              <p className="reader_forgot_para2 mb-5">
-                To reset your password, Enter teh email Address you use to sign
-                in to login form
+              <p className="reader_forgot_para1">Reset Your Password</p>
+              <p className="reader_forgot_para2 mb-4">
+                Enter your email and new password to reset your account password.
               </p>
             </div>
-            <div className="reader_forgot_input">
-              <input type="email" placeholder="E-Mail Address" onChange={(e) => setEmail(e.target.value)}/>
-              <button className="btn btn-primary mt-4"  onClick={handlesubmit} >
-                Send Restart Link
+            <form className="reader_forgot_input" onSubmit={handleSubmit}>
+              <input
+                type="email"
+                placeholder="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="New Password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+              <button type="submit" className="btn btn-primary mt-4">
+                Reset Password
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
