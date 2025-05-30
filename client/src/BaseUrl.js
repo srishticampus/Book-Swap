@@ -1,5 +1,5 @@
 import axios from 'axios';
-console.log(process.env.VITE_API_URL);
+// console.log(process.env.VITE_API_URL);
 
 const axiosInstance = axios.create({
 

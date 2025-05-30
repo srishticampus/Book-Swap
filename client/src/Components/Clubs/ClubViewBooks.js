@@ -6,6 +6,8 @@ function ClubViewBooks({ url }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
+    const [allBooks, setAllBooks] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const libraryid = localStorage.getItem("libraryid");
@@ -18,7 +20,10 @@ function ClubViewBooks({ url }) {
 axiosInstance.get(`/viewBooks/${libraryid}`)
   .then((res) => {
     const books = res.data?.data || [];
+     setAllBooks(books);  
     setData(books);
+
+    console.log(res.data)
     setLoading(false);
   })
   .catch((err) => {
@@ -28,12 +33,34 @@ axiosInstance.get(`/viewBooks/${libraryid}`)
   });
 
   }, []);
+  const handleSearch = () => {
+    const filteredBooks = allBooks.filter(book =>
+      book.bookname.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setData(filteredBooks);
+  };
 
   if (loading) return <div>Loading...</div>;
 
   return (
     <div className="admin-view-book">
       <div className="container">
+         <form className="d-flex mb-3">
+          <input
+            className="form-control me-2"
+            type="text"
+            placeholder="Search by book name"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+        </form>
         <div className="row">
           {errorMsg ? (
             <div className="no_data">
