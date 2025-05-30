@@ -7,7 +7,8 @@ function LibraryEvents({url}) {
     eventName: '',
     description: '',
     startDate: '',
-    endDate: ''
+    endDate: '',
+      venue: '' 
   });
 const navigate = useNavigate()
   const handleChange = (e) => {
@@ -32,7 +33,8 @@ const handleSubmit = async (e) => {
     eventName: formData.eventName,
     description: formData.description,
     startDate: formData.startDate,
-    endDate: formData.endDate
+    endDate: formData.endDate,
+     venue: formData.venue
   };
 
   try {
@@ -51,7 +53,8 @@ const handleSubmit = async (e) => {
         eventName: '',
         description: '',
         startDate: '',
-        endDate: ''
+        endDate: '',
+        venue:""
       });
     } else {
       const errorData = await response.json();
@@ -97,6 +100,16 @@ const handleSubmit = async (e) => {
                     required
                   />
                 </div>
+                <label className="col-sm-4 donatebook_label">Venue</label>
+<div className="col-sm-8 reader_donatebook_inputs">
+  <input
+    type="text"
+    name="venue"
+    value={formData.venue}
+    onChange={handleChange}
+    required
+  />
+</div>
 
                 <label className="col-sm-4 donatebook_label">Start Date</label>
                 <div className="col-sm-8 reader_donatebook_inputs">

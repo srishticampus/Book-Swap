@@ -66,6 +66,8 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import LibraryEvents from "./Components/Library/LibraryEvents/LibraryEvents";
 import LibraryViewEvents from "./Components/Library/LibraryEvents/LibraryViewEvents";
 import ReaderViewAllBooksByOtherUsers from "./Components/Readers/ReaderViewAllBooksByOtherUsers";
+import LibraryLendedBooks from "./Components/Library/LibraryLendedBooks/LibraryLendedBooks";
+import ChatBot from "./Components/ChatBot/ChatBot";
 
 function App() {
 
@@ -136,7 +138,11 @@ function App() {
           <Route path="/reader_view_books" element={[<ReaderHomeNavbar />, <ReaderViewBooks url={url} />]} />
           <Route path="/reader_view_clubs" element={[<ReaderHomeNavbar />, <ReaderViewClubs url={url} />]} />
           <Route path="/reader_view_lended_books" element={[<ReaderHomeNavbar />, <ReaderViewLendedBooks url={url} />]} />
-          <Route path="/reader_return_book/:lendid/:bid" element={[<ReaderHomeNavbar />, <ReaderReturnBook url={url} />]} />
+          <Route path="/reader_return_book/:lendid/:bid" element={[ <ReaderReturnBook url={url} />]} />
+         
+          <Route path="/chat" element={<>
+          <ChatBot/>
+          </>}></Route>
 
 
           {/* ------------Club---------- */}
@@ -251,6 +257,16 @@ function App() {
             </>
           }
           >
+          </Route>
+          <Route path="/library-lended-books"
+          element={
+            <>
+                 <ClubHomeNavbar />
+            <LibraryLendedBooks/>
+            </>
+          }
+          >
+            
           </Route>
 
           {/* ------------Admin---------- */}
