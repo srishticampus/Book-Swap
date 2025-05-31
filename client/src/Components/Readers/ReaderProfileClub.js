@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../Readers/ReaderProfileNotification.css";
 import axiosInstance from '../../BaseUrl';
 import { toast } from 'react-toastify';
-import ViewBooksModal from './ViewBooksModal'; // Make sure the path is correct
+import ViewBooksModal from './ViewBooksModal'; 
 
 function ReaderProfileClub({ url }) {
   const [data, setData] = useState([]);
@@ -89,7 +89,15 @@ function ReaderProfileClub({ url }) {
 
       {/* Modal */}
       {/* <ViewBooksModal show={modalOpen} onClose={() => setModalOpen(false)} books={books} /> */}
-      <ViewBooksModal show={modalOpen} onClose={() => setModalOpen(false)} books={books} url={url} />
+      {/* <ViewBooksModal show={modalOpen} onClose={() => setModalOpen(false)} books={books} url={url} /> */}
+      <ViewBooksModal
+  show={modalOpen}
+  onClose={() => setModalOpen(false)}
+  books={books}
+  url={url}
+  userId={id} 
+/>
+
 
     </div>
   );
