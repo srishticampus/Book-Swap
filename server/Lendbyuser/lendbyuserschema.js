@@ -13,6 +13,14 @@ const lendschema=mongoose.Schema({
     },
     date:{
         type:Date,
-    }
+    },
+    returnDate: {
+    type: Date,
+    default: null, // null implies pending
+  },
+  isReturned: {
+    type: Boolean,
+    default: false,
+  },
 })
 module.exports= mongoose.model('lendbyuser',lendschema)
