@@ -57,39 +57,43 @@ function ReaderViewLendedBooks() {
     <div>
       <div className="admin_exchange">
         <div className="container">
-          <h3>Returned Books</h3>
-          <div className="admin_exchange_head">
-            <div class="row">
-              <div class="col">Book Name</div>
-              <div class="col">Author Name</div>
-              <div class="col">Lended on</div>
-              <div class="col">Action</div>
+  <h3>Returned Books</h3>
+  <div className="admin_exchange_head">
+    <div className="row">
+      <div className="col">Book Name</div>
+      <div className="col">Author Name</div>
+      <div className="col">Lended on</div>
+      <div className="col">Action</div>
+    </div>
+  </div>
+  
+  {data.filter(book => !book.isReturned).length ? (
+    data
+      .filter(book => !book.isReturned) // Only show not returned
+      .map((a) => (
+        <div className="admin_exchange_body" key={a._id}>
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col">{a?.bookid?.bookname}</div>
+              <div className="col">{a?.bookid?.authername}</div>
+              <div className="col">{a?.date?.slice(0, 10)}</div>
+              <div className="col">
+                <Link to={`/reader_return_book/${a?._id}/${a?.bookid?._id}`}>
+                  <button className="btn btn-success">Return now</button>
+                </Link>
+              </div>
             </div>
           </div>
-          {data.length ? (
-            data.map((a) => {
-              return (
-                <div className="admin_exchange_body">
-
-                  <div className="container-fluid">
-                    <div class="row">
-                      <div class="col">{a?.bookid.bookname}</div>
-                      <div class="col">{a?.bookid.authername}</div>
-                      <div class="col">{a?.date?.slice(0, 10)}</div>
-                      <div class="col"><Link to={`/reader_return_book/${a?._id}/${a.bookid?._id}`}> <button className="btn btn-success" >Return now</button></Link> </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })
-          ) : (
-            <div className="no_data">
-              <h1>No Books found</h1>
-            </div>
-          )}
         </div>
+      ))
+  ) : (
+    <div className="no_data">
+      <h1>No Books found</h1>
+    </div>
+  )}
+</div>
+
       </div>
-      {/* Library's Lended Books */}
       {/* Library's Lended Books */}
 
       <div className="admin_exchange">

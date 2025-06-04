@@ -62,7 +62,7 @@ function ReaderSignin() {
             toast.success("Registered Successfully");
             localStorage.setItem("token", loginRes.data.token);
             localStorage.setItem("userid", loginRes.data.id);
-            navigate("/reader_home");
+            navigate("/reader_loginpage");
           }
         } else if (res.data.status === 409) {
           toast.warning(res.data.msg);

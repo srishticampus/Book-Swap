@@ -99,16 +99,35 @@ function ReaderHomeNavbar() {
                         LIBRARY
                       </Link> */}
                     </li>
-                    <li class="nav-item">
+                    <li className="nav-item dropdown">
                       <Link
-                        to="/reader_donatebook"
-                        class="nav-link active"
-                        aria-current="page"
-                        id="navheaders"
+                        className="nav-link dropdown-toggle"
+                        to="#"
+                        id="donateDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
                       >
-                        DONATE
+                        <b>  BOOKS</b>
                       </Link>
+                      <ul className="dropdown-menu" aria-labelledby="donateDropdown">
+                        <li>
+                          <Link className="dropdown-item" to="/reader_donatebook">
+                            ADD Books
+                          </Link>
+                        </li>
+                        <li>
+                          <Link className="dropdown-item" to="/reader-view-all-other-user-book">
+                            View  Books
+                          </Link>
+                        </li>
+
+
+                        {/* Add more dropdown items if needed */}
+                        {/* <li><Link className="dropdown-item" to="/another_link">Another Option</Link></li> */}
+                      </ul>
                     </li>
+
                     <li class="nav-item">
                       <Link
                         to="/reader-view-events"
@@ -127,7 +146,7 @@ function ReaderHomeNavbar() {
                         EXCHANGES
                       </Link> */}
                     </li>
-                    <li class="nav-item">
+                    {/* <li class="nav-item">
                       <Link
                         to="/reader-view-all-other-user-book"
                         class="nav-link active"
@@ -136,15 +155,15 @@ function ReaderHomeNavbar() {
                       >
                         ALL BOOKS
                       </Link>
-                    </li>
+                    </li> */}
                     <li class="nav-item">
                       <Link to="/reader_view_lended_books" class="nav-link" href="#" id="navheaders">
                         MY BOOKS
                       </Link>
                     </li>
-                     <li class="nav-item">
+                    <li class="nav-item">
                       <Link to="/chat" class="nav-link" href="#" id="navheaders">
-                      CHAT
+                        CHAT
                       </Link>
                     </li>
                     <li class="nav-item">

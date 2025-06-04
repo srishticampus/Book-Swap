@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../Assets/logo.png";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./admin.css";
 import logoutlogo from "../../Assets/logout icon.png";
 function AdminHomeNavbar() {
@@ -58,7 +58,7 @@ function AdminHomeNavbar() {
                       >
                         BOOK
                       </Link>
-{/* 
+                      {/* 
                       <Link
                         to="#"
                         class="nav-link active"
@@ -96,16 +96,16 @@ function AdminHomeNavbar() {
                         EVENTS
                       </Link>
                     </li>
-                      <li class="nav-item">
+                    <li class="nav-item">
                       <Link to="/admin_exchange" class="nav-link" href="#" id="navheaders">
                         EXCHANGES
                       </Link>
                     </li>
-                    {/* <li class="nav-item">
-                      <Link to="/admin_exchange_req" class="nav-link" href="#" id="navheaders">
-                        EXCHANGE REQUEST
+                    <li class="nav-item">
+                      <Link to="/admin-view-lended-list" class="nav-link" href="#" id="navheaders">
+                        LENDED LIST
                       </Link>
-                    </li> */}
+                    </li>
 
                     {/* <Link
                       to="/"
@@ -116,12 +116,12 @@ function AdminHomeNavbar() {
                     >
                       <img src={logoutlogo} alt="logout" />
                     </Link> */}
- <li className="nav-item">
+                    <li className="nav-item">
                       <span className="nav-link" id="navheaders" style={{ cursor: 'pointer' }} onClick={handleLogout}>
                         <img src={logoutlogo} alt="logout" />
                       </span>
                     </li>
-   
+
                   </ul>
                 </div>
               </div>
