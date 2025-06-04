@@ -67,7 +67,12 @@ function LibraryRegister() {
       newErrors.password = "Password is required";
     } else if (formData.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters";
+    } else if (!/[A-Z]/.test(formData.password)) {
+      newErrors.password = "Password must contain at least one uppercase letter";
+    } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(formData.password)) {
+      newErrors.password = "Password must contain at least one special character";
     }
+
 
     if (!formData.pincode.trim()) {
       newErrors.pincode = "Pincode is required";
