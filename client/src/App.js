@@ -141,6 +141,7 @@ function App() {
           <Route path="/reader_return_book/:lendid/:bid" element={[ <ReaderReturnBook url={url} />]} />
          
           <Route path="/chat" element={<>
+          <ReaderHomeNavbar />
           <ChatBot/>
           </>}></Route>
 
