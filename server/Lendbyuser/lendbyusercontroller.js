@@ -68,7 +68,8 @@ console.log(err);
 
 const lendedBooksByUser=(req,res)=>{
   console.log(req.params.id);
-  lendschema.find({userid:req.params.id}).populate('bookid')
+  const userid= req.params.id
+  lendschema.find({userid:req.params.id}).populate('bookid userid')
   .exec()
   .then(response=>{
       if (response.length === 0) {
@@ -116,33 +117,65 @@ fine=daysDifference*10
   })
 }
 
-const returnbackbook=(req,res)=>{
-  lendschema.findByIdAndDelete({_id:req.params.id}).exec()
-  .then(response=>{
-    console.log(response);
-    if (response.length === 0) {
-        res.status(404).json({
-            msg: "No data found ."
-        });
-    } else {
-      adminaddbookschema.findByIdAndUpdate({_id:response.bookid },{ $inc: { count: 1 } })
-      .then(result=>{
-        res.json({
-            data: response,
-            msg:"deleted sucessfully",
-            status:200
-        });
-      });
+// const returnbackbook=(req,res)=>{
+//   lendschema.findByIdAndDelete({_id:req.params.id}).exec()
+//   .then(response=>{
+//     console.log(response);
+//     if (response.length === 0) {
+//         res.status(404).json({
+//             msg: "No data found ."
+//         });
+//     } else {
+//       adminaddbookschema.findByIdAndUpdate({_id:response.bookid },{ $inc: { count: 1 } })
+//       .then(result=>{
+//         res.json({
+//             data: response,
+//             msg:"deleted sucessfully",
+//             status:200
+//         });
+//       });
+//     }
+// })
+// .catch(err=>{
+//     console.log(err);
+//     res.json({
+//         msg:"err"
+        
+//     })
+// })
+
+// }
+
+const returnbackbook = async (req, res) => {
+  try {
+    const lendRecord = await lendschema.findById(req.params.id);
+    if (!lendRecord) {
+      return res.status(404).json({ msg: "No data found." });
     }
-})
-.catch(err=>{
+
+    // Update return date and status
+    lendRecord.returnDate = new Date();
+    lendRecord.isReturned = true;
+    await lendRecord.save();
+
+    // Increment book count
+    await adminaddbookschema.findByIdAndUpdate(
+      { _id: lendRecord.bookid },
+      { $inc: { count: 1 } }
+    );
+
+    res.json({
+      data: lendRecord,
+      msg: "Book returned successfully",
+      status: 200,
+    });
+  } catch (err) {
     console.log(err);
     res.json({
-        msg:"err"
-        
-    })
-})
+      msg: "Error",
+    });
+  }
+};
 
-}
 
 module.exports={lend, lendedBooksByUser,calcFineForUser,returnbackbook}
