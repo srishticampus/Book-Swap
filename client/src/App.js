@@ -68,6 +68,7 @@ import LibraryViewEvents from "./Components/Library/LibraryEvents/LibraryViewEve
 import ReaderViewAllBooksByOtherUsers from "./Components/Readers/ReaderViewAllBooksByOtherUsers";
 import LibraryLendedBooks from "./Components/Library/LibraryLendedBooks/LibraryLendedBooks";
 import ChatBot from "./Components/ChatBot/ChatBot";
+import AdminViewLendedList from "./Components/Admin/AdminViewLendedList";
 
 function App() {
 
@@ -395,6 +396,7 @@ function App() {
               </>
             </ProtectedRoute>
           } />
+          <Route path="/admin-view-lended-list" element={<>  <AdminHomeNavbar /><AdminViewLendedList/></>}></Route>
 
 
 
