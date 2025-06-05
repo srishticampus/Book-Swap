@@ -41,7 +41,7 @@ const testMail = (userEmail) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      console.log("Email sent:", info.response);
+      // console.log("Email sent:", info.response);
     }
   });
 };

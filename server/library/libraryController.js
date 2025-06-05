@@ -35,7 +35,7 @@ const testMail = (userEmail) => {
     if (error) {
       console.log("Error:", error);
     } else {
-      console.log("Email sent:", info.response);
+      // console.log("Email sent:", info.response);
     }
   });
 };
@@ -61,7 +61,7 @@ const addLibrary = (req, res) => {
   library
     .save()
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       res.json({
         status: 200,
         msg: "saved",
