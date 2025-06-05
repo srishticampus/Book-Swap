@@ -161,6 +161,7 @@ const returnLibraryBook = (req, res) => {
 
 const getLendedBooksByUser = (req, res) => {
     const { userId } = req.params;
+console.log(userId,"userId");
 
     libraryDonateSchema.find({ lentTo: userId, isLent: true })
         .populate("libraryid", "name") // optional: populate library details

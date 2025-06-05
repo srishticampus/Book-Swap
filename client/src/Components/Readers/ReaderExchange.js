@@ -51,6 +51,7 @@ function ReaderExchange() {
   useEffect(() => {
     displayRequestStatus();
   }, []);
+  
   return (
     <div>
       <div className="container">
