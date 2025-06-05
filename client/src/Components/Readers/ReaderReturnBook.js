@@ -102,7 +102,7 @@ function ReaderReturnBook() {
                         type="text"
                         placeholder=""
                         name="bookname"
-                        value={book.bookname}
+                        value={book?.bookname||"NA"}
                         disabled
                         required
                         title="Please fill the field"

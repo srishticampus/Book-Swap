@@ -3,9 +3,11 @@ import "../Readers/Readerdonatebook.css";
 import axiosInstance from "../../BaseUrl";
 import img from "../../Assets/donateimg.png";
 import { toast } from "react-toastify";
+// import { useNavigate } from "react-router-dom";
 
 function Readerdonatebook() {
   const id = localStorage.getItem("userid");
+  // const navigate = useNavigate()
 
   console.log(id);
   const [donate, setDonate] = useState({
@@ -40,6 +42,7 @@ function Readerdonatebook() {
 
         if (result.status === 200) {
           toast.success("Book Donated Successfully");
+          // navigate("/")
           window.location.reload();
         } else {
           alert("failed to entered");
