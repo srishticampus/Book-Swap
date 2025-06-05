@@ -11,6 +11,7 @@ function LibraryLendedBooks() {
         .get(`/lended-books/library/${libraryId}`)
         .then((res) => {
           setData(res.data.data);
+          console.log(res.data.data)
         })
         .catch((err) => {
           console.error("Error fetching lended books by library:", err);
@@ -35,10 +36,11 @@ function LibraryLendedBooks() {
             <div className="admin_exchange_body" key={item._id}>
               <div className="container-fluid">
                 <div className="row">
-                  <div className="col">{item.bookid?.bookname}</div>
-                  <div className="col">{item.bookid?.authername}</div>
-                  <div className="col">{item.date?.slice(0, 10)}</div>
-                  <div className="col">{item.userid?.username || "N/A"}</div>
+                  <div className="col">{item.bookname}</div>
+                  <div className="col">{item.authername}</div>
+                  <div className="col">{item.lentDate?.slice(0, 10)}</div>
+                  <div className="col">{item.lentTo?.email || "N/A"}</div>
+
                 </div>
               </div>
             </div>

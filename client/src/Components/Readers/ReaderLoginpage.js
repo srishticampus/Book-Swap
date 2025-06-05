@@ -12,6 +12,7 @@ function ReaderLoginpage() {
   const [captchaText, setCaptchaText] = useState("");
   const [userCaptchaInput, setUserCaptchaInput] = useState("");
 
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -51,6 +52,30 @@ function ReaderLoginpage() {
       }
     } catch (err) {
       console.log("mh err", err);
+
+  if (err.response) {
+    // Server responded with a status code outside the 2xx range
+    const status = err.response.status;
+    const message = err.response.data.message || "An error occurred";
+
+    if (status === 404) {
+      // User does not exist
+      document.getElementById("alertuser").innerHTML = message; // "User does not exist"
+    } else if (status === 401) {
+      // Unauthorized - invalid password
+      document.getElementById("alertuser").innerHTML = message;
+    } else {
+      document.getElementById("alertuser").innerHTML = message;
+    }
+  } else if (err.request) {
+    // Request made but no response received
+    document.getElementById("alertuser").innerHTML =
+      "No response from server. Please try again later.";
+  } else {
+    // Something else happened while setting up the request
+    document.getElementById("alertuser").innerHTML =
+      "An error occurred. Please try again.";
+  }
     
     }
   };
