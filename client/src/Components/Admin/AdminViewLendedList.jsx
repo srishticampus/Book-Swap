@@ -3,7 +3,7 @@ import axiosInstance from '../../BaseUrl';
 
 function AdminViewLendedList() {
   const [data, setData] = useState([]);
-  const id = localStorage.getItem("userid"); // or admin id, depending on logic
+  const id = localStorage.getItem("userid"); 
 
   useEffect(() => {
     axiosInstance
