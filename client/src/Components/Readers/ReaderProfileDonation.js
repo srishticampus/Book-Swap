@@ -64,6 +64,8 @@ function ReaderProfileDonation({url}) {
                         Publisher: {a.publisher}
                         <br />
                         Publishing Year: {a.publisheryear}
+                        <br/>
+                        Donation Status: {a.isLent?"Accepted ":"Pending"}
                         {/* <ReactStars
                           count={5}
                           value={3}
