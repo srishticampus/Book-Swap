@@ -26,10 +26,10 @@ const userExchangebook = (req, res) => {
 
 const getuserExchangebook = async (req, res) => {
   const { userid } = req.params;
-   console.log("in Api",req.params);
+  //  console.log("in Api",req.params);
   let data=[]
    await userexchangeschema.find({status:"pending"}).populate('userid').then(requests=>{
-           console.log("req",requests);
+          //  console.log("req",requests);
       if(requests.length>0){
  requests.map(x=>{
 //   // console.log("in map",x.userid);
@@ -59,8 +59,8 @@ const getuserExchangebook = async (req, res) => {
 const acceptExchangeIdRequest = async (req, res) => {
     const { exchangeId } = req.params;
     const { userId } = req.body; 
-    console.log('ex',exchangeId);
-    console.log('user',userId);
+    // console.log('ex',exchangeId);
+    // console.log('user',userId);
   
     try {
       const request = await userexchangeschema.findById(exchangeId);
@@ -112,7 +112,7 @@ const acceptExchangeIdRequest = async (req, res) => {
       if (filteredRequests.length === 0) {
         return res.status(404).json({ message: "No requests found for this book" });
       }
-      console.log(filteredRequests);
+      // console.log(filteredRequests);
       return res.status(200).json(filteredRequests);
     } catch (error) {
       return res.status(500).json({ message: "Error fetching requests", error });

@@ -7,7 +7,7 @@ const date=new Date()
 
 
 const lend=async(req,res)=>{
-  console.log(req.body.userid);
+  // console.log(req.body.userid);
 let flag=0,count=0
   await lendschema.find({ userid:req.body.userid,bookid:req.body.bookid}).then(data=>{
     if(data.length>0){
@@ -30,7 +30,7 @@ console.log(err);
     console.log(err);
       })
       await adminaddbookschema.findByIdAndUpdate({_id:req.body.bookid},{count:count}).then(data=>{
-        console.log("count updated");
+        // console.log("count updated");
         
       }).catch(err=>{
     console.log(err);
@@ -43,7 +43,7 @@ console.log(err);
   await lenduser
     .save()
     .then( (response) => {
-      console.log(response);
+      // console.log(response);
       res.json({
         status: 200,
         msg: "saved",
@@ -67,7 +67,7 @@ console.log(err);
 }
 
 const lendedBooksByUser=(req,res)=>{
-  console.log(req.params.id);
+  // console.log(req.params.id);
   const userid= req.params.id
   lendschema.find({userid:req.params.id}).populate('bookid userid')
   .exec()
@@ -98,12 +98,12 @@ const calcFineForUser=async(req,res)=>{
   let expiry=new Date()
   await lendschema.findById({_id:req.params.id}).exec().then(data=>{
   lendDate=data.date
-  console.log(lendDate);
+  // console.log(lendDate);
   expiry.setDate(lendDate.getDate()+10)
-  console.log("ok",expiry);
+  // console.log("ok",expiry);
   const timeDifference = (expiry.getTime() - currDate.getTime());
   const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-console.log("diff",daysDifference);
+// console.log("diff",daysDifference);
 if(daysDifference<0)
 fine=daysDifference*10
     res.json({
