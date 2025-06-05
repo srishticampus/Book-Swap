@@ -32,7 +32,6 @@ const addbookadmin = (req, res) => {
   addbook
     .save()
     .then((response) => {
-      console.log(response);
       res.json({
         status: 200,
         msg: "saved",
@@ -137,13 +136,13 @@ const viewAllBooks = async (req, res) => {
   const booksWithWishlistStatus = arr2.map((book) => {
     const bookIdString = book._id.toString();
     const isWishlisted = arr1.includes(bookIdString);
-    console.log(`Book ID: ${bookIdString},  Wishlisted: ${isWishlisted}`);
+    // console.log(`Book ID: ${bookIdString},  Wishlisted: ${isWishlisted}`);
     return {
       ...book._doc,
       wishlisted: isWishlisted,
     };
   });
-  console.log(booksWithWishlistStatus);
+  // console.log(booksWithWishlistStatus);
 };
 const viewuserbook = (req, res) => {
   adminaddbookschema
@@ -281,14 +280,14 @@ const viewAllBooks1 = async (req, res) => {
     .catch((err) => {
       console.log(err);
     });
-  console.log("arr1", arr1);
+  // console.log("arr1", arr1);
 
   await adminaddbookschema
     .find({ _id: { $in: arr1 } })
     .exec()
     .then((data) => {
       if (data.length > 0) {
-        console.log("in", data);
+        // console.log("in", data);
         data.map((x) => {
           if (x.count > 0) {
             let book = {
@@ -418,7 +417,7 @@ const viewDonationsForAdmin = async (req, res) => {
     .populate("libraryid")
     .then((data) => {
       data.map((x) => {
-        console.log(x.userid);
+        // console.log(x.userid);
         if (x.userid != null || x.libraryid != null) {
           arr.push(x);
         }
@@ -458,7 +457,7 @@ const addRating = async (req, res) => {
   else{
     rating=req.body.rating
   }
-  console.log("rating",rating);
+  // console.log("rating",rating);
   await adminaddbookschema
     .findByIdAndUpdate({ _id: req.params.id }, { rating: rating })
     .exec()
