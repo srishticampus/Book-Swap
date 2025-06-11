@@ -109,7 +109,7 @@ router.delete('/deleteMember/:id', libraryRequestController.deleteLibraryMember)
 router.get('/acceptedLibraries/:userId', libraryRequestController.getAcceptedLibrariesForUser);
 
 const {addBookToLibrary,upload,viewLibraryBooks,viewAllDonatedBooksByAdmin,lendBookFromLibrary,returnLibraryBook,
-    getLendedBooksByUser,getLendedBooksByLibrary
+    getLendedBooksByUser,getLendedBooksByLibrary,getLendedBooksByAdmin
 } = require("./library/librarydonateController");
 const { events } = require("./library/libraryrequestsSchema");
 
@@ -120,7 +120,7 @@ router.post('/library/lend/:bookid', lendBookFromLibrary);
 router.post('/library/return/:bookid', returnLibraryBook);
 router.get("/lended-books/user/:userId", getLendedBooksByUser);
 router.get("/lended-books/library/:libraryId", getLendedBooksByLibrary);
-
+router.get("/lended-books/admin", getLendedBooksByAdmin);
 
 const libraryEventController = require("./LibraryEvents/LibraryeventController");
 router.post("/add/events", libraryEventController.createEvent);
