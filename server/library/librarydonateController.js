@@ -202,9 +202,35 @@ const getLendedBooksByLibrary = (req, res) => {
 };
 
 
+const getLendedBooksByAdmin = (req, res) => {
+    // const { libraryId } = req.params;
+    libraryDonateSchema.find({isLent: true })
+        .populate("lentTo", "name email") // optional: populate user details
+        .then(books => {
+            res.json({
+                status: 200,
+                msg: "Lended books fetched successfully for library",
+                data: books
+            });
+        })
+        .catch(err => {
+            res.json({
+                status: 500,
+                msg: "Error fetching lended books for library",
+                error: err
+            });
+        });
+};
+
+
 module.exports = {
     addBookToLibrary,
     upload,
     viewLibraryBooks, 
-    viewAllDonatedBooksByAdmin,lendBookFromLibrary,returnLibraryBook,getLendedBooksByLibrary,getLendedBooksByUser
+    viewAllDonatedBooksByAdmin,
+    lendBookFromLibrary,
+    returnLibraryBook,
+    getLendedBooksByLibrary,
+    getLendedBooksByUser,
+    getLendedBooksByAdmin
 };
