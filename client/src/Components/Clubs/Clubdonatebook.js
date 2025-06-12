@@ -4,10 +4,12 @@ import axiosInstance from '../../BaseUrl';
 import img from '../../Assets/donateimg.png'
 // import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Readerdonatebook() {
+    const navigate = useNavigate()
     const id=localStorage.getItem("libraryid")
     console.log(id);
     const[clubdonate,setclubdonate]=useState({
@@ -40,7 +42,8 @@ function Readerdonatebook() {
             console.log("data entered successfully",result);
             if(result.status===200){
                 toast.success("Book Donated Successfully")
-                window.location.reload();
+                navigate("/library_view_books")
+                // window.location.reload();
 
 
             }else{
