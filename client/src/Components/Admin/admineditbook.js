@@ -6,9 +6,10 @@ import axiosInstance from "../../BaseUrl";
 import {  useParams } from "react-router-dom";
 // import { Toast } from "bootstrap";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function AdminAddBook() {
-// const navigate=useNavigate()
+ const navigate=useNavigate()
     const {id}=useParams();
     console.log(id);
     const[data,setData]=useState({image:{filename:''}})
@@ -48,7 +49,8 @@ function AdminAddBook() {
             console.log("data entered", res);
             if (res.data.status === 200) {
               toast.success("Updated");
-              window.location.reload();
+            //   window.location.reload();
+              navigate("/admin_viewbook")
             } else {
               alert("Something went wrong");
             }

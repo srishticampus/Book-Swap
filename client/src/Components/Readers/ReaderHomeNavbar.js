@@ -88,7 +88,7 @@ function ReaderHomeNavbar() {
                         aria-current="page"
                         id="navheaders"
                       >
-                        BOOK
+                        BOOKS
                       </Link>
                     </li>
                     <li class="nav-item">
@@ -108,12 +108,12 @@ function ReaderHomeNavbar() {
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        <b>  BOOKS</b>
+                        <b>DONATED</b>
                       </Link>
                       <ul className="dropdown-menu" aria-labelledby="donateDropdown">
                         <li>
                           <Link className="dropdown-item" to="/reader_donatebook">
-                            ADD Books
+                            Add Book
                           </Link>
                         </li>
                         <li>
