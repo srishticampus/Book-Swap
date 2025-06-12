@@ -38,7 +38,7 @@ else{
 }
 
 const viewbookwishlist=(req,res)=>{
-    console.log(req.params.id);
+    // console.log(req.params.id);
     userWishlistschema.find({userid:req.params.id}).populate('bookid')
     .exec()
     .then(response=>{
