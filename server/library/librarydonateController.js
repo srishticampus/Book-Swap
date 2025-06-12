@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).single('image');
 
 const addBookToLibrary = (req, res) => {
-    console.log(req.body.libraryid);
+    // console.log(req.body.libraryid);
 
     let image = req.file.filename;
 
@@ -30,7 +30,7 @@ const addBookToLibrary = (req, res) => {
 
     donation.save()
         .then((response) => {
-            console.log(response);
+            // console.log(response);
             res.json({
                 status: 200,
                 msg: "Book donation saved successfully"
@@ -47,7 +47,7 @@ const addBookToLibrary = (req, res) => {
 };
 
 const viewLibraryBooks = (req, res) => {
-    console.log(req.params.id ,"req.params.id ");
+    // console.log(req.params.id ,"req.params.id ");
     
     libraryDonateSchema.find({libraryid:req.params.id })
         .then(data => {
@@ -57,7 +57,7 @@ const viewLibraryBooks = (req, res) => {
                     msg: "Books fetched successfully",
                     data: data
                 });
-                console.log(data,"data");
+                // console.log(data,"data");
                 
             } else {
                 res.json({
@@ -202,9 +202,35 @@ const getLendedBooksByLibrary = (req, res) => {
 };
 
 
+const getLendedBooksByAdmin = (req, res) => {
+    // const { libraryId } = req.params;
+    libraryDonateSchema.find({isLent: true })
+        .populate("lentTo", "name email") // optional: populate user details
+        .then(books => {
+            res.json({
+                status: 200,
+                msg: "Lended books fetched successfully for library",
+                data: books
+            });
+        })
+        .catch(err => {
+            res.json({
+                status: 500,
+                msg: "Error fetching lended books for library",
+                error: err
+            });
+        });
+};
+
+
 module.exports = {
     addBookToLibrary,
     upload,
     viewLibraryBooks, 
-    viewAllDonatedBooksByAdmin,lendBookFromLibrary,returnLibraryBook,getLendedBooksByLibrary,getLendedBooksByUser
+    viewAllDonatedBooksByAdmin,
+    lendBookFromLibrary,
+    returnLibraryBook,
+    getLendedBooksByLibrary,
+    getLendedBooksByUser,
+    getLendedBooksByAdmin
 };

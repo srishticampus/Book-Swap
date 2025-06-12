@@ -14,7 +14,7 @@ const storage=multer.diskStorage({
 const upload=multer({storage:storage}).single('image')
 
 const addbook=((req,res)=>{
-    console.log(req.body);
+    // console.log(req.body);
     
     let image=req.file.filename;
     let donate=new userdonateschema({
@@ -28,7 +28,7 @@ const addbook=((req,res)=>{
     })
     donate.save()
     .then((response)=>{
-        console.log(response);
+        // console.log(response);
         res.json({
             status:200,
             msg:"saved"
