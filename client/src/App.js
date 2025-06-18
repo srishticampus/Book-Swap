@@ -181,7 +181,7 @@ function App() {
           <Route path="/library_home" element={[<ClubHomeNavbar />, <Clubhome />]} />
           <Route path="/librarynotificationpage" element={[<ClubHomeNavbar />, <ClubNotificationPage url={url} />]} />
           <Route path="/library_view_books/:clubid" element={[<ClubHomeNavbar />, <ClubViewBooks url={url} />]} />
-          <Route path="/library_edit_book/:id" element={[<ClubHomeNavbar />,<LibraryEditBook/>]} />
+          <Route path="/library_edit_book/:id" element={[<ClubHomeNavbar />,<Clubdonatebook />]} />
           <Route path="/library_donatebook" element={[<ClubHomeNavbar />, <Clubdonatebook />]} />
           <Route path="/library_view_members" element={[<ClubHomeNavbar />, <ClubViewMembers url={url} />]} />
           <Route path="/library_view_books" element={[<ClubHomeNavbar />, <ClubViewBooks url={url} />]} />
