@@ -11,18 +11,16 @@ function AdminViewLendedList() {
     axiosInstance
       .post(`/lendedBooksByUser/${id}`)
       .then((res) => {
-        console.log("Lended books by user:", res.data);
         setUserLendedBooks(res.data.data || []);
       })
       .catch((err) => {
         console.error("Error fetching user lended books:", err);
       });
 
-    // Fetch all lended books by library
+    // Fetch all lended books from library
     axiosInstance
       .get('/lended-books/admin')
       .then((res) => {
-        console.log("Library lended books:", res.data);
         setLibraryLendedBooks(res.data.data || []);
       })
       .catch((err) => {
@@ -33,6 +31,7 @@ function AdminViewLendedList() {
   return (
     <div className="admin_exchange">
       <div className="container">
+        {/* Section: User Lended Books */}
         <h3>Lended Books List</h3>
         <div className="admin_exchange_head">
           <div className="row">
@@ -64,7 +63,7 @@ function AdminViewLendedList() {
           </div>
         )}
 
-        {/* New Section for Library Lended Books */}
+        {/* Section: Library Lended Books */}
         <h3 className="mt-5">Library Lended Books</h3>
         <div className="admin_exchange_head">
           <div className="row">
@@ -75,21 +74,19 @@ function AdminViewLendedList() {
           </div>
         </div>
 
-        {libraryLendedBooks.filter(book => !book.isReturned).length ? (
-          libraryLendedBooks
-            .filter(book => !book.isReturned)
-            .map((a) => (
-              <div className="admin_exchange_body" key={a._id}>
-                <div className="container-fluid">
-                  <div className="row">
-                    <div className="col">{a?.bookid?.bookname}</div>
-                    <div className="col">{a?.bookid?.authername}</div>
-                    <div className="col">{a?.date?.slice(0, 10)}</div>
-                    <div className="col">{a?.userid?.firstname}</div>
-                  </div>
+        {libraryLendedBooks.length ? (
+          libraryLendedBooks.map((book) => (
+            <div className="admin_exchange_body" key={book._id}>
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col">{book.bookname}</div>
+                  <div className="col">{book.authername}</div>
+                  <div className="col">{book.lentDate?.slice(0, 10)}</div>
+                  <div className="col">{book.lentTo?.email}</div>
                 </div>
               </div>
-            ))
+            </div>
+          ))
         ) : (
           <div className="no_data">
             <h1>No Library Books Found</h1>
@@ -101,6 +98,7 @@ function AdminViewLendedList() {
 }
 
 export default AdminViewLendedList;
+
 
 
 

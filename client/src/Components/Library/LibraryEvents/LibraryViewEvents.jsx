@@ -9,6 +9,7 @@ function LibraryViewEvents() {
     // const isAdminLoggedIn = localStorage.getItem('isAdminLoggedIn') === 'true';
     // const isLibraryLoggedin = localStorage.getItem("liblogin") === 'true'
     const isUserLoggedIn = localStorage.getItem("userlogin") === 'true'
+    const isAdminLogged = localStorage.getItem("isAdminLoggedIn")==="true"
 
     useEffect(() => {
         axios.get('http://localhost:4059/viewall/events')
@@ -52,7 +53,7 @@ function LibraryViewEvents() {
         )
     } */}
             {
-                !isUserLoggedIn && (
+                !isUserLoggedIn && !isAdminLogged &&(
                     <Link to='/library-events'>
                         <button className='btn btn-success btn-lg mb-3'>Add Event</button>
                     </Link>
@@ -79,7 +80,7 @@ function LibraryViewEvents() {
                             <th>Email</th>
                             <th>Venue</th>
                             {
-                                !isUserLoggedIn && (
+                                !isUserLoggedIn && !isAdminLogged && (
                                     <th>Delete</th>
                                 )
                             }
@@ -100,7 +101,7 @@ function LibraryViewEvents() {
                               {event.venue || "NA"}
                                 </td>
                                 {
-                                    !isUserLoggedIn && (
+                                    !isUserLoggedIn && !isAdminLogged && (
                                         <td>
                                             <button className="btn btn-danger" onClick={() => handleDelete(event._id)}>
                                                 Delete
