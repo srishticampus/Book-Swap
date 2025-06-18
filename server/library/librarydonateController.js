@@ -222,6 +222,65 @@ const getLendedBooksByAdmin = (req, res) => {
         });
 };
 
+const editLibraryBook = (req, res) => {
+    const bookId = req.params.bookid;
+
+    // If new image uploaded, use it. Otherwise keep the old one.
+    const updatedData = {
+        bookname: req.body.bookname,
+        authername: req.body.authername,
+        publisher: req.body.publisher,
+        publisheryear: req.body.publisheryear,
+        count: req.body.count,
+    };
+
+    if (req.file) {
+        updatedData.image = req.file.filename;
+    }
+
+    libraryDonateSchema.findByIdAndUpdate(bookId, updatedData, { new: true })
+        .then(updatedBook => {
+            if (!updatedBook) {
+                return res.json({ status: 404, msg: "Book not found" });
+            }
+            res.json({
+                status: 200,
+                msg: "Book updated successfully",
+                data: updatedBook
+            });
+        })
+        .catch(err => {
+            res.json({
+                status: 500,
+                msg: "Error updating book",
+                error: err
+            });
+        });
+};
+const deleteLibraryBook = (req, res) => {
+    const bookId = req.params.bookid;
+
+    libraryDonateSchema.findByIdAndDelete(bookId)
+        .then(deletedBook => {
+            if (!deletedBook) {
+                return res.json({ status: 404, msg: "Book not found" });
+            }
+            res.json({
+                status: 200,
+                msg: "Book deleted successfully",
+                data: deletedBook
+            });
+        })
+        .catch(err => {
+            res.json({
+                status: 500,
+                msg: "Error deleting book",
+                error: err
+            });
+        });
+};
+
+
 
 module.exports = {
     addBookToLibrary,
@@ -232,5 +291,7 @@ module.exports = {
     returnLibraryBook,
     getLendedBooksByLibrary,
     getLendedBooksByUser,
-    getLendedBooksByAdmin
+    getLendedBooksByAdmin,
+    editLibraryBook,
+    deleteLibraryBook
 };
