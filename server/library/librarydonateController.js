@@ -224,6 +224,8 @@ const getLendedBooksByAdmin = (req, res) => {
 
 const editLibraryBook = (req, res) => {
     const bookId = req.params.bookid;
+    console.log(req.body,"book");
+    
 
     // If new image uploaded, use it. Otherwise keep the old one.
     const updatedData = {
