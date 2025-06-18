@@ -31,7 +31,7 @@ function AdminDonation() {
             <div className="col">Donated By</div>
             <div className="col">Contact No</div>
             <div className="col">Mail Id</div>
-            <div className="col">Date</div>
+            <div className="col">Published Year</div>
           </div>
         </div>
         {data.length ? (
