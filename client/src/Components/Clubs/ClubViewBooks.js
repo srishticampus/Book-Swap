@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../BaseUrl';
+import { useNavigate } from 'react-router-dom';
 // import ReactStars from "react-rating-stars-component";
 
 function ClubViewBooks({ url }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
-    const [allBooks, setAllBooks] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
+  const [allBooks, setAllBooks] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate()
 
   useEffect(() => {
     const libraryid = localStorage.getItem("libraryid");
@@ -17,20 +19,20 @@ function ClubViewBooks({ url }) {
       setLoading(false);
       return;
     }
-axiosInstance.get(`/viewBooks/${libraryid}`)
-  .then((res) => {
-    const books = res.data?.data || [];
-     setAllBooks(books);  
-    setData(books);
+    axiosInstance.get(`/viewBooks/${libraryid}`)
+      .then((res) => {
+        const books = res.data?.data || [];
+        setAllBooks(books);
+        setData(books);
 
-    console.log(res.data)
-    setLoading(false);
-  })
-  .catch((err) => {
-    console.error(err);
-    setErrorMsg("Error fetching books");
-    setLoading(false);
-  });
+        console.log(res.data)
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setErrorMsg("Error fetching books");
+        setLoading(false);
+      });
 
   }, []);
   const handleSearch = () => {
@@ -40,7 +42,7 @@ axiosInstance.get(`/viewBooks/${libraryid}`)
     setData(filteredBooks);
   };
 
- const handleDelete = (bookId) => {
+  const handleDelete = (bookId) => {
     if (window.confirm("Are you sure you want to delete this book?")) {
       axiosInstance.post(`/library/delete/${bookId}`)
         .then(() => {
@@ -60,7 +62,7 @@ axiosInstance.get(`/viewBooks/${libraryid}`)
   return (
     <div className="admin-view-book">
       <div className="container">
-         <form className="d-flex mb-3">
+        <form className="d-flex mb-3">
           <input
             className="form-control me-2"
             type="text"
@@ -104,7 +106,12 @@ axiosInstance.get(`/viewBooks/${libraryid}`)
                     activeColor="#ffd700"
                     edit={false}
                   /> */}
-                  <button className='btn btn-primary'>Edit</button>
+                  <button
+                    className='btn btn-primary'
+                    onClick={() => navigate(`/library_edit_book/${a._id}`)}
+                  >
+                    Edit
+                  </button>
                   <button className='btn btn-danger' onClick={() => handleDelete(a._id)}>Delete</button>
                 </div>
               </div>

@@ -51,7 +51,7 @@ import AdminDonation from "./Components/Admin/AdminDonation";
 
 // import Clubforgotpswdafter from "./Components/Clubs/Clubforgotpswdafter";
 // import Clubforgotpswdsec from "./Components/Clubs/Clubforgotpswdsec";
-
+import LibraryEditBook from "./Components/Library/LibraryEditBook/LibraryEditBook"
 
 // import AdminExchangeDetails from "./Components/Admin/AdminExchangeDetails";
 import Admineditbook from "./Components/Admin/admineditbook"
@@ -170,8 +170,8 @@ function App() {
           <Route path="/library_login" element={[<LoginNavbar />, <ClubLogin />]} />
           <Route path="/library_donatebook" element={[<ClubHomeNavbar/>,<Clubdonatebook/>]}/>
           <Route path="/library_profile" element={[<ClubHomeNavbar/>,<ClubProfile url={url} />]}  />        
-          <Route path="/library_home" element={[<ClubHomeNavbar/>,<Clubhome/>]}/>
-          <Route path="/library_about" element={[<ClubHomeNavbar/>,<AboutPage/>]}/>
+          <Route path="/library_home" element={[<ClubHomeNavbar/>,<Clubhome/>]}/><Clubdonatebook />
+          <Route path="/library_about" element={[<ClubHo<Clubdonatebook />meNavbar/>,<AboutPage/>]}/>
           <Route path="/library_view_books" element={[<ClubHomeNavbar/>,<ClubViewBooks url={url}/>]}/>
           <Route path="/library_forgotpswdsec" element={[<LoginNavbar />,<Clubforgotpswdsec/>]}/>
           <Route path="/library_forgotpswdafter" element={[<LoginNavbar />,<Clubforgotpswdafter/>]}/>
@@ -181,6 +181,7 @@ function App() {
           <Route path="/library_home" element={[<ClubHomeNavbar />, <Clubhome />]} />
           <Route path="/librarynotificationpage" element={[<ClubHomeNavbar />, <ClubNotificationPage url={url} />]} />
           <Route path="/library_view_books/:clubid" element={[<ClubHomeNavbar />, <ClubViewBooks url={url} />]} />
+          <Route path="/library_edit_book/:id" element={[<ClubHomeNavbar />,<LibraryEditBook/>]} />
           <Route path="/library_donatebook" element={[<ClubHomeNavbar />, <Clubdonatebook />]} />
           <Route path="/library_view_members" element={[<ClubHomeNavbar />, <ClubViewMembers url={url} />]} />
           <Route path="/library_view_books" element={[<ClubHomeNavbar />, <ClubViewBooks url={url} />]} />
