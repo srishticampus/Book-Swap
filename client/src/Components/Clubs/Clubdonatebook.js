@@ -87,7 +87,7 @@ function Readerdonatebook() {
                                     </div>
                                     <label className='col-sm-4 donatebook_label'>Count</label>
                                     <div className='col-sm-8 reader_donatebook_inputs'>
-                                        <input type="number" placeholder="" name='count' onChange={changefn} required/>
+                                        <input type="number" placeholder="" name='count' value={1} onChange={changefn} required readOnly/>
                                     </div>
                                     <label className='col-sm-4 donatebook_label'>Select a Image</label>
                                     <div className='col-sm-8 reader_donatebook_inputs'>
