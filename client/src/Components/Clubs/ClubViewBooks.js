@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../BaseUrl';
-import ReactStars from "react-rating-stars-component";
+import { useNavigate } from 'react-router-dom';
+// import ReactStars from "react-rating-stars-component";
 
 function ClubViewBooks({ url }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
-    const [allBooks, setAllBooks] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
+  const [allBooks, setAllBooks] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate()
 
   useEffect(() => {
     const libraryid = localStorage.getItem("libraryid");
@@ -17,20 +19,20 @@ function ClubViewBooks({ url }) {
       setLoading(false);
       return;
     }
-axiosInstance.get(`/viewBooks/${libraryid}`)
-  .then((res) => {
-    const books = res.data?.data || [];
-     setAllBooks(books);  
-    setData(books);
+    axiosInstance.get(`/viewBooks/${libraryid}`)
+      .then((res) => {
+        const books = res.data?.data || [];
+        setAllBooks(books);
+        setData(books);
 
-    console.log(res.data)
-    setLoading(false);
-  })
-  .catch((err) => {
-    console.error(err);
-    setErrorMsg("Error fetching books");
-    setLoading(false);
-  });
+        console.log(res.data)
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setErrorMsg("Error fetching books");
+        setLoading(false);
+      });
 
   }, []);
   const handleSearch = () => {
@@ -40,12 +42,27 @@ axiosInstance.get(`/viewBooks/${libraryid}`)
     setData(filteredBooks);
   };
 
+  const handleDelete = (bookId) => {
+    if (window.confirm("Are you sure you want to delete this book?")) {
+      axiosInstance.post(`/library/delete/${bookId}`)
+        .then(() => {
+          // Remove deleted book from state
+          const updatedBooks = data.filter(book => book._id !== bookId);
+          setData(updatedBooks);
+          setAllBooks(updatedBooks);
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Failed to delete book");
+        });
+    }
+  };
   if (loading) return <div>Loading...</div>;
 
   return (
     <div className="admin-view-book">
       <div className="container">
-         <form className="d-flex mb-3">
+        <form className="d-flex mb-3">
           <input
             className="form-control me-2"
             type="text"
@@ -82,13 +99,20 @@ axiosInstance.get(`/viewBooks/${libraryid}`)
                   <h6 className="card-text">Author: {a.authername}</h6>
                   <h6 className="card-text">Publisher: {a.publisher}</h6>
                   <h6 className="card-text">Publishing Year: {a.publisheryear}</h6>
-                  <ReactStars
+                  {/* <ReactStars
                     count={5}
                     value={a.rating}
                     size={24}
                     activeColor="#ffd700"
                     edit={false}
-                  />
+                  /> */}
+                  <button
+                    className='btn btn-primary'
+                    onClick={() => navigate(`/library_edit_book/${a._id}`)}
+                  >
+                    Edit
+                  </button>
+                  <button className='btn btn-danger' onClick={() => handleDelete(a._id)}>Delete</button>
                 </div>
               </div>
             ))
@@ -112,105 +136,3 @@ export default ClubViewBooks;
 
 
 
-
-
-
-// import React from 'react'
-// import { useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
-// import { useState } from 'react';
-// import axiosInstance from '../../BaseUrl';
-// import { Link } from 'react-router-dom';
-// import ReactStars from "react-rating-stars-component";
-
-
-// function ClubViewBooks({url}) {
-//   const { clubid } = useParams();
-//     const [data,setData]=useState([])
-
-//     useEffect(() => {
-//       axiosInstance.get(`/viewBooks/${clubid}`)
-//         .then((res) => {
-//           console.log(res);
-//           setData(res.data);
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//         });
-//     }, [clubid]);
-    
-//     // useEffect(() => {
-//     //   axiosInstance.post(`/viewBooks`, { clubid: clubid })
-//     //     .then((res) => {
-//     //       console.log(res);
-//     //       setData(res.data.data);
-//     //     })
-//     //     .catch((err) => {
-//     //       console.log(err);
-//     //     });
-//     // }, [clubid]);
-
-  
-
-//   return (
-//     <div>
-//       <div className="admin-view-book" >
-//         {/* <Link to='/admin_addbook'>
-//         <div className="admin-view-book-add text-center" >
-//         <i class="ri-add-fill"></i>
-//         <p>Add Book</p>
-//         </div>
-//         </Link> */}
-//         <div class="container ">
-//           <div class="row">
-
-//         {
-//             data.length?data.map((a)=>{
-//                 return(
-//                   <div className="card admin-books col-3" id='carddesign' >
-//               <div class="admin-book-top-section">
-//                 <img
-//                   src={`${url}/${a.image}`}
-//                   class="card-img-top"
-//                   id="adminclub"
-//                   alt="..."
-//                 />
-//               </div>
-//               <div class="admin-book-bottom-section container ">
-//                 <h4 class="card-title mt-3 mb-2">{a.bookname}</h4>
-//                 <h6 class="card-text col">
-//                   Author: {a.authername}</h6>
-//                   <h6 class="card-text">Publisher: {a.publisher}</h6>
-//                  <h6 class="card-text" >Publishing Year: {a.publisheryear}</h6>
-//                  <ReactStars
-//                     count={5}
-//                     value={a.rating} 
-//                     size={24}
-//                     activeColor="#ffd700"
-//                     edit={false}
-//                   />
-//                 {/* <div className="col text-center pt-3">
-//                   <button className="btn btn-primary text-center">
-//                     Edit
-//                   </button>
-//                   <button className="btn btn-primary text-center">
-//                     Remove
-//                   </button>
-//                 </div> */}
-//               </div>
-//             </div>  
-//                 )
-//             }):<div className="no_data" >
-//               <h1>No Books found</h1>
-//             </div>
-//         }
-
-            
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default ClubViewBooks

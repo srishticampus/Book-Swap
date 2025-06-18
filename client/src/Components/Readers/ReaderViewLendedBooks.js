@@ -57,7 +57,7 @@ function ReaderViewLendedBooks() {
     <div>
       <div className="admin_exchange">
         <div className="container">
-  <h3>Returned Books</h3>
+  <h3>Lended Books</h3>
   <div className="admin_exchange_head">
     <div className="row">
       <div className="col">Book Name</div>
