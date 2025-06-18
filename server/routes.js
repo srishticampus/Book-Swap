@@ -117,7 +117,7 @@ const { events } = require("./library/libraryrequestsSchema");
 router.post("/addBook", upload, addBookToLibrary);
 router.get("/viewBooks/:id", viewLibraryBooks);
 router.get("/viewlibrarydonateBooks", viewAllDonatedBooksByAdmin);
-router.post('/library/edit/:bookid', editLibraryBook);
+router.post('/library/edit/:bookid',upload, editLibraryBook);
 router.post('/library/delete/:bookid', deleteLibraryBook);
 router.post('/library/lend/:bookid', lendBookFromLibrary);
 router.post('/library/return/:bookid', returnLibraryBook);
