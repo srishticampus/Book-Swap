@@ -15,35 +15,60 @@ const storage = multer.diskStorage({
 const date = Date.now();
 const upload = multer({ storage: storage }).single("image");
 
-const addbookadmin = (req, res) => {
-  let image = req.file.filename;
+// const addbookadmin = (req, res) => {
+//   let image = req.file.filename;
 
-  let addbook = new adminaddbookschema({
-    bookname: req.body.bookname,
-    authername: req.body.authername,
-    publisher: req.body.publisher,
-    publisheryear: req.body.publisheryear,
-    userid: req.body.userid,
-    libraryid: req.body.libraryid,
-    image: image,
-    count: req.body.count,
-    date: date,
-  });
-  addbook
-    .save()
-    .then((response) => {
-      res.json({
-        status: 200,
-        msg: "saved",
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.json({
-        status: 500,
-        msg: "error",
-      });
-    });
+//   let addbook = new adminaddbookschema({
+//     bookname: req.body.bookname,
+//     authername: req.body.authername,
+//     publisher: req.body.publisher,
+//     publisheryear: req.body.publisheryear,
+//     userid: req.body.userid,
+//     libraryid: req.body.libraryid,
+//     image: image,
+//     count: req.body.count,
+//     date: date,
+//   });
+//   addbook
+//     .save()
+//     .then((response) => {
+//       res.json({
+//         status: 200,
+//         msg: "saved",
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.json({
+//         status: 500,
+//         msg: "error",
+//       });
+//     });
+// };
+
+const fs = require("fs");
+const path = require("path");
+
+const loadAdminBookData = async (req, res) => {
+  try {
+    const filePath = path.join(__dirname, "/adminbookdata.txt");
+    const rawData = fs.readFileSync(filePath, "utf-8");
+    const books = JSON.parse(rawData);
+
+    const formattedBooks = books.map((book) => ({
+      ...book,
+      date: new Date(),
+    }));
+
+    await adminaddbookschema.insertMany(formattedBooks);
+
+    res
+      .status(200)
+      .json({ success: true, message: "Books imported successfully" });
+  } catch (err) {
+    console.error("Error loading book data:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
 };
 
 const viewallbookforclub = (req, res) => {
@@ -302,7 +327,7 @@ const viewAllBooks1 = async (req, res) => {
               count: 0,
               date: null,
               wishlisted: true,
-              rating:0
+              rating: 0,
             };
             book.bookname = x.bookname;
             book.authername = x.authername;
@@ -359,7 +384,7 @@ const viewAllBooks1 = async (req, res) => {
               count: 0,
               date: null,
               wishlisted: false,
-              rating:0
+              rating: 0,
             };
             book.bookname = x.bookname;
             book.authername = x.authername;
@@ -453,9 +478,8 @@ const addRating = async (req, res) => {
     });
   if (rating > 0) {
     rating = parseInt((rating + req.body.rating) / 2);
-  }
-  else{
-    rating=req.body.rating
+  } else {
+    rating = req.body.rating;
   }
   // console.log("rating",rating);
   await adminaddbookschema
@@ -475,7 +499,7 @@ const addRating = async (req, res) => {
     });
 };
 module.exports = {
-  addbookadmin,
+  loadAdminBookData,
   viewallbookforclub,
   upload,
   viewAllBooks1,
@@ -484,5 +508,6 @@ module.exports = {
   adminviewbookone,
   viewuserbook,
   viewclubbook,
-  viewDonationsForAdmin,addRating
+  viewDonationsForAdmin,
+  addRating,
 };

@@ -35,7 +35,8 @@ router.post('/lenddonatedbook/:bookid', userdonate.lendBook);
 
 // admin Addbook
 const adminaddbook = require('./Admin/adminaddbookController')
-router.post('/adminaddbook', adminaddbook.upload, adminaddbook.addbookadmin)
+router.post("/import-books", adminaddbook.loadAdminBookData);
+// router.post('/adminaddbook', adminaddbook.upload, adminaddbook.addbookadmin)
 router.post('/viewAllBooks/:id', adminaddbook.viewAllBooks1)
 router.post('/deleteBook/:id', adminaddbook.deleteBook)
 router.post('/admineditbook/:id', adminaddbook.upload, adminaddbook.admineditbook)
