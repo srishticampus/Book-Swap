@@ -1,17 +1,35 @@
 const express = require("express");
 const libraryDonateSchema = require('./librarydonateschema');
-const multer = require('multer');
+// const multer = require('multer');
+
+// const storage = multer.diskStorage({
+//     destination: function (req, res, cb) {
+//         cb(null, './upload');
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, file.originalname);
+//     }
+// });
+
+// const upload = multer({ storage: storage }).single('image');
+
+const multer = require("multer");
+const path = require("path");
 
 const storage = multer.diskStorage({
-    destination: function (req, res, cb) {
-        cb(null, './upload');
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname);
-    }
+  destination: function (req, file, cb) {
+    cb(null, "./upload");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
 });
 
-const upload = multer({ storage: storage }).single('image');
+const upload = multer({ storage: storage }).fields([
+  { name: "image", maxCount: 1 },
+  { name: "bookpdf", maxCount: 1 },
+]);
+
 
 const addBookToLibrary = (req, res) => {
     // console.log(req.body.libraryid);
@@ -25,7 +43,8 @@ const addBookToLibrary = (req, res) => {
         publisheryear: req.body.publisheryear,
         libraryid: req.body.libraryid,
         count: req.body.count,
-        image: image
+        image: image,
+        bookpdf: bookpdf
     });
 
     donation.save()
