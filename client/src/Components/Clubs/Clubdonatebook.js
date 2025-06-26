@@ -36,12 +36,12 @@ function Readerdonatebook() {
             count: book.count || 1,
             libraryid: libraryId,
             image: '',
-            bookpdf:"",
+            bookpdf: "",
           });
           setLoading(false);
         })
         .catch((err) => {
-        //   toast.error("Failed to fetch book data.");
+          //   toast.error("Failed to fetch book data.");
           setLoading(false);
         });
     } else {
@@ -49,14 +49,15 @@ function Readerdonatebook() {
     }
   }, [id, libraryId]);
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === "image"|| name==="bookpdf") {
-      setFormData({ ...formData, image: files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
+ const handleChange = (e) => {
+  const { name, value, files } = e.target;
+  if (name === "image" || name === "bookpdf") {
+    setFormData({ ...formData, [name]: files[0] }); // ✅ correctly assigns to image or bookpdf
+  } else {
+    setFormData({ ...formData, [name]: value });
+  }
+};
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,8 +73,8 @@ function Readerdonatebook() {
       dataToSend.append('image', formData.image);
     }
     if (formData.bookpdf) {
-  dataToSend.append('bookpdf', formData.bookpdf);
-}
+      dataToSend.append('bookpdf', formData.bookpdf);
+    }
 
     const endpoint = id ? `/library/edit/${id}` : '/addBook';
 
@@ -139,12 +140,26 @@ function Readerdonatebook() {
                     <input type="file" name='image' onChange={handleChange} accept="image/*" required={!id} />
                   </div>
                   
+                  <label className='col-sm-4 donatebook_label'>Upload Book PDF</label>
+                  <div className='col-sm-8 reader_donatebook_inputs'>
+                    <input
+                      type="file"
+                      name="bookpdf"
+                      onChange={handleChange}
+                      accept="application/pdf"
+                      required={!id}
+                    />
+                  </div>
+
 
                   <div className='col-sm-8 reader_donatebook_inputs'>
                     <button className="btn btn-primary" id='readerdonatebook_button'>
                       {id ? "Update" : "Add"}
                     </button>
                   </div>
+
+
+
                 </div>
               </div>
             </form>
