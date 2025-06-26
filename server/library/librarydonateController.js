@@ -32,10 +32,10 @@ const upload = multer({ storage: storage }).fields([
 
 
 const addBookToLibrary = (req, res) => {
-    // console.log(req.body.libraryid);
+    console.log(req.body.libraryid);
 
-    let image = req.file.filename;
-
+    let image = req.file;
+let bookpdf=req.file
     let donation = new libraryDonateSchema({
         bookname: req.body.bookname,
         authername: req.body.authername,
