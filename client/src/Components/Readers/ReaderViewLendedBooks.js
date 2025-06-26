@@ -74,8 +74,8 @@ function ReaderViewLendedBooks() {
         <div className="admin_exchange_body" key={a._id}>
           <div className="container-fluid">
             <div className="row">
-              <div className="col">{a?.bookid?.bookname}</div>
-              <div className="col">{a?.bookid?.authername}</div>
+              <div className="col">{a?.bookid?.title}</div>
+              <div className="col">{a?.bookid?.author}</div>
               <div className="col">{a?.date?.slice(0, 10)}</div>
               <div className="col">
                 <Link to={`/reader_return_book/${a?._id}/${a?.bookid?._id}`}>

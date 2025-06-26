@@ -45,12 +45,12 @@ function AdminViewBooks({url}) {
   return (
     <div>
       <div className="admin-view-book" >
-        <Link to='/admin_addbook'>
+        {/* <Link to='/admin_addbook'>
         <div className="admin-view-book-add text-center" >
         <i class="ri-add-fill"></i>
         <p>Add Book</p>
         </div>
-        </Link>
+        </Link> */}
         <div class="container ">
           <div class="row">
 
@@ -60,7 +60,7 @@ function AdminViewBooks({url}) {
                   <div className="card admin-books col-3" id='carddesign' >
               <div class="admin-book-top-section">
                 <img
-                  src={`${url}/${a.image}`}
+                  src={a.img}
                 
                   class="card-img-top"
                   id="adminclub"
@@ -68,20 +68,21 @@ function AdminViewBooks({url}) {
                 />
               </div>
               <div class="admin-book-bottom-section container">
-                <h4 class="card-title mt-3">{a.bookname}</h4>
+                <h4 class="card-title mt-3">{a.title}</h4>
                 <h6 class="card-text">
-                  Author: {a.authername}</h6>
-                  <h6 class="card-text">Publisher: {a.publisher}</h6>
+                  Author: {a.author}</h6>
+                  {/* <h6 class="card-text">Publisher: {a.publisher}</h6> */}
                  <h6 class="card-text" >Publishing Year: {a.publisheryear}</h6>
+          
                 
-                <div className="col text-center pt-3">
+                {/* <div className="col text-center pt-3">
                   <Link to={`/admin_editbook/${a._id}`}><button className="btn btn-primary text-center">
                     Edit
                   </button></Link>
                   <button className="btn btn-primary text-center" onClick={() => handleRemove(a._id)}>
                     Remove
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>  
                 )

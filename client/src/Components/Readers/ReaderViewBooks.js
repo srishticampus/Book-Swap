@@ -31,7 +31,7 @@ function ReaderViewBooks({ url }) {
       .then((res) => {
         const allBooks = res.data.data;
         const filteredBooks = allBooks.filter(book =>
-          book.bookname.toLowerCase().includes(searchTerm.toLowerCase())
+          book.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setData(filteredBooks);
       })
@@ -124,7 +124,7 @@ function ReaderViewBooks({ url }) {
                   <div className="card admin-books col-3" id='carddesign' >
                     <div class="reader-book-top-section">
                       <img
-                        src={`${url}/${a.image}`}
+                        src={a.img}
                         class="card-img-top"
                         id="adminclub"
                         alt="..."
@@ -132,18 +132,18 @@ function ReaderViewBooks({ url }) {
                       <button className="btn reader-book-top-section-heart" onClick={() => addToWishlist(a._id)} ><BsFillHeartFill color={a.wishlisted === true ? 'red' : 'grey'} size="20px" /></button>
                     </div>
                     <div class="admin-book-bottom-section container">
-                      <h4 class="card-title mt-2">{a.bookname}</h4>
+                      <h4 class="card-title mt-2">{a.title}</h4>
                       <h6 class="card-text">
-                        Author: {a.authername}</h6>
-                      <h6 class="card-text">Publisher: {a.publisher}</h6>
+                        Author: {a.author}</h6>
+                      {/* <h6 class="card-text">Publisher: {a.publisher}</h6> */}
                       <h6 class="card-text" >Publishing Year: {a.publisheryear}</h6>
-                      <ReactStars
+                      {/* <ReactStars
                         count={5}
                         value={a.rating}
                         size={24}
                         activeColor="#ffd700"
                         edit={false}
-                      />
+                      /> */}
                       <div className="col text-center">
 
                         <button className="btn btn-primary text-center" onClick={() => lend(a._id)}>
