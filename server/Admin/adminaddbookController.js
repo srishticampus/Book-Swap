@@ -290,148 +290,197 @@ const admineditbook = (req, res) => {
 
 //test
 
+// const viewAllBooks1 = async (req, res) => {
+//   let arr1 = [],
+//     arr2 = [],
+//     final = [];
+
+//   await userWishlistschema
+//     .find({ userid: req.params.id })
+//     .then((data) => {
+//       data.map((id) => {
+//         arr1.push(id.bookid);
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+//   // console.log("arr1", arr1);
+
+//   await adminaddbookschema
+//     .find({ _id: { $in: arr1 } })
+//     .exec()
+//     .then((data) => {
+//       if (data.length > 0) {
+//         // console.log("in", data);
+//         data.map((x) => {
+//           if (x.count > 0) {
+//             let book = {
+//               _id: "",
+//               bookname: "",
+//               authername: "",
+//               publisher: "",
+//               publisheryear: "",
+//               userid: null,
+//               libraryid: null,
+//               image: null,
+//               count: 0,
+//               bookpdf:null,
+//               date: null,
+//               wishlisted: true,
+//               rating: 0,
+//             };
+//             book.bookname = x.bookname;
+//             book.authername = x.authername;
+//             book.wishlisted = false;
+//             book._id = x._id;
+//             book.publisher = x.publisher;
+
+//             book.publisheryear = x.publisheryear;
+//             book.wishlisted = true;
+//             book.userid = x.userid;
+//             book.image = x.image;
+//             book.libraryid = x.libraryid;
+//             book.count = x.count;
+//             book.date = x.date;
+//             book.rating = x.rating;
+
+//             arr2.push(book);
+//           }
+//         });
+//         // console.log(arr2);
+//       } else {
+//         //   res.json({
+//         //     status:200,
+//         //     msg:"No Data obtained "
+//         // })
+//       }
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       // res.json({
+//       //     status:500,
+//       //     msg:"Data not Inserted",
+//       //     Error:err
+//       // })
+//     });
+//   await adminaddbookschema
+//     .find({ _id: { $nin: arr1 } })
+//     .exec()
+//     .then((data) => {
+//       if (data.length > 0) {
+//         // console.log(data);
+
+//         data.map((x) => {
+//           if (x.count > 0) {
+//             let book = {
+//               _id: "",
+//               bookname: "",
+//               authername: "",
+//               publisher: "",
+//               publisheryear: "",
+//               userid: null,
+//               libraryid: null,
+//               image: null,
+//               count: 0,
+//               date: null,
+//               wishlisted: false,
+//               rating: 0,
+//             };
+//             book.bookname = x.bookname;
+//             book.authername = x.authername;
+//             book.wishlisted = false;
+//             book._id = x._id;
+//             book.publisher = x.publisher;
+
+//             book.publisheryear = x.publisheryear;
+
+//             book.userid = x.userid;
+//             book.image = x.image;
+//             book.libraryid = x.libraryid;
+//             book.count = x.count;
+//             book.date = x.date;
+//             book.rating = x.rating;
+
+//             arr2.push(book);
+//           }
+//         });
+//       } else {
+//         //   res.json({
+//         //     status:200,
+//         //     msg:"No Data obtained "
+//         // })
+//       }
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       // res.json({
+//       //     status:500,
+//       //     msg:"Data not Inserted",
+//       //     Error:err
+//       // })
+//     });
+
+//   if (arr2.length > 0) {
+//     res.json({
+//       status: 200,
+//       data: arr2,
+//       msg: "data obtained",
+//     });
+//   } else
+//     res.json({
+//       status: 200,
+//       data: arr2,
+//       msg: "no data obtained",
+//     });
+// };
+
 const viewAllBooks1 = async (req, res) => {
-  let arr1 = [],
-    arr2 = [],
-    final = [];
+  try {
+    const arr2 = [];
 
-  await userWishlistschema
-    .find({ userid: req.params.id })
-    .then((data) => {
-      data.map((id) => {
-        arr1.push(id.bookid);
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  // console.log("arr1", arr1);
+    // Step 1: Get list of wishlisted book IDs for the user
+    const wishlistEntries = await userWishlistschema.find({ userid: req.params.id });
+    const wishlistedBookIds = wishlistEntries.map((entry) => entry.bookid.toString());
 
-  await adminaddbookschema
-    .find({ _id: { $in: arr1 } })
-    .exec()
-    .then((data) => {
-      if (data.length > 0) {
-        // console.log("in", data);
-        data.map((x) => {
-          if (x.count > 0) {
-            let book = {
-              _id: "",
-              bookname: "",
-              authername: "",
-              publisher: "",
-              publisheryear: "",
-              userid: null,
-              libraryid: null,
-              image: null,
-              count: 0,
-              date: null,
-              wishlisted: true,
-              rating: 0,
-            };
-            book.bookname = x.bookname;
-            book.authername = x.authername;
-            book.wishlisted = false;
-            book._id = x._id;
-            book.publisher = x.publisher;
+    // Step 2: Get books that are in the wishlist
+    const wishlistedBooks = await adminaddbookschema.find({ _id: { $in: wishlistedBookIds } });
 
-            book.publisheryear = x.publisheryear;
-            book.wishlisted = true;
-            book.userid = x.userid;
-            book.image = x.image;
-            book.libraryid = x.libraryid;
-            book.count = x.count;
-            book.date = x.date;
-            book.rating = x.rating;
-
-            arr2.push(book);
-          }
+    wishlistedBooks.forEach((bookDoc) => {
+      if (bookDoc.count > 0) {
+        arr2.push({
+          ...bookDoc._doc,
+          wishlisted: true,
         });
-        // console.log(arr2);
-      } else {
-        //   res.json({
-        //     status:200,
-        //     msg:"No Data obtained "
-        // })
       }
-    })
-    .catch((err) => {
-      console.log(err);
-      // res.json({
-      //     status:500,
-      //     msg:"Data not Inserted",
-      //     Error:err
-      // })
     });
-  await adminaddbookschema
-    .find({ _id: { $nin: arr1 } })
-    .exec()
-    .then((data) => {
-      if (data.length > 0) {
-        // console.log(data);
 
-        data.map((x) => {
-          if (x.count > 0) {
-            let book = {
-              _id: "",
-              bookname: "",
-              authername: "",
-              publisher: "",
-              publisheryear: "",
-              userid: null,
-              libraryid: null,
-              image: null,
-              count: 0,
-              date: null,
-              wishlisted: false,
-              rating: 0,
-            };
-            book.bookname = x.bookname;
-            book.authername = x.authername;
-            book.wishlisted = false;
-            book._id = x._id;
-            book.publisher = x.publisher;
+    // Step 3: Get books that are NOT in the wishlist
+    const nonWishlistedBooks = await adminaddbookschema.find({ _id: { $nin: wishlistedBookIds } });
 
-            book.publisheryear = x.publisheryear;
-
-            book.userid = x.userid;
-            book.image = x.image;
-            book.libraryid = x.libraryid;
-            book.count = x.count;
-            book.date = x.date;
-            book.rating = x.rating;
-
-            arr2.push(book);
-          }
+    nonWishlistedBooks.forEach((bookDoc) => {
+      if (bookDoc.count > 0) {
+        arr2.push({
+          ...bookDoc._doc,
+          wishlisted: false,
         });
-      } else {
-        //   res.json({
-        //     status:200,
-        //     msg:"No Data obtained "
-        // })
       }
-    })
-    .catch((err) => {
-      console.log(err);
-      // res.json({
-      //     status:500,
-      //     msg:"Data not Inserted",
-      //     Error:err
-      // })
     });
 
-  if (arr2.length > 0) {
+    // Step 4: Return result
     res.json({
       status: 200,
       data: arr2,
-      msg: "data obtained",
+      msg: arr2.length > 0 ? "data obtained" : "no data obtained",
     });
-  } else
-    res.json({
-      status: 200,
-      data: arr2,
-      msg: "no data obtained",
+  } catch (err) {
+    console.error("Error in viewAllBooks1:", err);
+    res.status(500).json({
+      status: 500,
+      msg: "Server error while retrieving book data",
+      error: err.message,
     });
+  }
 };
 
 const viewDonationsForAdmin = async (req, res) => {
