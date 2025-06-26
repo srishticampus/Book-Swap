@@ -115,7 +115,7 @@ const {addBookToLibrary,upload,viewLibraryBooks,viewAllDonatedBooksByAdmin,lendB
 } = require("./library/librarydonateController");
 const { events } = require("./library/libraryrequestsSchema");
 
-router.post("/addBook", upload, addBookToLibrary);
+router.post("/addBook", addBookToLibrary);
 router.get("/viewBooks/:id", viewLibraryBooks);
 router.get("/viewlibrarydonateBooks", viewAllDonatedBooksByAdmin);
 router.post('/library/edit/:bookid',upload, editLibraryBook);
