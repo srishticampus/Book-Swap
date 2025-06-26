@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../BaseUrl';
 import { useNavigate } from 'react-router-dom';
-// import ReactStars from "react-rating-stars-component";
+import { toast } from 'react-toastify';
 
 function ClubViewBooks({ url }) {
   const [data, setData] = useState([]);
@@ -9,23 +9,24 @@ function ClubViewBooks({ url }) {
   const [errorMsg, setErrorMsg] = useState(null);
   const [allBooks, setAllBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate()
+  const [showModal, setShowModal] = useState(false);
+  const [pdfUrl, setPdfUrl] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const libraryid = localStorage.getItem("libraryid");
-    console.log("Library ID from localStorage:", libraryid);
     if (!libraryid) {
       setErrorMsg("Library ID not found in localStorage");
       setLoading(false);
       return;
     }
+
     axiosInstance.get(`/viewBooks/${libraryid}`)
       .then((res) => {
         const books = res.data?.data || [];
         setAllBooks(books);
         setData(books);
-
-        console.log(res.data)
         setLoading(false);
       })
       .catch((err) => {
@@ -33,8 +34,8 @@ function ClubViewBooks({ url }) {
         setErrorMsg("Error fetching books");
         setLoading(false);
       });
-
   }, []);
+
   const handleSearch = () => {
     const filteredBooks = allBooks.filter(book =>
       book.bookname.toLowerCase().includes(searchTerm.toLowerCase())
@@ -42,11 +43,20 @@ function ClubViewBooks({ url }) {
     setData(filteredBooks);
   };
 
+  const handleViewPdf = (book) => {
+    if (book.bookpdf?.filename) {
+      const cleanUrl = url.replace(/\/+$/, '');
+      setPdfUrl(`${cleanUrl}/${book.bookpdf.filename}`);
+      setShowModal(true);
+    } else {
+      toast.error("No PDF available for this book");
+    }
+  };
+
   const handleDelete = (bookId) => {
     if (window.confirm("Are you sure you want to delete this book?")) {
       axiosInstance.post(`/library/delete/${bookId}`)
         .then(() => {
-          // Remove deleted book from state
           const updatedBooks = data.filter(book => book._id !== bookId);
           setData(updatedBooks);
           setAllBooks(updatedBooks);
@@ -57,6 +67,7 @@ function ClubViewBooks({ url }) {
         });
     }
   };
+
   if (loading) return <div>Loading...</div>;
 
   return (
@@ -88,7 +99,7 @@ function ClubViewBooks({ url }) {
               <div className="card admin-books col-3" id="carddesign" key={a._id}>
                 <div className="admin-book-top-section">
                   <img
-                    src={`${url}/${a.image}`}
+                    src={`${url}/${a.image.filename}`}
                     className="card-img-top"
                     id="adminclub"
                     alt={a.bookname}
@@ -99,20 +110,14 @@ function ClubViewBooks({ url }) {
                   <h6 className="card-text">Author: {a.authername}</h6>
                   <h6 className="card-text">Publisher: {a.publisher}</h6>
                   <h6 className="card-text">Publishing Year: {a.publisheryear}</h6>
-                  {/* <ReactStars
-                    count={5}
-                    value={a.rating}
-                    size={24}
-                    activeColor="#ffd700"
-                    edit={false}
-                  /> */}
+                  <button className="btn btn-success" onClick={() => handleViewPdf(a)}>View pdf</button>
                   <button
-                    className='btn btn-primary'
+                    className="btn btn-primary"
                     onClick={() => navigate(`/library_edit_book/${a._id}`)}
                   >
                     Edit
                   </button>
-                  <button className='btn btn-danger' onClick={() => handleDelete(a._id)}>Delete</button>
+                  <button className="btn btn-danger" onClick={() => handleDelete(a._id)}>Delete</button>
                 </div>
               </div>
             ))
@@ -123,16 +128,37 @@ function ClubViewBooks({ url }) {
           )}
         </div>
       </div>
+
+      {showModal && pdfUrl && (
+        <div
+          className="modal fade show d-block"
+          tabIndex="-1"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+          onClick={(e) => {
+            if (e.target.classList.contains("modal")) setShowModal(false);
+          }}
+        >
+          <div className="modal-dialog modal-xl modal-dialog-scrollable">
+            <div className="modal-content" style={{ height: '90vh' }}>
+              <div className="modal-header">
+                <h5 className="modal-title">Read Book</h5>
+                <button type="button" className="btn-close" onClick={() => setShowModal(false)} />
+              </div>
+              <div className="modal-body p-0" style={{ height: '100%' }}>
+                <iframe
+                  src={pdfUrl}
+                  title="PDF Preview"
+                  width="100%"
+                  height="100%"
+                  style={{ border: "none" }}
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 export default ClubViewBooks;
-
-
-
-
-
-
-
-
