@@ -108,7 +108,7 @@ function ReaderHomeNavbar() {
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        <b>DONATED</b>
+                        <b>DONATE</b>
                       </Link>
                       <ul className="dropdown-menu" aria-labelledby="donateDropdown">
                         <li>
