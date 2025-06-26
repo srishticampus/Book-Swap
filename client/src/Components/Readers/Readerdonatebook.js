@@ -16,7 +16,7 @@ function Readerdonatebook() {
     authername: "",
     publisher: "",
     publisheryear: "",
-    count: 0,
+    count: 1,
     userid: id,
     image: "",
   });
@@ -130,6 +130,8 @@ function Readerdonatebook() {
                       name="count"
                       onChange={changesubmit}
                       required
+                      value={donate.count}
+                      disabled
                     />
                   </div>
                   <label className="col-sm-4 donatebook_label">
