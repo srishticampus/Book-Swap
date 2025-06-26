@@ -36,6 +36,7 @@ function Readerdonatebook() {
             count: book.count || 1,
             libraryid: libraryId,
             image: '',
+            bookpdf:"",
           });
           setLoading(false);
         })
@@ -50,7 +51,7 @@ function Readerdonatebook() {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === "image") {
+    if (name === "image"|| name==="bookpdf") {
       setFormData({ ...formData, image: files[0] });
     } else {
       setFormData({ ...formData, [name]: value });
@@ -70,6 +71,9 @@ function Readerdonatebook() {
     if (formData.image) {
       dataToSend.append('image', formData.image);
     }
+    if (formData.bookpdf) {
+  dataToSend.append('bookpdf', formData.bookpdf);
+}
 
     const endpoint = id ? `/library/edit/${id}` : '/addBook';
 
@@ -127,13 +131,14 @@ function Readerdonatebook() {
 
                   <label className='col-sm-4 donatebook_label'>Count</label>
                   <div className='col-sm-8 reader_donatebook_inputs'>
-                    <input type="number" name='count' value={formData.count} onChange={handleChange} required />
+                    <input type="number" name='count' value={formData.count} onChange={handleChange} required disabled />
                   </div>
 
                   <label className='col-sm-4 donatebook_label'>Select Image</label>
                   <div className='col-sm-8 reader_donatebook_inputs'>
                     <input type="file" name='image' onChange={handleChange} accept="image/*" required={!id} />
                   </div>
+                  
 
                   <div className='col-sm-8 reader_donatebook_inputs'>
                     <button className="btn btn-primary" id='readerdonatebook_button'>
