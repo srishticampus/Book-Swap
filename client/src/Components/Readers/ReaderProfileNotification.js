@@ -103,6 +103,11 @@ function ReaderProfileNotification() {
                       <br />
                       Discription : {a.discription}
                       <br />
+                      Conatct :{a.userid.mobile}
+                      <br></br>
+                      Email : {a.userid.email}
+                      <br></br>
+                      Place : {a.userid.city}
                       {/* <ReactStars
                   count={5}
                   value={3}

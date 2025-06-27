@@ -38,7 +38,7 @@ function ViewBooksModal({ show, onClose, books = [], url, userId }) {
                 <p>Available: {book?.isLent ? 'No' : 'Yes'}</p>
                 {book.image && (
                   <img
-                    src={`${url}/${book?.image}`}
+                    src={`${url}/${book?.image.filename}`}
                     alt={book?.bookname || "Book"}
                     className="img-fluid"
                     style={{ width: "100%", height: "auto", marginTop: "10px" }}

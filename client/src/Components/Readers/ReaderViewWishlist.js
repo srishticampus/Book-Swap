@@ -20,7 +20,7 @@ function ReaderViewWishlist({ show, setShow, url }) {
     axiosInstance
       .post(`/bookviewwishlist/${id}`)
       .then((res) => {
-        console.log(res);
+        console.log("view wish list",res);
         setData(res.data.data);
       })
       .catch((err) => {
@@ -64,23 +64,23 @@ function ReaderViewWishlist({ show, setShow, url }) {
                   <div>
                     <div className="reader_wishlist_items mt-4">
                       <div className="reader_wishlist_item_image">
-                        <img src={`${url}/${a.bookid.image}`} alt="img" className="img-fluid" />
+                        <img src={a.bookid.img} alt="img" className="img-fluid" />
                       </div>
                       <div className="reader_wishlist_item_content">
-                        <h6>{a.bookid.bookname}</h6>
+                        <p>{a.bookid.title}</p>
                         <p>
-                          Author: {a.bookid.authername}
+                          Author: {a.bookid.author}
                           <br />
-                          Publisher: {a.bookid.publisher}
+                          {/* Publisher: {a.bookid.publisher} */}
                           <br />
-                          Publishing Year: {a.bookid.publisheryear}
-                          <ReactStars
+                          {/* Publishing Year: {a.bookid.publisheryear} */}
+                          {/* <ReactStars
                     count={5}
                     value={a.bookid.rating} 
                     size={24}
                     activeColor="#ffd700"
                     edit={false}
-                  />
+                  /> */}
                         </p>
                       </div>
                       <div className="reader_wishlist_item_action">
