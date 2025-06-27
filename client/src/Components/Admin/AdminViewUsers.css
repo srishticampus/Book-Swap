@@ -39,21 +39,32 @@
   border-radius: 6px;
 }
 .card:hover .admin-user-top-section {
-  height: 30%;
+  height: 50%;
   /* height: ; */
 }
 
 .card {
-    width: 300px;
+    /* width: 300px;
     overflow: hidden;
-    height: 330px;
+    height: 330px; */
+     width: 300px;
+  overflow: visible;
+  min-height: 330px; /* optional */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   }
 
 .admin-books {
-    width: 300px;
+    /* width: 300px;
     overflow: hidden;
-    height: 350px;
-    /* height: ; */
+    height: 450px; */
+     width: 300px;
+  overflow: visible;
+  min-height: 550px;
+  height: auto;
+
   }
 
 .admin-book-bottom-section button{
