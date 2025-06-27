@@ -27,6 +27,7 @@ function ClubViewBooks({ url }) {
         const books = res.data?.data || [];
         setAllBooks(books);
         setData(books);
+       
         setLoading(false);
       })
       .catch((err) => {
