@@ -9,38 +9,38 @@ const adminaddbookschema = mongoose.Schema({
     type: String,
     require: true,
   },
-  bookformat: {
-    type: String,
-    require: true,
-  },
-  desc: {
-    type: String,
-    require: true,
-  },
+  // bookformat: {
+  //   type: String,
+  //   require: true,
+  // },
+  // desc: {
+  //   type: String,
+  //   require: true,
+  // },
   img: {
     type: String,
     require: true,
   },
-  isbn: {
-    type: String,
-    require: true,
-  },
-  isbn13: {
-    type: String,
-    require: true,
-  },
-  link: {
-    type: String,
-    require: true,
-  },
-  pages: {
-    type: Number,
-    required: true,
-  },
-  rating: {
-    type: Number,
-    require: true,
-  },
+  // isbn: {
+  //   type: String,
+  //   require: true,
+  // },
+  // isbn13: {
+  //   type: String,
+  //   require: true,
+  // },
+  // link: {
+  //   type: String,
+  //   require: true,
+  // },
+  // pages: {
+  //   type: Number,
+  //   required: true,
+  // },
+  // rating: {
+  //   type: Number,
+  //   require: true,
+  // },
   reviews: {
     type: Number,
     require: true,
