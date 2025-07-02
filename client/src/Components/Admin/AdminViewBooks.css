@@ -46,13 +46,14 @@
 .card {
     width: 300px;
     overflow: hidden;
-    height: 330px;
+    height: auto;
   }
 
 .admin-books {
     width: 300px;
     overflow: hidden;
-    height: 350px;
+    /* height: 350px; */
+       height: auto;
     /* height: ; */
   }
 

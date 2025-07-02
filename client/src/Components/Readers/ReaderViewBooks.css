@@ -59,7 +59,7 @@
   }
 
 .admin-books {
-    width: 300px;
+    min-width: 300px;
     overflow: hidden;
     height: 350px;
     /* height: ; */

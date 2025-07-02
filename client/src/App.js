@@ -69,6 +69,7 @@ import ReaderViewAllBooksByOtherUsers from "./Components/Readers/ReaderViewAllBo
 import LibraryLendedBooks from "./Components/Library/LibraryLendedBooks/LibraryLendedBooks";
 import ChatBot from "./Components/ChatBot/ChatBot";
 import AdminViewLendedList from "./Components/Admin/AdminViewLendedList";
+import ReaderViewBooksDetailedPage from "./Components/Readers/ReaderViewBooksDetailedPage";
 
 function App() {
 
@@ -140,6 +141,8 @@ function App() {
           <Route path="/reader_view_clubs" element={[<ReaderHomeNavbar />, <ReaderViewClubs url={url} />]} />
           <Route path="/reader_view_lended_books" element={[<ReaderHomeNavbar />, <ReaderViewLendedBooks url={url} />]} />
           <Route path="/reader_return_book/:lendid/:bid" element={[ <ReaderReturnBook url={url} />]} />
+
+          <Route path="/book-details/:id" element={<><ReaderViewBooksDetailedPage/></>} ></Route>
          
           <Route path="/chat" element={<>
           <ReaderHomeNavbar />

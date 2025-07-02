@@ -19,11 +19,12 @@ function ReaderNavbar() {
         <img src={logo} alt="logo" width="120" height="90" />
 
         <div className="d-flex align-items-center gap-3 position-relative">
+
           <Link to="/">
             <TiHome className="userhomeicon" />
           </Link>
 
-          
+        
           <button className="btn p-0 border-0" onClick={toggleMenu}>
             <BsPersonCircle className="userprofileicon" size={28} />
           </button>

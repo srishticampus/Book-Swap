@@ -6,6 +6,8 @@ import ReactStars from "react-rating-stars-component";
 import { BsFillHeartFill } from "react-icons/bs";
 import "./ReaderViewBooks.css";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+
 function ReaderViewBooks({ url }) {
 
   const [data, setData] = useState([])
@@ -102,7 +104,7 @@ function ReaderViewBooks({ url }) {
         <div class="container ">
 
 
-        <form className="d-flex mb-3">
+          <form className="d-flex mb-3">
             <input
               className="form-control me-2"
               type="text"
@@ -121,38 +123,50 @@ function ReaderViewBooks({ url }) {
             {
               data.length ? data.map((a) => {
                 return (
-                  <div className="card admin-books col-3" id='carddesign' >
-                    <div class="reader-book-top-section">
-                      <img
-                        src={a.img}
-                        class="card-img-top"
-                        id="adminclub"
-                        alt="..."
-                      />
-                      <button className="btn reader-book-top-section-heart" onClick={() => addToWishlist(a._id)} ><BsFillHeartFill color={a.wishlisted === true ? 'red' : 'grey'} size="20px" /></button>
-                    </div>
-                    <div class="admin-book-bottom-section container">
-                      <h4 class="card-title mt-2">{a.title}</h4>
-                      <h6 class="card-text">
-                        Author: {a.author}</h6>
-                      {/* <h6 class="card-text">Publisher: {a.publisher}</h6> */}
-                      <h6 class="card-text" >Publishing Year: {a.publisheryear}</h6>
-                      {/* <ReactStars
-                        count={5}
-                        value={a.rating}
-                        size={24}
-                        activeColor="#ffd700"
-                        edit={false}
-                      /> */}
-                      <div className="col text-center">
-
-                        <button className="btn btn-primary text-center" onClick={() => lend(a._id)}>
-                          Lend
+                  <Link
+                    to={`/book-details/${a._id}`}
+                    state={{ book: a }}
+                    className="col-3 text-decoration-none text-dark"
+                  >
+                    <div className="card admin-books" id="carddesign">
+                      <div className="reader-book-top-section">
+                        <img
+                          src={a.img}
+                          className="card-img-top"
+                          id="adminclub"
+                          alt="..."
+                        />
+                        <button
+                          className="btn reader-book-top-section-heart"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            addToWishlist(a._id);
+                          }}
+                        >
+                          <BsFillHeartFill
+                            color={a.wishlisted ? "red" : "grey"}
+                            size="20px"
+                          />
                         </button>
                       </div>
-
+                      <div className="admin-book-bottom-section container">
+                        <h4 className="card-title mt-2">{a.title}</h4>
+                        <h6 className="card-text">Author: {a.author}</h6>
+                        <div className="col text-center">
+                          <button
+                            className="btn btn-primary text-center"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              lend(a._id);
+                            }}
+                          >
+                            Lend
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
+
                 )
               }) : <div className="no_data" >
                 <h1>No books found</h1>

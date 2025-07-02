@@ -33,7 +33,7 @@ app.post('/recommend', (req, res) => {
     console.log('Sending to Python:', jsonInput);
 
     // Run Python script using child_process
-    const pythonPath = 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python311\\python.exe';
+    const pythonPath = '/media//anandhujs//Storage//Projects Folder//VS_Code ReactJS//Book-Swap//server//venv//bin//python';
     const escapedJsonInput = jsonInput.replace(/"/g, '\\"');
     const command = `"${pythonPath}" recommend.py "${escapedJsonInput}"`;
     console.log('Executing command:', command);
