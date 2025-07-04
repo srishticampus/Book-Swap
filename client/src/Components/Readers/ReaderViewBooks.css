@@ -53,9 +53,9 @@
 }
 
 .card {
-    width: 300px;
+    width: 300px !important;
     overflow: hidden;
-    height: 330px;
+    height: auto;
   }
 
 .admin-books {
