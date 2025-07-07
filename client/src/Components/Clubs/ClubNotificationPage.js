@@ -60,7 +60,7 @@ function ClubNotificationPage({ url }) {
         <div class="row">
           {useridget.length ? useridget.map((data) => {
             return (
-              <div className="card col-3" id="carddesign">
+              <div className="card card-noti col-3" id="carddesign">
                 <div class="top-section">
                   <img
                     src={`${url}/${data.userId.image.originalname}`}

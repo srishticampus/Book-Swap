@@ -29,6 +29,7 @@ function LibraryLendedBooks() {
             <div className="col">Author Name</div>
             <div className="col">Lended On</div>
             <div className="col">Lended To</div>
+            <div className="col">Return Status</div>
           </div>
         </div>
         {data.length ? (
@@ -40,6 +41,7 @@ function LibraryLendedBooks() {
                   <div className="col">{item.authername}</div>
                   <div className="col">{item.lentDate?.slice(0, 10)}</div>
                   <div className="col">{item.lentTo?.email || "N/A"}</div>
+                  <div className="col">{item.isLent? "false" :"true"}</div>
 
                 </div>
               </div>

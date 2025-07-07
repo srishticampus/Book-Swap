@@ -62,7 +62,7 @@ function ReaderViewClubs({ url }) {
           {adminClub.length ? (
             adminClub.map((club, index) => (
               <div key={index} className="col-md-3">
-                <div className="card" id="admincardlist">
+                <div className="card-noti" id="admincardlist">
                   <div className="top-section">
                     <img
                       src={`${url}/${club.image.filename}`}

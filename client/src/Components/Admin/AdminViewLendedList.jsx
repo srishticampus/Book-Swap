@@ -12,6 +12,7 @@ function AdminViewLendedList() {
       .post(`/lendedBooksByUser/${id}`)
       .then((res) => {
         setUserLendedBooks(res.data.data || []);
+        console.log(res.data.data)
       })
       .catch((err) => {
         console.error("Error fetching user lended books:", err);
@@ -22,6 +23,7 @@ function AdminViewLendedList() {
       .get('/lended-books/admin')
       .then((res) => {
         setLibraryLendedBooks(res.data.data || []);
+        console.log(res.data.data)
       })
       .catch((err) => {
         console.error("Error fetching library lended books:", err);
@@ -39,18 +41,38 @@ function AdminViewLendedList() {
             <div className="col">Author Name</div>
             <div className="col">Lended On</div>
             <div className="col">Lended To</div>
+            <div className='col'>Return Status</div>
           </div>
         </div>
+{userLendedBooks.length ? (
+  userLendedBooks.map((a) => (
+    <div className="admin_exchange_body" key={a._id}>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col">{a?.bookid?.title}</div>
+          <div className="col">{a?.bookid?.author}</div>
+          <div className="col">{a?.date?.slice(0, 10)}</div>
+          <div className="col">{a?.userid?.firstname}</div>
+          <div className='col'>{a?.isReturned ? "true":"false"}</div>
+        </div>
+      </div>
+    </div>
+  ))
+) : (
+  <div className="no_data">
+    <h1>No Books Found</h1>
+  </div>
+)}
 
-        {userLendedBooks.filter(book => !book.isReturned).length ? (
+        {/* {userLendedBooks.filter(book => !book.isReturned).length ? (
           userLendedBooks
             .filter(book => !book.isReturned)
             .map((a) => (
               <div className="admin_exchange_body" key={a._id}>
                 <div className="container-fluid">
                   <div className="row">
-                    <div className="col">{a?.bookid?.bookname}</div>
-                    <div className="col">{a?.bookid?.authername}</div>
+                    <div className="col">{a?.bookid?.title}</div>
+                    <div className="col">{a?.bookid?.author}</div>
                     <div className="col">{a?.date?.slice(0, 10)}</div>
                     <div className="col">{a?.userid?.firstname}</div>
                   </div>
@@ -61,7 +83,7 @@ function AdminViewLendedList() {
           <div className="no_data">
             <h1>No Books Found</h1>
           </div>
-        )}
+        )} */}
 
         {/* Section: Library Lended Books */}
         <h3 className="mt-5">Library Lended Books</h3>

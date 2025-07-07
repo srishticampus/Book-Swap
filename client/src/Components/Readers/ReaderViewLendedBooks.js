@@ -9,8 +9,21 @@ import 'react-toastify/dist/ReactToastify.css';
 function ReaderViewLendedBooks() {
   const [data, setData] = useState([]);
   const [libraryBooks, setLibraryBooks] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+const [pdfUrl, setPdfUrl]   = useState(null);
   const id = localStorage.getItem("userid");
   const libraryId = localStorage.getItem("libraryid");
+
+  const handleViewPdf = (book) => {
+  if (book?.bookpdf?.filename) {
+    // build a clean, public URL; adjust if your backend differs
+    const root = axiosInstance.defaults.baseURL?.replace(/\/+$/, '');
+    setPdfUrl(`${root}/${book.bookpdf.filename}`);
+    setShowModal(true);
+  } else {
+    toast.error('No PDF available for this book');
+  }
+};
 
   const handleLibraryReturn = async (bookId) => {
     try {
@@ -53,6 +66,10 @@ function ReaderViewLendedBooks() {
 
   }, [id]);
 
+  function viewPDF(){
+
+  }
+
   return (
     <div>
       <div className="admin_exchange">
@@ -63,6 +80,7 @@ function ReaderViewLendedBooks() {
       <div className="col">Book Name</div>
       <div className="col">Author Name</div>
       <div className="col">Lended on</div>
+     
       <div className="col">Action</div>
     </div>
   </div>
@@ -104,6 +122,7 @@ function ReaderViewLendedBooks() {
               <div className="col">Book Name</div>
               <div className="col">Author Name</div>
               <div className="col">Lended on</div>
+               <div className="col">View Book</div>
               <div className="col">Action</div>
             </div>
           </div>
@@ -115,6 +134,15 @@ function ReaderViewLendedBooks() {
                     <div className="col">{a?.bookname}</div>
                     <div className="col">{a?.authername}</div>
                     <div className="col">{a?.lentDate?.slice(0, 10)}</div>
+
+<button
+  onClick={() => handleViewPdf(a)}
+  className=" col btn btn-success"
+>
+  View PDF
+</button>                
+
+
                     <div className="col">
                   
                        <button className="btn btn-success" onClick={() => handleLibraryReturn(a._id)}>
@@ -129,7 +157,36 @@ function ReaderViewLendedBooks() {
             <div className="no_data">
               <h1>No Books found</h1>
             </div>
-          )}
+          )}{showModal && pdfUrl && (
+  <div
+    className="modal fade show d-block"
+    tabIndex="-1"
+    style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+    onClick={(e) => {
+      // click outside = close
+      if (e.target.classList.contains('modal')) setShowModal(false);
+    }}
+  >
+    <div className="modal-dialog modal-xl modal-dialog-scrollable">
+      <div className="modal-content" style={{ height: '90vh' }}>
+        <div className="modal-header">
+          <h5 className="modal-title">Read Book</h5>
+          <button type="button" className="btn-close" onClick={() => setShowModal(false)} />
+        </div>
+        <div className="modal-body p-0" style={{ height: '100%' }}>
+          <iframe
+            src={pdfUrl}
+            title="PDF Preview"
+            width="100%"
+            height="100%"
+            style={{ border: 'none' }}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
         </div>
       </div>
 

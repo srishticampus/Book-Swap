@@ -35,7 +35,7 @@ function AdminClubList({url}) {
         <div className="row mb-2">
           {adminClub.length?adminClub.map((club, index) => (
             <div key={index} className="col-md-3">
-              <div className="card" id="admincardlist">
+              <div className="card card-noti" id="admincardlist">
                 <div className="top-section">
                   <img
                    src={`${url}/${club.image.filename}`}
