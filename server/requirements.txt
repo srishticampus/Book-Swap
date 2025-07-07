@@ -7,3 +7,7 @@ numpy==1.26.4
 matplotlib==3.8.2
 xgboost==2.0.3
 thefuzz==0.22.1
+
+#pip install -r requirements.txt
+
+#to get path  = open cmd then type  'where python' 

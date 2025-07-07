@@ -72,7 +72,7 @@ function AdminViewBooks({url}) {
                 <h6 class="card-text">
                   Author: {a.author}</h6>
                   {/* <h6 class="card-text">Publisher: {a.publisher}</h6> */}
-                 <h6 class="card-text" >Publishing Year: {a.publisheryear}</h6>
+                 {/* <h6 class="card-text" >Publishing Year: {a.publisheryear}</h6> */}
           
                 
                 {/* <div className="col text-center pt-3">

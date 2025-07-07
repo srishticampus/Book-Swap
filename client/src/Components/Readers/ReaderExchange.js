@@ -121,6 +121,7 @@ function ReaderExchange() {
                 <div class="col">Book Name</div>
                 <div class="col">Request From</div>
                 <div class="col">Accepted By</div>
+                <div class="col">Contact No:</div>
                 <div class="col">Accepted Date</div>
                 <div class="col">status</div>
               </div>
@@ -133,6 +134,7 @@ function ReaderExchange() {
                       <div class="col">{item.bookname}</div>
                       <div class="col">{item.userid.firstname}</div>
                       <div class="col">{item.statusChangedBy.firstname}</div>
+                      <div className="col">{item.statusChangedBy.mobile}</div>
                       <div class="col">{formatDate(item.acceptedDate)}</div>
                       <div id="accepted_button" class="col">
                         {item.status}

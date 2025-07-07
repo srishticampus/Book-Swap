@@ -102,7 +102,7 @@ function ReaderReturnBook() {
                         type="text"
                         placeholder=""
                         name="bookname"
-                        value={book?.bookname||"NA"}
+                        value={book?.title||"NA"}
                         disabled
                         required
                         title="Please fill the field"
@@ -116,15 +116,15 @@ function ReaderReturnBook() {
                         type="text"
                         placeholder=""
                         name="authername"
-                        value={book.authername}
+                        value={book.author}
                         disabled
                         required
                       />
                     </div>
-                    <label className="col-sm-4 donatebook_label">
+                    {/* <label className="col-sm-4 donatebook_label">
                       Publisher
-                    </label>
-                    <div className="col-sm-8 reader_donatebook_inputs">
+                    </label> */}
+                    {/* <div className="col-sm-8 reader_donatebook_inputs">
                       <input
                         type="text"
                         placeholder=""
@@ -158,7 +158,7 @@ function ReaderReturnBook() {
                     activeColor="#F1B31C"
                 
                       />
-                    </div>
+                    </div> */}
 
                     <div className="col-sm-12 reader_donatebook_inputs ">
                       <button
