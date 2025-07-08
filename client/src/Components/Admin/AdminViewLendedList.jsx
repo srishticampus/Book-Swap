@@ -53,7 +53,7 @@ function AdminViewLendedList() {
           <div className="col">{a?.bookid?.author}</div>
           <div className="col">{a?.date?.slice(0, 10)}</div>
           <div className="col">{a?.userid?.firstname}</div>
-          <div className='col'>{a?.isReturned ? "true":"false"}</div>
+          <div className='col'>{a?.isReturned ? "Returned":"Return-pending"}</div>
         </div>
       </div>
     </div>
@@ -86,7 +86,7 @@ function AdminViewLendedList() {
         )} */}
 
         {/* Section: Library Lended Books */}
-        <h3 className="mt-5">Library Lended Books</h3>
+        {/* <h3 className="mt-5">Library Lended Books</h3>
         <div className="admin_exchange_head">
           <div className="row">
             <div className="col">Book Name</div>
@@ -94,9 +94,9 @@ function AdminViewLendedList() {
             <div className="col">Lended On</div>
             <div className="col">Lended To</div>
           </div>
-        </div>
+        </div> */}
 
-        {libraryLendedBooks.length ? (
+        {/* {libraryLendedBooks.length ? (
           libraryLendedBooks.map((book) => (
             <div className="admin_exchange_body" key={book._id}>
               <div className="container-fluid">
@@ -113,7 +113,7 @@ function AdminViewLendedList() {
           <div className="no_data">
             <h1>No Library Books Found</h1>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

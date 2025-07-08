@@ -4,7 +4,7 @@ import axiosInstance from '../../BaseUrl';
 import { toast } from 'react-toastify';
 import ViewBooksModal from './ViewBooksModal'; 
 
-function ReaderProfileClub({ url }) {
+function  ReaderProfileClub({ url }) {
   const [data, setData] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [books, setBooks] = useState([]);
@@ -22,7 +22,7 @@ function ReaderProfileClub({ url }) {
   }, [id]);
 
   const removeclub = (clubId) => {
-    axiosInstance.post(`/deleteClubMember/${clubId}`)
+    axiosInstance.delete(`/deleteMember/${clubId}`)
       .then((res) => {
         if (res.data.status === 200) {
           toast.success("Successfully Left");
