@@ -120,9 +120,9 @@ function ReaderExchange() {
               <div class="row">
                 <div class="col">Book Name</div>
                 <div class="col">Request From</div>
-                <div class="col">Accepted By</div>
+                <div class="col">Respond By</div>
                 <div class="col">Contact No:</div>
-                <div class="col">Accepted Date</div>
+                <div class="col">Date</div>
                 <div class="col">status</div>
               </div>
             </div>

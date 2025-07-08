@@ -68,10 +68,10 @@ function ClubViewMembers({url}) {
                       <h6 class="card-text"><i class="ri-map-pin-fill"></i> {a.userId.district}</h6>
                       <h6 class="card-text"><i class="ri-map-pin-fill"></i> {a.userId.state}</h6>
                       <div className="col text-center">
-                  
+{/*                   
                   <button className="btn btn-primary text-center" onClick={() => remove(a.userId._id)}>
                     Remove
-                  </button>
+                  </button> */}
                 </div>
                     </div>
                   </div>
