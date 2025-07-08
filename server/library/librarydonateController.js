@@ -114,6 +114,35 @@ const viewLibraryBooks = (req, res) => {
       });
     });
 };
+
+const viewLibraryBook = (req, res) => {
+  libraryDonateSchema
+    .findById(req.params.id)
+    .then((data) => {
+      if (data) {
+        res.json({
+          status: 200,
+          msg: "Book fetched successfully",
+          data: data,
+        });
+      } else {
+        res.json({
+          status: 404,
+          msg: "Book not found",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        status: 500,
+        msg: "Error fetching book",
+        error: err.message,
+      });
+    });
+};
+
+
+
 const viewAllDonatedBooksByAdmin = (req, res) => {
   libraryDonateSchema
     .find()
@@ -344,6 +373,7 @@ module.exports = {
   getLendedBooksByAdmin,
   editLibraryBook,
   deleteLibraryBook,
+  viewLibraryBook
 };
 
 // const multer = require('multer');

@@ -67,6 +67,7 @@ router.post('/deletewishlist/:id', useraddwishlist.deletewishlist)
 
 const lendbook = require("./Lendbyuser/lendbyusercontroller")
 router.post('/lendbyuser', lendbook.lend)
+router.post('/lendedBooksBylibrary/:id', lendbook.lendedBooksByUser)
 router.post('/lendedBooksByUser/:id', lendbook.lendedBooksByUser)
 router.post('/calcFineForUser/:id', lendbook.calcFineForUser)
 router.post('/returnbook/:id', lendbook.returnbackbook)
@@ -111,12 +112,13 @@ router.get('/acceptedLibraries/:userId', libraryRequestController.getAcceptedLib
 
 const {addBookToLibrary,upload,viewLibraryBooks,viewAllDonatedBooksByAdmin,lendBookFromLibrary,returnLibraryBook,
     getLendedBooksByUser,getLendedBooksByLibrary,getLendedBooksByAdmin,editLibraryBook,
-    deleteLibraryBook
+    deleteLibraryBook,viewLibraryBook
 } = require("./library/librarydonateController");
 const { events } = require("./library/libraryrequestsSchema");
 
 router.post("/addBook", upload, addBookToLibrary);
 router.get("/viewBooks/:id", viewLibraryBooks);
+router.get("/viewBookById/:id", viewLibraryBook);
 router.get("/viewlibrarydonateBooks", viewAllDonatedBooksByAdmin);
 router.post('/library/edit/:bookid',upload, editLibraryBook);
 router.post('/library/delete/:bookid', deleteLibraryBook);
