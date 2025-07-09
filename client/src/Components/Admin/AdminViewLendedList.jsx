@@ -9,7 +9,7 @@ function AdminViewLendedList() {
   useEffect(() => {
     // Fetch lended books by specific user
     axiosInstance
-      .post(`/lendedBooksByUser/${id}`)
+      .post(`/AlllendedBooks`)
       .then((res) => {
         setUserLendedBooks(res.data.data || []);
         console.log(res.data.data)
