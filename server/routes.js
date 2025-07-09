@@ -69,6 +69,7 @@ const lendbook = require("./Lendbyuser/lendbyusercontroller")
 router.post('/lendbyuser', lendbook.lend)
 router.post('/lendedBooksBylibrary/:id', lendbook.lendedBooksByUser)
 router.post('/lendedBooksByUser/:id', lendbook.lendedBooksByUser)
+router.post('/AlllendedBooks', lendbook.AlllendedBooks)
 router.post('/calcFineForUser/:id', lendbook.calcFineForUser)
 router.post('/returnbook/:id', lendbook.returnbackbook)
 

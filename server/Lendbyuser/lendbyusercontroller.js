@@ -92,6 +92,30 @@ const lendedBooksByUser=(req,res)=>{
   })
 }
 
+const AlllendedBooks=(req,res)=>{
+  lendschema.find().populate('bookid userid')
+  .exec()
+  .then(response=>{
+      if (response.length === 0) {
+          res.status(404).json({
+              msg: "No data found ."
+          });
+      } else {
+          res.json({
+              data: response,
+              status:200
+          });
+      }
+  })
+  .catch(err=>{
+      console.log(err);
+      res.json({
+          msg:"err"
+          
+      })
+  })
+}
+
 const calcFineForUser=async(req,res)=>{
   let currDate=new Date()
   let lendDate=new Date()
@@ -179,4 +203,4 @@ const returnbackbook = async (req, res) => {
 };
 
 
-module.exports={lend, lendedBooksByUser,calcFineForUser,returnbackbook}
+module.exports={lend, lendedBooksByUser,calcFineForUser,AlllendedBooks,returnbackbook}
