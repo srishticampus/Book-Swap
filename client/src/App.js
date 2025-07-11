@@ -1,4 +1,5 @@
 import "./App.css";
+// import "./index.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'remixicon/fonts/remixicon.css'
