@@ -1,4 +1,5 @@
 // src/components/ChatBot/ChatBot.jsx
+import "./ChatBot.css"
 import React, { useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import ChatBotHistory from "./ChatBotHistory";
@@ -53,9 +54,10 @@ function ChatBot() {
     <div className="container my-4">
       <h1 className="text-center mb-4">Chatbot</h1>
 
-      <div className="card shadow-sm w-100">
+      <div className="card shadow-sm chat-card">
         <div className="card-body "  style={{
-    height: "400px",          // You can increase this if needed
+    height: "400px", 
+      
     overflowY: "auto",
     paddingBottom: "1rem"
   }}>

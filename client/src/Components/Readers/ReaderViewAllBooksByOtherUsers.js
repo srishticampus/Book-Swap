@@ -13,6 +13,7 @@ function ReaderViewAllBooksByOtherUsers() {
             .get(`/otheruserbooks/${userid}`)
             .then((res) => {
                 setBooks(res?.data?.data || []);
+                console.log(res?.data?.data || [])
             })
             .catch((err) => {
                 console.error('Failed to fetch books:', err);
@@ -80,6 +81,8 @@ function ReaderViewAllBooksByOtherUsers() {
                                     <p className="card-text"><strong>Author:</strong> {book.authername}</p>
                                     <p className="card-text"><strong>Publisher:</strong> {book.publisher}</p>
                                     <p className="card-text"><strong>Year:</strong> {book.publisheryear}</p>
+                                    <p className='card-text'><strong>Email: </strong>{book.userid.email}</p>
+                                    <p className='card-text'><strong>Contact: </strong>{book.userid.mobile}</p>
                                 </div>
                                 <button
                                     className='btn btn-primary'
